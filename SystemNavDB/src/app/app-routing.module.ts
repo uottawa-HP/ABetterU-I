@@ -8,6 +8,7 @@ import { ResourceSearchComponent } from './resource-search/resource-search.compo
 import { RegisterStaffComponent } from './register-staff/register-staff.component';
 import {LoggedInGuard} from './logged-in.guard';
 import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.component';
+import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'resourcesearch', component: ResourceSearchComponent, canActivate: [LoggedInGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard]},
   { path: 'volunteermenu', component: VolunteerMenuComponent, canActivate: [LoggedInGuard]},
+  { path: 'resourcedatabase', component: ResourceDatabaseComponent, canActivate: [LoggedInGuard]},
   { path: 'logout', component: LogoutComponent}
 ];
 
