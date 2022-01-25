@@ -18,6 +18,12 @@ import { RegisterStaffComponent } from './register-staff/register-staff.componen
 import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
+import { RdbresourceService} from './services/rdbresource.service';
+import { CommonModule } from '@angular/common';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -39,9 +45,11 @@ import { ResourceDatabaseComponent } from './resource-database/resource-database
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    CommonModule
+
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, RdbresourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
