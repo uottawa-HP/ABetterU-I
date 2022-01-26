@@ -45,7 +45,7 @@ export class LoginComponent {
 
   async checkLogin(): Promise<boolean>{
     this.getRole();
-    await this.delay(2000)
+    await this.delay(300)
 
     if (this.email != '' && this.password !=''){
       if(this.role == "volunteer"){

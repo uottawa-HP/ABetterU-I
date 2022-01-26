@@ -129,7 +129,7 @@ export class AuthenticationService {
   async logout(){
     try{
       await this.fireAuth.signOut();
-      await this.delay(1000)
+      await this.delay(100)
       console.log("Signed out");
       this.user = false;
       // console.log(this.user)

@@ -28,9 +28,10 @@ export class LoggedInGuard implements CanActivate {
            this.router.navigate(['/']);
            return false
          }
-         else if (this.authService.isLoggedIn()) { // determine if the uder is logged in from this method.
+         else if (this.authService.isLoggedIn()) { // determine if the user is logged in from this method.
              return true;
-         }else{
+         }
+         else{
            this.authService.redirectUrl = state.url;
            this.router.navigate(['/']);
            return false;
