@@ -30,7 +30,9 @@ export class AuthenticationService {
   async signIn(email: string, password: string) {
     try {
         // if (!email || !password) throw new Error('Invalid email and/or password');
-        await this.fireAuth.signInWithEmailAndPassword(email, password);
+        await this.fireAuth.signInWithEmailAndPassword(email, password).then(res=>{
+          localStorage.setItem('user', JSON.stringify(res.user))
+        })
         this.router.navigate(['/menu']);
         this.user=true;
         return true;
@@ -129,6 +131,7 @@ export class AuthenticationService {
   async logout(){
     try{
       await this.fireAuth.signOut();
+      localStorage.removeItem('user')
       await this.delay(100)
       console.log("Signed out");
       this.user = false;

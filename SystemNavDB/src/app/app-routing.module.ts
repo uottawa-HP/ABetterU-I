@@ -12,13 +12,13 @@ import { ResourceDatabaseComponent } from './resource-database/resource-database
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'registerstaff', component: RegisterStaffComponent},
+  { path: 'registerstaff', component: RegisterStaffComponent,canActivate: [LoggedInGuard]},
   { path: 'menu', component: MenuComponent, canActivate: [LoggedInGuard]},
-  { path: 'resourcesearch', component: ResourceSearchComponent},
-  { path: 'profile', component: ProfileComponent},
+  { path: 'resourcesearch', component: ResourceSearchComponent, canActivate: [LoggedInGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard]},
   { path: 'volunteermenu', component: VolunteerMenuComponent, canActivate: [LoggedInGuard]},
-  { path: 'resourcedatabase', component: ResourceDatabaseComponent},
-  { path: 'logout', component: LogoutComponent, }
+  { path: 'resourcedatabase', component: ResourceDatabaseComponent, canActivate: [LoggedInGuard]},
+  { path: 'logout', component: LogoutComponent }
 ];
 
 @NgModule({
