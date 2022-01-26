@@ -56,30 +56,7 @@ export class LoginComponent {
             return this.loginService.signInVolunteer(this.email, this.password);
         }
       }
-      else if(this.role == "External Doctor" || this.role == "Medical Director" || this.role == "Local Doctor"){
-          if(await this.loginService.signInDoctor(this.email, this.password) == false){
-            this.message = "Invalid email or password";
-            return false;
-          }else{
-              return this.loginService.signInDoctor(this.email, this.password);
-            }
-          }
-      else if (this.role == "Specialist Staff" || this.role == "Nurse"){
-        if(await this.loginService.signInMedStaff(this.email, this.password) == false){
-          this.message = "Invalid email or password";
-          return false;
-        }else{
-          return this.loginService.signInMedStaff(this.email, this.password);
-        }
-      }
-      else if  (this.role == "Auxiliary" || this.role == "Personnel Officer"){
-        if(await this.loginService.signInStaff(this.email, this.password) == false){
-          this.message = "Invalid email or password";
-          return false;
-        }else{
-          return this.loginService.signInStaff(this.email, this.password);
-        }
-      }
+
       else if (this.role == "Admin"){
         if(await this.loginService.signIn(this.email, this.password) == false){
           this.message = "Invalid email or password";

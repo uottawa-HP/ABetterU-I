@@ -9,6 +9,8 @@ import { RegisterStaffComponent } from './register-staff/register-staff.componen
 import {LoggedInGuard} from './logged-in.guard';
 import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.component';
 import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
@@ -18,7 +20,10 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard]},
   { path: 'volunteermenu', component: VolunteerMenuComponent, canActivate: [LoggedInGuard]},
   { path: 'resourcedatabase', component: ResourceDatabaseComponent, canActivate: [LoggedInGuard]},
-  { path: 'logout', component: LogoutComponent }
+  { path: 'logout', component: LogoutComponent, canActivate: [LoggedInGuard]},
+  { path: '404', component: NotFoundComponent},
+  { path: '**', redirectTo: '/404'}
+  
 ];
 
 @NgModule({

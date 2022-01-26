@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
 import { RdbresourceService} from './services/rdbresource.service';
 import { CommonModule } from '@angular/common';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -35,7 +36,8 @@ import { CommonModule } from '@angular/common';
     ResourceSearchComponent,
     RegisterStaffComponent,
     VolunteerMenuComponent,
-    ResourceDatabaseComponent
+    ResourceDatabaseComponent,
+    NotFoundComponent
 
   ],
   imports: [
