@@ -17,6 +17,14 @@ import { ResourceSearchComponent } from './resource-search/resource-search.compo
 import { RegisterStaffComponent } from './register-staff/register-staff.component';
 import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
+import { RdbresourceService} from './services/rdbresource.service';
+import { CommonModule } from '@angular/common';
+import { NotFoundComponent } from './not-found/not-found.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +35,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     ResourceSearchComponent,
     RegisterStaffComponent,
-    VolunteerMenuComponent
+    VolunteerMenuComponent,
+    ResourceDatabaseComponent,
+    NotFoundComponent
 
   ],
   imports: [
@@ -37,9 +47,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    CommonModule
+
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, RdbresourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

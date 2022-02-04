@@ -23,14 +23,32 @@ export class LoggedInGuard implements CanActivate {
   //   return false;
   // }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree  {
-         if (this.router.url ==='/logout' || this.router.url === '/' && !this.authService.isLoggedIn()){
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
+        // const currentUser = this.authService.getUser();
+        // if(currentUser){
+        //   return true;
+        // }
+        //
+        // if(currentUser == null){
+        //     this.authService.redirectUrl = state.url;
+        //     this.router.navigate(['/']);
+        //   return false;
+        // }
+
+
+
+
+         if (this.router.url ==='/logout' || this.router.url === '/' && this.authService.getUser()==null){
+
+           // console.log('logged out');
            this.router.navigate(['/']);
            return false
          }
-         else if (this.authService.isLoggedIn()) { // determine if the uder is logged in from this method.
-             return true;
-         }else{
+         else if (this.authService.getUser() != null) { // determine if the user is logged in from this method.
+            // this.router.navigate(['/']);
+            return true;
+         }
+         else{
            this.authService.redirectUrl = state.url;
            this.router.navigate(['/']);
            return false;

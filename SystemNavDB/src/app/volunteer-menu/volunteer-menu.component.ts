@@ -16,10 +16,7 @@ export class VolunteerMenuComponent implements OnInit {
 
 
   async logout(): Promise<boolean> {
-    // if(this.logoutService.logout()){
-    //   this.router.navigate(['/']);
-    //   return true;
-    // }
+
     return await this.logoutService.logout();
 
   }
