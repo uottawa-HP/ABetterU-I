@@ -1,0 +1,12 @@
+<p>staff-member works!</p>
+
+<div *ngIf="users?.length > 0;">
+    <ul *ngFor="let userof users" class="collection">
+        <li class="collection-users"> <strong>{{users.email}}: </strong> {{users.lastname}}
+            
+
+        </li>
+
+    </ul>
+
+</div>
