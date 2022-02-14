@@ -32,7 +32,6 @@ import { StaffMemberComponent } from './staff-member/staff-member.component';
     RegisterStaffComponent,
     VolunteerMenuComponent,
     StaffMemberComponent,
-  
    
 
   ],
@@ -45,7 +44,7 @@ import { StaffMemberComponent } from './staff-member/staff-member.component';
     FormsModule,
     NgbModule
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}],
+  providers: [UsersService,{provide: LoggedInGuard, useClass: LoggedInGuard}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

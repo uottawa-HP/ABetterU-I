@@ -17,8 +17,7 @@ export class StaffMemberComponent implements OnInit {
       //console.log(users);
       this.users = users
 
-    });
-    
+    });   
   }
 
 }

@@ -13,8 +13,8 @@ export class UsersService {
   usersCollection: AngularFirestoreCollection<staffMember>;
   users : Observable<staffMember[]>;
 
-  constructor(public afs: AngularFirestore) {
-    this.users = this.afs.collection('users').valueChanges();
+  constructor(public firestore: AngularFirestore) {
+    this.users = this.firestore.collection('users').valueChanges();
    }
 
    getUsers(){
