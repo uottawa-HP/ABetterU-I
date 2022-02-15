@@ -1,12 +1,18 @@
 <p>staff-member works!</p>
 
-<div *ngIf="users?.length > 0;">
-    <ul *ngFor="let userof users" class="collection">
-        <li class="collection-users"> <strong>{{users.email}}: </strong> {{users.lastname}}
-            
-
+<div *ngIf="users?.length > 0; else noUsers">
+    <ul *ngFor="let user of users" class="collection">
+        <li class="collection-users">
+            {{user.firstname}}
+            {{user.lastname}}
+            {{user.email}}
+            {{user.role}}
         </li>
 
     </ul>
-
 </div>
+
+<ng-template #noUsers>
+    <hr>
+    <h5>There are no users in the db</h5>
+</ng-template>
