@@ -1,6 +1,32 @@
-.components {
-    float: right;
-  }
+
   .space {
       flex: 1 1 auto;
+  }
+
+
+.components {
+    background-color: #232942;
+    overflow: hidden;
+  }
+  
+ /* Navigation bar details */
+  .components a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Defining hover color  */
+  .components a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+ /* Changing the color of the selected tab */
+  .components a.active {
+    background-color: #04AA6D;
+    color: white;
   }
