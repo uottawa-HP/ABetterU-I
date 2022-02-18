@@ -21,6 +21,7 @@ import { ResourceDatabaseComponent } from './resource-database/resource-database
 import { RdbresourceService} from './services/rdbresource.service';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -37,7 +38,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     RegisterStaffComponent,
     VolunteerMenuComponent,
     ResourceDatabaseComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NavbarComponent
 
   ],
   imports: [

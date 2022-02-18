@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "SystemNavDB"
+  "defaultProject": "SystemNavDB",
+  "cli": {
+    "analytics": "67a8026e-9440-4e98-97bd-d4e6f16ca37b"
+  }
 }
