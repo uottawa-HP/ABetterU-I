@@ -26,7 +26,7 @@ export class AuthenticationService {
         })
         // localStorage.setItem('user', JSON.stringify(user));
 
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/home']);
         this.user=true;
         return true;
     } catch (error) {

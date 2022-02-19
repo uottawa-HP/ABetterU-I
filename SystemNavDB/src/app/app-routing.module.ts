@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResourceSearchComponent } from './resource-search/resource-search.component';
 import { RegisterStaffComponent } from './register-staff/register-staff.component';
@@ -15,7 +15,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'registerstaff', component: RegisterStaffComponent,canActivate: [LoggedInGuard]},
-  { path: 'menu', component: MenuComponent, canActivate: [LoggedInGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
   { path: 'resourcesearch', component: ResourceSearchComponent, canActivate: [LoggedInGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard]},
   { path: 'volunteermenu', component: VolunteerMenuComponent, canActivate: [LoggedInGuard]},
@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent, canActivate: [LoggedInGuard]},
   { path: '404', component: NotFoundComponent},
   { path: '**', redirectTo: '/404'}
-  
+
 ];
 
 @NgModule({

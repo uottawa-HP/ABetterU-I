@@ -11,7 +11,7 @@ import {LoggedInGuard} from './logged-in.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResourceSearchComponent } from './resource-search/resource-search.component';
 import { RegisterStaffComponent } from './register-staff/register-staff.component';
@@ -32,7 +32,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     LoginComponent,
     LogoutComponent,
-    MenuComponent,
+    HomeComponent,
     ProfileComponent,
     ResourceSearchComponent,
     RegisterStaffComponent,
