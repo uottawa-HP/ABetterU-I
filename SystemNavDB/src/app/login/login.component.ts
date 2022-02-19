@@ -48,16 +48,9 @@ export class LoginComponent {
     await this.delay(300)
 
     if (this.email != '' && this.password !=''){
-      if(this.role == "Volunteer"){
-        if(await this.loginService.signInVolunteer(this.email, this.password) == false){
-          this.message = "Invalid email or password";
-          return false;
-        }else{
-            return this.loginService.signInVolunteer(this.email, this.password);
-        }
-      }
 
-      else if (this.role == "Admin"){
+
+      if (this.role == "Admin" || this.role == "Volunteer"){
         if(await this.loginService.signIn(this.email, this.password) == false){
           this.message = "Invalid email or password";
           return false;
@@ -65,6 +58,15 @@ export class LoginComponent {
           return this.loginService.signIn(this.email, this.password);
         }
       }
+
+      // else if(this.role == "Volunteer"){
+      //   if(await this.loginService.signInVolunteer(this.email, this.password) == false){
+      //     this.message = "Invalid email or password";
+      //     return false;
+      //   }else{
+      //       return this.loginService.signInVolunteer(this.email, this.password);
+      //   }
+      // }
       else{
         this.message = "Account not authorized for Login!"
 

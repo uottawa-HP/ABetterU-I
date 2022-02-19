@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
+import {AngularFirestore} from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -10,11 +12,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(private AuthService: AuthenticationService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void{
   }
 
   async logout(): Promise<boolean> {
     return await this.AuthService.logout();
   }
+
+
 
 }
