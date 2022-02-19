@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {noop, BehaviorSubject} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -12,6 +14,10 @@ export class AuthenticationService {
   redirectUrl: string;
   currentUser: null;
   user: boolean = false;
+  tempUser: any;
+  email: any;
+
+  role: string;
 
   constructor(private router: Router, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {}
 
@@ -24,6 +30,10 @@ export class AuthenticationService {
         await this.fireAuth.signInWithEmailAndPassword(email, password).then(res=>{
           localStorage.setItem('user', JSON.stringify(res.user));
         })
+        this.tempUser = JSON.parse(localStorage.getItem("user"));
+        this.email = this.tempUser.email;
+
+
         // localStorage.setItem('user', JSON.stringify(user));
 
         this.router.navigate(['/home']);
@@ -99,7 +109,32 @@ export class AuthenticationService {
     }
     return true;
   }
-  //
+
+  async getRole() {
+    //reset patientFound and Update flags
+    console.log(this.email);
+    let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+    let query = userRef.valueChanges();
+    query.pipe(map(arr => arr[0])).subscribe(value => {
+      try {
+        this.role = value['role'];
+
+
+      } catch (e) {
+      }
+    })
+  }
+
+  async setRole(): Promise<void>{
+    this.getRole();
+
+    await this.delay(500);
+    console.log(this.role);
+  }
+
+
+
+
   isLoggedIn(): boolean {
     if(this.user!=false){
       console.log(this.user)

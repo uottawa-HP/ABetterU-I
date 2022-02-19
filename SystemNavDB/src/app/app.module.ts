@@ -22,6 +22,7 @@ import { RdbresourceService} from './services/rdbresource.service';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RoleGuard } from './role.guard';
 
 
 
@@ -53,7 +54,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule
 
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, RdbresourceService],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}, RdbresourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
