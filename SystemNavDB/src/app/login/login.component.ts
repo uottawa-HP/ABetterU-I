@@ -48,7 +48,7 @@ export class LoginComponent {
     await this.delay(300)
 
     if (this.email != '' && this.password !=''){
-      if(this.role == "volunteer"){
+      if(this.role == "Volunteer"){
         if(await this.loginService.signInVolunteer(this.email, this.password) == false){
           this.message = "Invalid email or password";
           return false;
