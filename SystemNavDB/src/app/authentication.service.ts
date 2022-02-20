@@ -32,8 +32,7 @@ export class AuthenticationService {
         })
         this.tempUser = JSON.parse(localStorage.getItem("user"));
         this.email = this.tempUser.email;
-
-
+        console.log("the email signing in is: "+ this.email);
         // localStorage.setItem('user', JSON.stringify(user));
 
         this.router.navigate(['/home']);
@@ -81,9 +80,14 @@ export class AuthenticationService {
       await this.fireAuth.signOut();
       localStorage.removeItem('user')
       console.log(localStorage.getItem('user'));
+      this.user = false;
+      this.role = "";
+      this.tempUser = null;
+      this.email = "";
       await this.delay(100)
       console.log("Signed out");
-      this.user = false;
+      console.log("Email signed in with is: "+ this.email);
+
       // console.log(this.user)
       this.router.navigate(['/logout']);
 
@@ -96,7 +100,7 @@ export class AuthenticationService {
 
   getUser(): boolean {
     if(localStorage.getItem('user')){
-      console.log(localStorage.getItem('user'));
+      // console.log(localStorage.getItem('user'));
       return true;
     }
     var storageUser = localStorage.getItem('user');
@@ -120,15 +124,17 @@ export class AuthenticationService {
         this.role = value['role'];
 
 
+
       } catch (e) {
       }
-    })
+    });
+    console.log("The role being set is: " + this.role);
   }
 
   async setRole(): Promise<void>{
     this.getRole();
 
-    await this.delay(500);
+    await this.delay(10);
     console.log(this.role);
   }
 
