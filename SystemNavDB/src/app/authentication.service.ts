@@ -3,6 +3,8 @@ import {Router} from '@angular/router';
 import {noop, BehaviorSubject} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { map } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -12,6 +14,10 @@ export class AuthenticationService {
   redirectUrl: string;
   currentUser: null;
   user: boolean = false;
+  tempUser: any;
+  email: any;
+
+  role: string;
 
   constructor(private router: Router, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {}
 
@@ -24,9 +30,12 @@ export class AuthenticationService {
         await this.fireAuth.signInWithEmailAndPassword(email, password).then(res=>{
           localStorage.setItem('user', JSON.stringify(res.user));
         })
+        this.tempUser = JSON.parse(localStorage.getItem("user"));
+        this.email = this.tempUser.email;
+        console.log("the email signing in is: "+ this.email);
         // localStorage.setItem('user', JSON.stringify(user));
 
-        this.router.navigate(['/menu']);
+        this.router.navigate(['/home']);
         this.user=true;
         return true;
     } catch (error) {
@@ -71,9 +80,14 @@ export class AuthenticationService {
       await this.fireAuth.signOut();
       localStorage.removeItem('user')
       console.log(localStorage.getItem('user'));
+      this.user = false;
+      this.role = "";
+      this.tempUser = null;
+      this.email = "";
       await this.delay(100)
       console.log("Signed out");
-      this.user = false;
+      console.log("Email signed in with is: "+ this.email);
+
       // console.log(this.user)
       this.router.navigate(['/logout']);
 
@@ -86,7 +100,7 @@ export class AuthenticationService {
 
   getUser(): boolean {
     if(localStorage.getItem('user')){
-      console.log(localStorage.getItem('user'));
+      // console.log(localStorage.getItem('user'));
       return true;
     }
     var storageUser = localStorage.getItem('user');
@@ -99,7 +113,34 @@ export class AuthenticationService {
     }
     return true;
   }
-  //
+
+  async getRole() {
+    //reset patientFound and Update flags
+    console.log(this.email);
+    let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+    let query = userRef.valueChanges();
+    query.pipe(map(arr => arr[0])).subscribe(value => {
+      try {
+        this.role = value['role'];
+
+
+
+      } catch (e) {
+      }
+    });
+    console.log("The role being set is: " + this.role);
+  }
+
+  async setRole(): Promise<void>{
+    this.getRole();
+
+    await this.delay(10);
+    console.log(this.role);
+  }
+
+
+
+
   isLoggedIn(): boolean {
     if(this.user!=false){
       console.log(this.user)

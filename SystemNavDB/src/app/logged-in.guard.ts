@@ -23,20 +23,7 @@ export class LoggedInGuard implements CanActivate {
   //   return false;
   // }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean {
-        // const currentUser = this.authService.getUser();
-        // if(currentUser){
-        //   return true;
-        // }
-        //
-        // if(currentUser == null){
-        //     this.authService.redirectUrl = state.url;
-        //     this.router.navigate(['/']);
-        //   return false;
-        // }
-
-
-
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
 
          if (this.router.url ==='/logout' || this.router.url === '/' && this.authService.getUser()==null){
 
@@ -46,8 +33,17 @@ export class LoggedInGuard implements CanActivate {
          }
          else if (this.authService.getUser() != null) { // determine if the user is logged in from this method.
             // this.router.navigate(['/']);
+            console.log("gotuser!!!");
             return true;
          }
+         else if(this.router.url ==='/404'){
+           console.log("test4040");
+           this.authService.logout();
+           this.router.navigate(['/']);
+           return false;
+
+         }
+
          else{
            this.authService.redirectUrl = state.url;
            this.router.navigate(['/']);

@@ -11,7 +11,7 @@ import {LoggedInGuard} from './logged-in.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ResourceSearchComponent } from './resource-search/resource-search.component';
 import { RegisterStaffComponent } from './register-staff/register-staff.component';
@@ -22,6 +22,7 @@ import { RdbresourceService} from './services/rdbresource.service';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { RoleGuard } from './role.guard';
 
 
 
@@ -32,7 +33,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     LoginComponent,
     LogoutComponent,
-    MenuComponent,
+    HomeComponent,
     ProfileComponent,
     ResourceSearchComponent,
     RegisterStaffComponent,
@@ -53,7 +54,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule
 
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, RdbresourceService],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}, RdbresourceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

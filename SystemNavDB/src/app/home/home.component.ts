@@ -5,11 +5,11 @@ import { filter } from 'rxjs/operators';
 
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class MenuComponent implements OnInit {
+export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private AuthService: AuthenticationService) {
     // this.router.events
@@ -19,8 +19,8 @@ export class MenuComponent implements OnInit {
     //       event.id === 1 &&
     //       event.url === event.urlAfterRedirects
     //     ) {
-    //       this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
-    //       this.router.navigate(['/menu']);
+    //       this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+    //       this.router.navigate(['/home']);
     //       });
     //     }
     //   })
@@ -35,8 +35,8 @@ export class MenuComponent implements OnInit {
 
 
   // async refresh(): Promise<void> {
-  //   this.router.navigateByUrl('/menu', { skipLocationChange: true }).then(() => {
-  //   this.router.navigate(['/menu']);
+  //   this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+  //   this.router.navigate(['/home']);
   //   });
   // }
 
