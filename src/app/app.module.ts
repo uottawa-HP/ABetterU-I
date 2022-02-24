@@ -19,6 +19,8 @@ import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersService } from './services/users.service';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
+import { AddUserComponent } from './add-user/add-user.component';
+
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { StaffMemberComponent } from './staff-member/staff-member.component';
     RegisterStaffComponent,
     VolunteerMenuComponent,
     StaffMemberComponent,
+    AddUserComponent,
    
 
   ],

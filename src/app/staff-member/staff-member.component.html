@@ -1,16 +1,47 @@
 <p>staff-member works!</p>
-
+<div class="container">
+    <app-add-user></app-add-user>
+</div  >
 <div *ngIf="users?.length > 0; else noUsers">
-    <ul *ngFor="let user of users" class="collection">
-        <li class="collection-users">
-            {{user.firstname}}
-            {{user.lastname}}
-            {{user.email}}
-            {{user.role}}
+    <ul *ngFor="let user of users" class="form-group">
+        <li (dblclick)="deleteUser($event,user)">
+            <!--<strong>{{user.id}}</strong>
+            <strong>{{user.firstname}}</strong>
+            <strong>{{user.lastname}}</strong>-->
+            <strong>{{user.lastname}}
+            {{user.email}} </strong> 
+            <a href = "#" class="secondery-content">
+                <button (click)="editUser($event,user)" class='fa fa-pencil-square' style='color: blue'>Edit</button>
+            </a>
+
+            <div *ngIf = "editState && userToEdit.id == user.id">
+                <form (ngSubmit) = "updateUser(user)">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add firstname" [(ngModel)] = "user.firstName" name="firstname">
+                            
+                        </div>
+        
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add lastname" [(ngModel)] = "user.lastName" name="lastName">
+                        </div>
+        
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add email" [(ngModel)] = "user.email" name="email">
+                        </div>
+        
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add role" [(ngModel)] = "user.role" name="role">
+                        </div>
+                    </div>
+                </form>
+            </div>           
         </li>
 
     </ul>
 </div>
+
+
 
 <ng-template #noUsers>
     <hr>

@@ -9,6 +9,8 @@ import { staffMember } from '../models/staffMember';
 })
 export class StaffMemberComponent implements OnInit {
   users: staffMember[];
+  editState: boolean = false;
+  userToEdit: staffMember;
 
   constructor(private userService: UsersService) { }
 
@@ -18,6 +20,15 @@ export class StaffMemberComponent implements OnInit {
       this.users = users
 
     });   
+  }
+
+  deleteUser(event, user){
+      this.userService.deleteUser(user);
+  }
+
+  editUtem(event,user){
+    this.editState = true;
+    this.userToEdit = user;
   }
 
 }
