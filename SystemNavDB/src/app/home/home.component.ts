@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { smartsheet } from 'smartsheet';
 
 
 @Component({
@@ -11,27 +12,23 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
+  
+
   constructor(private router: Router, private AuthService: AuthenticationService) {
-    // this.router.events
-    //   .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
-    //   .subscribe(event => {
-    //     if (
-    //       event.id === 1 &&
-    //       event.url === event.urlAfterRedirects
-    //     ) {
-    //       this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
-    //       this.router.navigate(['/home']);
-    //       });
-    //     }
-    //   })
+    //declare var require: any
+      // Initialize the client
+ // var client = require('smartsheet');
+ /* var smartsheet = client.createClient({
+    accessToken: 'gRpg1wAWInfepaPGc7QcikDQUshpp3l66tVVG',
+    logLevel: 'info'
+  });
+*/}
 
 
-
-
-  }
 
   ngOnInit(): void {
   }
+
 
 
   // async refresh(): Promise<void> {
