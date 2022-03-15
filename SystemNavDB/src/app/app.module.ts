@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoleGuard } from './role.guard';
+// import  smartsheet  from './smartsheet';
 
 
 
@@ -52,6 +53,7 @@ import { RoleGuard } from './role.guard';
     FormsModule,
     NgbModule,
     CommonModule
+
 
   ],
   providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}, RdbresourceService],
