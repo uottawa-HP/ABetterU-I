@@ -1,24 +1,37 @@
-<div class="alert alert-danger" role="alert" *ngIf="message" >
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Barlow Condensed';font-size: 22px;
+}
+</style>
+</head>
+<body>
+
+<div class="alert alert-danger" role="alert" *ngIf="message">
   <div class="text-center">
     {{ message }}
   </div>
 </div>
 
-
+<div id="box">
 <div class="row">
   <div class="col-sm-12 my-auto">
     <div class='text-center'>
-      <h1>System Navigation Database</h1>
+      <h1 style="color:white;">System Navigation Database</h1>
     </div><br>
     <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto" type="email" name="email" placeholder="Email" [(ngModel)]="email">
+      <input class="input-group-text w-30 mx-auto" type="email" name="email" placeholder="Email" [(ngModel)]="email">
     </div><br>
     <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+      <input class="input-group-text w-30 mx-auto" type="password" name="password" placeholder="Password" [(ngModel)]="password">
     </div><br>
     <div class = 'text-center'>
-      <button (click)="checkLogin()" class="btn btn-primary">Login</button>
+      <button (click)="checkLogin()" class="btn btn-primary" style="background-color:#EA7754 ;">Login</button>
     </div>
 
   </div>
 </div>
+</div>
+</body>
