@@ -11,7 +11,7 @@ export class ConfigService {
   constructor(private http: HttpClient) { }
 
   getData(){
-    let url = "http://localhost:4000";
+    let url = "http://localhost:3000/users";
     return this.http.get(url);
   }
 }
