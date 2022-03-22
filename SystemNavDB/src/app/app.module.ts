@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoleGuard } from './role.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -42,6 +43,7 @@ import { RoleGuard } from './role.guard';
     NotFoundComponent,
     NavbarComponent
 
+
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { RoleGuard } from './role.guard';
     AngularFireAuthModule,
     FormsModule,
     NgbModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
 
   ],
   providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}, RdbresourceService],

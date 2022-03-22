@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { ConfigService } from '../config.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { filter } from 'rxjs/operators';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router: Router, private AuthService: AuthenticationService) {
+  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
     // this.router.events
     //   .pipe(filter((rs): rs is NavigationEnd => rs instanceof NavigationEnd))
     //   .subscribe(event => {
@@ -31,6 +32,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.c.getData().subscribe(data => {
+      console.warn(data);
+    });
   }
 
 
