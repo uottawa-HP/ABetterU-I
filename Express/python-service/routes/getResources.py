@@ -2,6 +2,7 @@ import shlex
 import subprocess
 import json
 
+#copying curl
 def call_curl(curl):
     args = shlex.split(curl)
     process = subprocess.Popen(args, shell=False, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
