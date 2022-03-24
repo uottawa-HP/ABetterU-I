@@ -24,7 +24,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoleGuard } from './role.guard';
 import { HttpClientModule } from '@angular/common/http';
-import { ShowApiComponent } from './show-api/show-api.component';
 
 
 
@@ -44,8 +43,9 @@ import { ShowApiComponent } from './show-api/show-api.component';
     ResourceDatabaseComponent,
     NotFoundComponent,
     NavbarComponent,
-    ShowApiComponent,
-    
+
+
+
 
   ],
   imports: [
