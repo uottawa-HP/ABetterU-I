@@ -66,16 +66,15 @@ router.get('/', function(req, res, next) {
 
   // });
 
-  let jsonResponse={
-    "resources": someObject
+  // let jsonResponse= someObject
 
 
 
-  }
 
 
 
-  res.json(jsonResponse);
+
+  res.send(someObject);
 
 
 

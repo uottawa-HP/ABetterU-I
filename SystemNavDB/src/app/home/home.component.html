@@ -28,4 +28,14 @@ body {
         </div>
     </div>
 </div>
+
+<div *ngIf="resources?.length > 0">
+  <ul *ngFor = "let resource of resources" class="collection">
+    <li class = "collection-resource">{{resource}}</li>
+
+  </ul>
+
+</div>
+
+  <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;">Show Data</button>
 </body>
