@@ -23,6 +23,9 @@ import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoleGuard } from './role.guard';
+import { HttpClientModule } from '@angular/common/http';
+import { ShowApiComponent } from './show-api/show-api.component';
+
 
 
 
@@ -40,7 +43,9 @@ import { RoleGuard } from './role.guard';
     VolunteerMenuComponent,
     ResourceDatabaseComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShowApiComponent,
+    
 
   ],
   imports: [
@@ -51,7 +56,8 @@ import { RoleGuard } from './role.guard';
     AngularFireAuthModule,
     FormsModule,
     NgbModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
 
   ],
   providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}, RdbresourceService],
