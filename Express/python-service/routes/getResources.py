@@ -11,7 +11,7 @@ def call_curl(curl):
 
 
 if __name__ == '__main__':
-    curl = ''' '''
+    curl = '''curl -X GET -H 'Authorization: Bearer ec8ntzrkg27itb6zf7c2szrdwb' 'https://api.smartsheet.com/2.0/sheets/6377667244124036' '''
     output = call_curl(curl)
     print(output)
     with open('resources.json', 'w') as f:

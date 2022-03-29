@@ -24,6 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RoleGuard } from './role.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { MetricsComponent } from './metrics/metrics.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
@@ -43,6 +45,8 @@ import { HttpClientModule } from '@angular/common/http';
     ResourceDatabaseComponent,
     NotFoundComponent,
     NavbarComponent,
+    MetricsComponent,
+    FeedbackComponent
 
 
 
