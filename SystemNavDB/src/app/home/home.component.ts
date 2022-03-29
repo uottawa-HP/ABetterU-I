@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { ConfigService } from '../config.service';
 import { rdbresource } from '../models/rdbresource';
 import { map } from 'rxjs/operators';
+import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -19,8 +20,12 @@ export class HomeComponent implements OnInit {
   resources = [];
   modifiedDate = [];
 
+  progressPercentage : number;
+
+
 
   constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+
   }
 
   ngOnInit(): void {
@@ -36,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   storeData(): void{
+
 
     for (let i = 0; i < this.jsonResources.length; i++){
       let temp = [];
