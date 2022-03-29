@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   resources = [];
   modifiedDate = [];
 
-  progressPercentage : number;
+
 
 
 
@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit {
 
       this.modifiedDate[i] = temp;
     }
+
   }
 
 
@@ -89,7 +90,6 @@ export class HomeComponent implements OnInit {
     return await this.AuthService.logout();
 
   }
-
 
 
 
