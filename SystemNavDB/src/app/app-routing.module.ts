@@ -11,17 +11,21 @@ import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.componen
 import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoleGuard } from './role.guard';
+import { MetricsComponent } from './metrics/metrics.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'registerstaff', component: RegisterStaffComponent,canActivate:[RoleGuard]},
+  { path: 'metrics', component: MetricsComponent,canActivate:[RoleGuard]},
   { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
   { path: 'resourcesearch', component: ResourceSearchComponent, canActivate: [LoggedInGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [LoggedInGuard]},
   { path: 'volunteermenu', component: VolunteerMenuComponent, canActivate: [LoggedInGuard]},
   { path: 'resourcedatabase', component: ResourceDatabaseComponent, canActivate: [LoggedInGuard]},
   { path: 'logout', component: LogoutComponent, canActivate: [LoggedInGuard]},
+  { path: 'feedback', component: FeedbackComponent, canActivate: [LoggedInGuard]},
   { path: '404', component: NotFoundComponent, canActivate: [LoggedInGuard]},
   { path: '**', redirectTo: '/404'}
 

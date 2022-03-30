@@ -11,9 +11,12 @@ body {
 <div class = "components">
 <a mat-button [routerLink]="['/home']">Home </a>
 <a mat-button [routerLink]="['/profile']">Profile </a>
+<a mat-button [routerLink]="['/feedback']">Feedback </a>
 <!-- <a mat-button [routerLink]="['/resourcesearch']">Resource Search </a> -->
 <!-- <a mat-button [routerLink]="['/resourcedatabase']">Resource Database </a> -->
+<a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a>
 <a [hidden]="!adminBool" mat-button [routerLink]="['/registerstaff']">Register Staff</a>
+
 <a mat-button (click)="logout()"> Logout</a>
 
 <span class="space"></span>

@@ -5,6 +5,7 @@ import { filter } from 'rxjs/operators';
 import { ConfigService } from '../config.service';
 import { rdbresource } from '../models/rdbresource';
 import { map } from 'rxjs/operators';
+import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -20,7 +21,11 @@ export class HomeComponent implements OnInit {
   modifiedDate = [];
 
 
+
+
+
   constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+
   }
 
   ngOnInit(): void {
@@ -36,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   storeData(): void{
+
 
     for (let i = 0; i < this.jsonResources.length; i++){
       let temp = [];
@@ -65,6 +71,7 @@ export class HomeComponent implements OnInit {
 
       this.modifiedDate[i] = temp;
     }
+
   }
 
 
@@ -83,7 +90,6 @@ export class HomeComponent implements OnInit {
     return await this.AuthService.logout();
 
   }
-
 
 
 
