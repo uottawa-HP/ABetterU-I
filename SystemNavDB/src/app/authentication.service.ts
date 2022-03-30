@@ -153,6 +153,16 @@ export class AuthenticationService {
     // return this.getUser() != null;
   }
 
+ //  async deleteUser() {
+ //    // 1. using auth
+ //    (await this.auth.currentUser).delete();
+ //    // 2. using firebase
+ //    firebase.auth().currentUser.delete()
+ //   // 3. if import is like import * as firebase from 'firebase/app';
+ //   firebase.default.auth().currentUser.delete()
+ // }
+
+
 
 
   private delay(ms: number)
