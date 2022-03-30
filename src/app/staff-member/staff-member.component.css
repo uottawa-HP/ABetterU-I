@@ -1,0 +1,11 @@
+table {
+    width: 100%;
+  }
+table .btn{
+    margin: 2px;
+}
+
+.border{
+    padding: 10px;
+}
+

@@ -20,6 +20,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsersService } from './services/users.service';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { AddUserComponent } from './add-user/add-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from '@angular/material/slider';
+import {HttpClientModule} from '@angular/common/http'
+
 
 
 
@@ -45,9 +49,12 @@ import { AddUserComponent } from './add-user/add-user.component';
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatSliderModule,
+    HttpClientModule
   ],
-  providers: [UsersService,{provide: LoggedInGuard, useClass: LoggedInGuard}],
+  providers: [UsersService,{provide: LoggedInGuard, useClass: LoggedInGuard},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

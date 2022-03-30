@@ -1,44 +1,102 @@
 <p>staff-member works!</p>
 <div class="container">
-    <app-add-user></app-add-user>
-</div  >
-<div *ngIf="users?.length > 0; else noUsers">
-    <ul *ngFor="let user of users" class="form-group">
-        <li (dblclick)="deleteUser($event,user)">
-            <!--<strong>{{user.id}}</strong>
-            <strong>{{user.firstname}}</strong>
-            <strong>{{user.lastname}}</strong>-->
-            <strong>{{user.lastname}}
-            {{user.email}} </strong> 
-            <a href = "#" class="secondery-content">
-                <button (click)="editUser($event,user)" class='fa fa-pencil-square' style='color: blue'>Edit</button>
-            </a>
+    <div class="card-content">
+        
+        <form (ngSubmit)="onAddUser(user)" #userForm = "ngForm" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" name="firstname"> 
+                </div>
+                
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" name="lastname">
+                </div>
 
-            <div *ngIf = "editState && userToEdit.id == user.id">
-                <form (ngSubmit) = "updateUser(user)">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add firstname" [(ngModel)] = "user.firstName" name="firstname">
-                            
-                        </div>
-        
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add lastname" [(ngModel)] = "user.lastName" name="lastName">
-                        </div>
-        
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add email" [(ngModel)] = "user.email" name="email">
-                        </div>
-        
-                        <div class="input-field col s6">
-                            <input type="text" placeholder="Add role" [(ngModel)] = "user.role" name="role">
-                        </div>
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add email" [(ngModel)] = "user.email" name="email">
+                </div>
+
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add role" [(ngModel)] = "user.role" name="role">
+                </div>
+            </div>
+
+            <button type="submit" class=" btn btn-primary mr-2">
+            {{editMode? 'Update user' :'Add user'}}
+            
+            </button>
+
+           
+        </form>
+    </div>
+
+</div>
+<br>
+
+
+
+<div *ngIf="users?.length > 0; else noUsers" class="container">
+
+    <div class="border">
+        <button class="btn btn-md btn-outline-primary">
+            <i class="fa fa-user"></i>New user
+        </button>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th name="firstname">Firstname</th>
+                <th name="lastname">Lastname</th>
+                <th name="email">Email</th>
+                <th name="role">Role</th>
+                <th name="action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; index as i" class="form-group">
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" (click)="editUser( $event ,user)">
+                        <i class="fa fa-edit"></i>Edit
+                    </button>
+
+                    <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger">
+                        <i class="fa fa-remove"></i>Delete
+                    </button>
+
+                    <div *ngIf = "editState && userToEdit.id">
+                        <form (ngSubmit)="updateUser(user)" >
+                            <div class="row">
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" name="firstname"> 
+                                </div>
+                                
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" name="lastname">
+                                </div>
+                
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add email" [(ngModel)] = "user.email" name="email">
+                                </div>
+                
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add role" [(ngModel)] = "user.role" name="role">
+                                </div>
+                            </div>
+                
+                            <button type="submit" class=" btn btn-primary mr-2" >Update</button>
+                
+                           
+                        </form>
                     </div>
-                </form>
-            </div>           
-        </li>
-
-    </ul>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 
