@@ -26,6 +26,8 @@ import { RoleGuard } from './role.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { MetricsComponent } from './metrics/metrics.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { AddUserComponent } from './add-user/add-user.component';
+import { StaffMemberComponent } from './staff-member/staff-member.component';
 
 
 
@@ -46,7 +48,9 @@ import { FeedbackComponent } from './feedback/feedback.component';
     NotFoundComponent,
     NavbarComponent,
     MetricsComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    AddUserComponent,
+    StaffMemberComponent
 
 
 

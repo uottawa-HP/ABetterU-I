@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.storeData();
     // console.log("hello");
     // console.log(this.resources);
+    //comment
 
   }
 

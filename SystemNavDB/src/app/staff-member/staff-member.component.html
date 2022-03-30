@@ -1,0 +1,145 @@
+<div class="alert alert-danger" role="alert" *ngIf="message" >
+  <div class="text-center">
+    {{ message }}
+  </div>
+</div>
+
+<!-- <div class="container">
+    <div class="card-content">
+
+        <form (ngSubmit)="onAddUser(user)" #userForm = "ngForm" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" name="firstname">
+                </div>
+
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" name="lastname">
+                </div>
+
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add email" [(ngModel)] = "user.email" name="email">
+                </div>
+
+                <div class="input-field col s6">
+                    <input type="text" placeholder = "Add role" [(ngModel)] = "user.role" name="role">
+                </div>
+
+            </div>
+
+            <button type="submit" class=" btn btn-primary mr-2">
+            {{editMode? 'Update user' :'Add user'}}
+
+            </button>
+
+
+        </form>
+    </div>
+
+</div>
+<br> --><div class="row">
+  <div class="col-sm-12 my-auto">
+    <div class='text-center'>
+        <h1>Register Staff</h1>
+    </div><br>
+    <div class='text-center'>
+      <input class="input-group-text w-25 mx-auto"  type="text" name="firstname" placeholder="First Name" [(ngModel)]="user.firstname"><br>
+    </div>
+    <div class='text-center'>
+      <input class="input-group-text w-25 mx-auto" type="text" name="lastname" placeholder="Last Name" [(ngModel)]="user.lastname"><br>
+    </div>
+    <div class='text-center'>
+      <input class="input-group-text w-25 mx-auto" type="text" name="role" placeholder="Role" [(ngModel)]="user.role"><br>
+
+    </div>
+    <div class='text-center'>
+      <input class="input-group-text w-25 mx-auto"  type="text" name="email" placeholder="Email" [(ngModel)]="user.email"><br>
+    </div>
+    <div class='text-center'>
+      <input class="input-group-text w-25 mx-auto"  type="password" name="password" placeholder="Password" [(ngModel)]="password">
+    </div><br>
+    <div class = 'text-center'>
+      <button ng-click="orderProps='0'" (click)="onAddUser(user)" class="btn btn-primary">Register</button>
+    </div>
+    <!-- <div class = 'text-center'>
+      <button  (click)=back() class="btn btn-link">Back</button>
+    </div> -->
+    <div class='text-center' *ngIf="success">
+      <!-- <p>Registered staff with the email:  <b>{{ e }}</b></p> -->
+      <p> Staff registered successfully! </p>
+    </div>
+
+  </div>
+</div>
+
+
+<div *ngIf="users?.length > 0; else noUsers" class="container">
+
+    <div class="border">
+        <button class="btn btn-md btn-outline-primary">
+            <i class="fa fa-user"></i>New user
+        </button>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th name="firstname">Firstname</th>
+                <th name="lastname">Lastname</th>
+                <th name="email">Email</th>
+                <th name="role">Role</th>
+                <th name="action">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; index as i" class="form-group">
+                <td>{{user.firstname}}</td>
+                <td>{{user.lastname}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning" (click)="editUser( $event ,user)">
+                        <i class="fa fa-edit"></i>Edit
+                    </button>
+
+                    <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger">
+                        <i class="fa fa-remove"></i>Delete
+                    </button>
+
+                    <div *ngIf = "editState && userToEdit.id">
+                        <form (ngSubmit)="updateUser(user)" >
+                            <div class="row">
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" name="firstname">
+                                </div>
+
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" name="lastname">
+                                </div>
+
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add email" [(ngModel)] = "user.email" name="email">
+                                </div>
+
+                                <div class="input-field col s3">
+                                    <input type="text" placeholder = "Add role" [(ngModel)] = "user.role" name="role">
+                                </div>
+                            </div>
+
+                            <button type="submit" class=" btn btn-primary mr-2" >Update</button>
+
+
+                        </form>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<ng-template #noUsers>
+    <hr>
+    <h5>There are no users in the db</h5>
+</ng-template>

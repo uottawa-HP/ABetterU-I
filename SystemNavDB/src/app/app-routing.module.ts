@@ -13,11 +13,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RoleGuard } from './role.guard';
 import { MetricsComponent } from './metrics/metrics.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { StaffMemberComponent } from './staff-member/staff-member.component';
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
-  { path: 'registerstaff', component: RegisterStaffComponent,canActivate:[RoleGuard]},
+  { path: 'staffmember', component: StaffMemberComponent,canActivate:[RoleGuard]},
   { path: 'metrics', component: MetricsComponent,canActivate:[RoleGuard]},
   { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
   { path: 'resourcesearch', component: ResourceSearchComponent, canActivate: [LoggedInGuard]},
