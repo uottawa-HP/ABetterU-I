@@ -1,1 +1,45 @@
-<p>feedback works!</p>
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Barlow Condensed';font-size: 22px;
+}
+</style>
+</head>
+<body>
+<app-navbar></app-navbar>
+
+<div class="container pt-5" >
+    <div class="row justify-content-sm-center pt-5">
+        <div class="col-sm-6 shadow round pb-3" style="background-color:#232942">
+            <h1 class="text-center pt-3 text-secondary" style="color: white;">Feedback</h1>
+            <br>
+                <form>
+                    <div class="block">
+                        <label class="col-form-label" style="color: white;" for="ressourceID" display="inline-block" >Ressource ID:  </label> 
+                            <input style="margin-left: 10px" type="text" name="tag"><br />
+                    </div>
+                        <br>
+                    <div class="form-group">
+                        <label class="col-form-label" style="color: white;" for="comment">Comment: </label><br>
+                        <input class="comment" type="text" name="tag"><br />
+                    </div>
+
+                    <br>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary" (click)="showFeedbackMessage()" style="background-color:#EA7754 ;">Submit</button>
+                        <p *ngIf="showMyMessage">Feedback Submitted!</p>
+                    </div><br />             
+                    
+                </form>
+</div>
+</div>
+</div>
+
+</body>
+
+
+
+
