@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -13,18 +13,22 @@ import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
 
 
   jsonResources = [];
   resources = [];
   modifiedDate = [];
+  title = 'home';
+  loading = false;
+  flag=false;
 
-
+  
 
 
 
   constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+    
 
   }
 
@@ -41,7 +45,25 @@ export class HomeComponent implements OnInit {
 
   }
 
+
+
+  save(): void {
+
+    this.loading=true;
+    this.storeData()
+
+  }
+
+  
+  setFlag():void{
+    if (this.flag==true){
+      this.storeData();
+    }
+  }
+ 
+
   storeData(): void{
+    console.log(this.flag);
 
 
     for (let i = 0; i < this.jsonResources.length; i++){
@@ -58,7 +80,11 @@ export class HomeComponent implements OnInit {
       temp[this.jsonResources[0]["cells"].length + 1] = modDate
       // console.log(temp[-1]);
       this.resources[i] = temp;
+      
     }
+    this.loading=false;
+    
+    
   }
 
   storeModData(): void{

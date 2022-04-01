@@ -1,8 +1,21 @@
+<html>
+<head>
+<link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Barlow Condensed';font-size: 22px;
+}
+</style>
+</head>
+<body>
+<app-navbar></app-navbar>
+
 <div class="alert alert-danger" role="alert" *ngIf="message" >
   <div class="text-center">
     {{ message }}
   </div>
 </div>
+
 
 <!-- <div class="container">
     <div class="card-content">
@@ -37,11 +50,15 @@
     </div>
 
 </div>
-<br> --><div class="row">
-  <div class="col-sm-12 my-auto">
-    <div class='text-center'>
-        <h1>Register Staff</h1>
-    </div><br>
+<br> -->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 my-auto"><br>
+            <div class='text-center'>
+                <h2>Register Staff</h2>
+            </div><br />
+           
     <div class='text-center'>
       <input class="input-group-text w-25 mx-auto"  type="text" name="firstname" placeholder="First Name" [(ngModel)]="user.firstname"><br>
     </div>
@@ -59,7 +76,7 @@
       <input class="input-group-text w-25 mx-auto"  type="password" name="password" placeholder="Password" [(ngModel)]="password">
     </div><br>
     <div class = 'text-center'>
-      <button ng-click="orderProps='0'" (click)="onAddUser(user)" class="btn btn-primary">Register</button>
+      <button ng-click="orderProps='0'" (click)="onAddUser(user)" class="btn btn-primary" style="background-color:#EA7754">Register</button>
     </div>
     <!-- <div class = 'text-center'>
       <button  (click)=back() class="btn btn-link">Back</button>
@@ -71,16 +88,17 @@
 
   </div>
 </div>
+<br>
 
 
-<div *ngIf="users?.length > 0; else noUsers" class="container">
+<div *ngIf="users?.length > 0; else noUsers" class="container text-center">
 
-    <div class="border">
+    <!-- <div class="border">
         <button class="btn btn-md btn-outline-primary">
             <i class="fa fa-user"></i>New user
         </button>
-    </div>
-    <table class="table table-bordered table-striped">
+    </div> -->
+    <table class="table">
         <thead>
             <tr>
                 <th name="firstname">Firstname</th>
@@ -91,46 +109,26 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of users; index as i" class="form-group">
-                <td>{{user.firstname}}</td>
-                <td>{{user.lastname}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.role}}</td>
-                <td>
-                    <button class="btn btn-sm btn-warning" (click)="editUser( $event ,user)">
+            <tr *ngFor="let user of users; index as i" >
+                <td>  <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" [disabled]='!editState' name="firstname"></td>
+                <td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" [disabled]='!editState' name="lastname"></td>
+                <td><input class="input-group-text w-30 mx-auto"  type="text" placeholder = "Add email" [(ngModel)] = "user.email"  [disabled]='!editState' name="email"></td>
+                <td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add role" [(ngModel)] = "user.role"  [disabled]='!editState' name="role"></td> 
+                
+                    <button class="btn btn-sm btn-warning" (click)="editUser( $event ,user)" style="background-color:#EA7754">
                         <i class="fa fa-edit"></i>Edit
                     </button>
+                  
 
-                    <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger">
+                    <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger" style="background-color:#EEC44B">
                         <i class="fa fa-remove"></i>Delete
                     </button>
+                    <button  type="submit" class=" btn btn-primary mr-2" (click)="updateUser(user)"style="background-color:#232942" >Update</button>
 
-                    <div *ngIf = "editState && userToEdit.id">
-                        <form (ngSubmit)="updateUser(user)" >
-                            <div class="row">
-                                <div class="input-field col s3">
-                                    <input type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" name="firstname">
-                                </div>
-
-                                <div class="input-field col s3">
-                                    <input type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" name="lastname">
-                                </div>
-
-                                <div class="input-field col s3">
-                                    <input type="text" placeholder = "Add email" [(ngModel)] = "user.email" name="email">
-                                </div>
-
-                                <div class="input-field col s3">
-                                    <input type="text" placeholder = "Add role" [(ngModel)] = "user.role" name="role">
-                                </div>
-                            </div>
-
-                            <button type="submit" class=" btn btn-primary mr-2" >Update</button>
-
-
-                        </form>
-                    </div>
-                </td>
+                    <!-- <div *ngIf = "editState && userToEdit.id"> -->
+          
+                    <!-- </div> -->
+                 
 
             </tr>
         </tbody>

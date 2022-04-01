@@ -99,6 +99,7 @@ export class StaffMemberComponent implements OnInit {
   updateUser(user: staffMember){
     this.userService.updateUser(user);
     this.clearState();
+    
   }
 
   async onAddUser(userData: staffMember): Promise<boolean>{

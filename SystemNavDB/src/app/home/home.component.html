@@ -10,6 +10,8 @@ body {
 <body>
 <app-navbar></app-navbar>
 
+
+
 <div class="container">
     <div class="row">
         <img src="../../favicon.ico">
@@ -32,16 +34,30 @@ body {
 
 
 <div class="text-center">
-  <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;">Show Data</button>
+  <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;" [disabled]="loading">Show Data
+  <i class="spinner" *ngIf="loading"></i>
+  </button>
+ 
+</div><br />
+
+<!-- <div class="text-center">
+  <button (click)=" storeData()" class="btn btn-primary" style="background-color:#EA7754 ;" [class.spinner]="loading">Show Data</button>
 </div><br />
 
 
+<button type="button" class="button" onclick="this.classList.toggle('button--loading')" style="background-color:#EA7754 ;">
+  <span class="button__text">Show Data</span>
+</button> -->
+
+<script>
+  const btn = document.querySelector(".button");
+
+  btn.classList.add("button--loading");
+  btn.classList.remove("button--loading");
+</script>
 
 
-
-
-
-<div *ngIf="resources?.length > 0">
+<div *ngIf="loading">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
 
         <ngb-panel *ngFor = "let resource of resources">
