@@ -13,29 +13,21 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class LoggedInGuard implements CanActivate {
   constructor(private authService: AuthenticationService, private router: Router, private fireAuth: AngularFireAuth) {}
 
-  // canActivate(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-  //   return  this.authService.isLoggedIn();
-  //   if (this.authService.isLoggedIn()) {return true; }
-  //   this.authService.redirectUrl = state.
-  //   this.router.navigate(['./']);
-  //   return false;
-  // }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-
+        //returns user to login screen when logged out and user token removed
          if (this.router.url ==='/logout' || this.router.url === '/' && this.authService.getUser()==null){
 
            // console.log('logged out');
            this.router.navigate(['/']);
            return false
          }
-         else if (this.authService.getUser() != null) { // determine if the user is logged in from this method.
-            // this.router.navigate(['/']);
+         // determine if the user is logged in from this method.
+         else if (this.authService.getUser() != null) {
             console.log("gotuser!!!");
             return true;
          }
+         //if 404 error has occured return to login page
          else if(this.router.url ==='/404'){
            console.log("test4040");
            this.authService.logout();
@@ -52,16 +44,6 @@ export class LoggedInGuard implements CanActivate {
 
      }
 
-  // canActivate() {
-  //     var user = this.fireAuth.currentUser;
-  //     console.log(user);
-  //     if(user!=null){
-  //       return true;
-  //     }else{
-  //       this.router.navigate(['/']);
-  //       return false;
-  //     }
-  //   }
 
 
 }

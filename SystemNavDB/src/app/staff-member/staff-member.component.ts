@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 import { database, User } from 'firebase';
 import { HttpClient  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 
 
@@ -41,29 +41,9 @@ export class StaffMemberComponent implements OnInit {
   }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
-      //console.log(users);
       this.users = users
     });
   }
-
-  /*fetchUser(){
-    this.http.get<staffMember>(this.url)
-    .pipe(map(resData=>{
-      console.log(resData);
-      const userArray = [];
-      for(const key in resData){
-        console.log(...resData[key]);
-        if(resData.hasOwnProperty(key)){
-          userArray.push({id:key, ...resData[key]})
-        }
-      }
-      return userArray
-    }))
-    .subscribe(users=>{
-      console.log(users)
-      this.users = users;
-    })
-  }*/
 
   deleteUser(event, user: staffMember){
     if(confirm('Do you want to delete this user')){
@@ -99,7 +79,7 @@ export class StaffMemberComponent implements OnInit {
   updateUser(user: staffMember){
     this.userService.updateUser(user);
     this.clearState();
-    
+
   }
 
   async onAddUser(userData: staffMember): Promise<boolean>{

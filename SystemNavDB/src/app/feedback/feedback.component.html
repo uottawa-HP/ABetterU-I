@@ -17,29 +17,26 @@ body {
             <br>
                 <form>
                     <div class="block">
-                        <label class="col-form-label" style="color: white;" for="ressourceID" display="inline-block" >Ressource ID:  </label> 
-                            <input style="margin-left: 10px" type="text" name="tag"><br />
+                        <label class="col-form-label" style="color: white;" for="ressourceID" display="inline-block" >Ressource ID:  </label>
+                            <input class="input-group-text w-100 mx-auto" type="text" name="tag"><br />
                     </div>
-                        <br>
+
                     <div class="form-group">
                         <label class="col-form-label" style="color: white;" for="comment">Comment: </label><br>
-                        <input class="comment" type="text" name="tag"><br />
+                        <!-- <input class="form-control input-lg" type="text" name="tag"> -->
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea><br />
                     </div>
 
                     <br>
 
                     <div class="text-center">
                         <button class="btn btn-primary" (click)="showFeedbackMessage()" style="background-color:#EA7754 ;">Submit</button>
-                        <p *ngIf="showMyMessage">Feedback Submitted!</p>
-                    </div><br />             
-                    
+                        <p *ngIf="showMyMessage" style="color: white;">Feedback Submitted!</p>
+                    </div><br />
+
                 </form>
 </div>
 </div>
 </div>
 
 </body>
-
-
-
-

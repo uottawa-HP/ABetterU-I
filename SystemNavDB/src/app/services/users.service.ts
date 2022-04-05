@@ -21,11 +21,8 @@ export class UsersService {
 
 
   constructor(public firestore: AngularFirestore, private http: HttpClient) {
-    //this.users = this.firestore.collection('users').valueChanges();
-    //ref => ref.orderBy('firstname','asc')
+
     this.usersCollection = this.firestore.collection('users' );
-
-
 
     this.users = this.usersCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
@@ -56,9 +53,7 @@ export class UsersService {
     this.userDoc.update(user);
    }
 
-   /*updateUser(user:staffMember):Observable <staffMember>{
-    return this.http.put<staffMember>(this.updateUrl,user);
-  }*/
+
 
 
 

@@ -11,12 +11,12 @@ import { Component, OnInit } from '@angular/core';
 export class FeedbackComponent implements OnInit {
 
   constructor() { }
-  
+
 
   ngOnInit(): void {
   }
 
-  public showMyMessage=false 
+  public showMyMessage=false
 
   showFeedbackMessage() {
     setTimeout(() =>  {
@@ -24,7 +24,8 @@ export class FeedbackComponent implements OnInit {
     setTimeout(() =>  {
       this.showMyMessage = false}, 7000)
     }
-  
- 
-}
 
+
+  //**IMPLEMENTATION FALL**
+
+}

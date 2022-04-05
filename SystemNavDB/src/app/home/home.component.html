@@ -34,32 +34,14 @@ body {
 
 
 <div class="text-center">
-  <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;" [disabled]="loading">Show Data
-  <i class="spinner" *ngIf="loading"></i>
+  <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;">Show Data
   </button>
- 
-</div><br />
-
-<!-- <div class="text-center">
-  <button (click)=" storeData()" class="btn btn-primary" style="background-color:#EA7754 ;" [class.spinner]="loading">Show Data</button>
 </div><br />
 
 
-<button type="button" class="button" onclick="this.classList.toggle('button--loading')" style="background-color:#EA7754 ;">
-  <span class="button__text">Show Data</span>
-</button> -->
 
-<script>
-  const btn = document.querySelector(".button");
-
-  btn.classList.add("button--loading");
-  btn.classList.remove("button--loading");
-</script>
-
-
-<div *ngIf="loading">
+<div *ngIf="resources.length > 0">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-
         <ngb-panel *ngFor = "let resource of resources">
            <ng-template ngbPanelTitle>
               <span>{{resource[5]}} </span>
@@ -82,96 +64,3 @@ body {
   </ngb-accordion>
 </div>
 </body>
-
-
-      <!-- ngb Accordion starts -->
-
-<!-- <ngb-accordion [destroyOnHide]='false' [closeOthers]="true" activeIds="panel1">
-
-   <ngb-panel id="panel1">
-      <ng-template ngbPanelTitle>
-         <span>Accordion Item 1 </span>
-      </ng-template>
-      <ng-template ngbPanelContent>
-         Donut caramels sweet roll bonbo
-      </ng-template>
-   </ngb-panel>
-
-   <ngb-panel id="panel1">
-      <ng-template ngbPanelTitle>
-         <span>Accordion Item 1 </span>
-      </ng-template>
-      <ng-template ngbPanelContent>
-         Donut caramels sweet roll bonbo
-      </ng-template>
-   </ngb-panel>
-
-
-</ngb-accordion> -->
-
-
-
-
-
-
-<!-- <div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
-
-
-
-
-<!-- <div *ngIf="resources?.length > 0">
-  <ul *ngFor = "let resource of resources" class="collection"> -->
-    <!-- <b>Health Theme</b> <b>Subtopic</b> <b>Tag</b> <b>Category</b> <b>Language</b> <b>Name of Resource</b> <b>Description</b> <b>Web Link</b> -->
-    <!-- <b>{{resource[5]}}</b>
-    <li class = "collection-resource">{{resource}}</li>
-
-  </ul>
-
-</div> -->

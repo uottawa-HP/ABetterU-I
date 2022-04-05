@@ -22,8 +22,6 @@ export class AuthenticationService {
   constructor(private router: Router, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {}
 
 
-
-
   async signIn(email: string, password: string) {
     try {
 
@@ -45,21 +43,8 @@ export class AuthenticationService {
   }
 
 
-  async signInVolunteer(email: string, password: string) {
-    try {
-        // if (!email || !password) throw new Error('Invalid email and/or password');
-        await this.fireAuth.signInWithEmailAndPassword(email, password);
-        this.router.navigate(['/volunteermenu']);
-        this.user=true;
-        return true;
-    } catch (error) {
-        console.log('Sign in failed', error);
-        return false;
-    }
-  }
 
-
-
+//creates user with in firebase auth
   async signUp(email: string, password: string) {
     try {
         if (!email || !password) throw new Error('Invalid email and/or password');
@@ -71,8 +56,6 @@ export class AuthenticationService {
         return false;
     }
   }
-
-
 
 
   async logout(){
@@ -88,7 +71,6 @@ export class AuthenticationService {
       console.log("Signed out");
       console.log("Email signed in with is: "+ this.email);
 
-      // console.log(this.user)
       this.router.navigate(['/logout']);
 
       return true;
@@ -98,9 +80,10 @@ export class AuthenticationService {
     }
   }
 
+  //get current user from browser localStorage and remove the token if user
+  //is not signed in through firebase auth.
   getUser(): boolean {
     if(localStorage.getItem('user')){
-      // console.log(localStorage.getItem('user'));
       return true;
     }
     var storageUser = localStorage.getItem('user');
@@ -114,8 +97,8 @@ export class AuthenticationService {
     return true;
   }
 
+  //fetch role from firebase
   async getRole() {
-    //reset patientFound and Update flags
     console.log(this.email);
     let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
     let query = userRef.valueChanges();
@@ -131,16 +114,16 @@ export class AuthenticationService {
     console.log("The role being set is: " + this.role);
   }
 
+  //method called by components to invoke role guard
   async setRole(): Promise<void>{
     this.getRole();
-
     await this.delay(10);
     console.log(this.role);
   }
 
 
 
-
+  //used to store status of logged in user (invokes logged in guard)
   isLoggedIn(): boolean {
     if(this.user!=false){
       console.log(this.user)
@@ -149,10 +132,14 @@ export class AuthenticationService {
       console.log(this.user)
       return false;
     }
-    // console.log(this.fireAuth.currentUser)
-    // return this.getUser() != null;
   }
 
+  private delay(ms: number)
+  {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+ // **IMPLEMENTATION FALL**
  //  async deleteUser() {
  //    // 1. using auth
  //    (await this.auth.currentUser).delete();
@@ -165,9 +152,19 @@ export class AuthenticationService {
 
 
 
-  private delay(ms: number)
-  {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+  // **ARCHIVED**
+  // async signInVolunteer(email: string, password: string) {
+  //   try {
+  //       // if (!email || !password) throw new Error('Invalid email and/or password');
+  //       await this.fireAuth.signInWithEmailAndPassword(email, password);
+  //       this.router.navigate(['/volunteermenu']);
+  //       this.user=true;
+  //       return true;
+  //   } catch (error) {
+  //       console.log('Sign in failed', error);
+  //       return false;
+  //   }
+  // }
+
 
 }

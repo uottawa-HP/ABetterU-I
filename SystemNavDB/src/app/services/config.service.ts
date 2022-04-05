@@ -10,6 +10,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class ConfigService {
   constructor(private http: HttpClient) { }
 
+  //retrieve resources.json from express
   getData(){
     let url = "http://localhost:3000/users";
     return this.http.get(url);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../authentication.service';
+import {AuthenticationService} from '../services/authentication.service';
 import {Router} from '@angular/router';
 import { map } from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
@@ -21,12 +21,11 @@ export class LoginComponent {
     this.signedIn = false;
   }
 
+  //check role from firebase
   getRole() {
-    //reset patientFound and Update flags
     this.staffFound = null;
-    let patientReference = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
-    let query = patientReference.valueChanges();
-    //query.subscribe(value => console.log(value));
+    let userReference = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+    let query = userReference.valueChanges();
     query.pipe(map(arr => arr[0])).subscribe(value => {
       try {
         this.role = value['role'];
@@ -48,8 +47,7 @@ export class LoginComponent {
     await this.delay(300)
 
     if (this.email != '' && this.password !=''){
-
-
+      //only logs in user if there has been a role Admin or volutneer assigned
       if (this.role == "Admin" || this.role == "Volunteer"){
         if(await this.loginService.signIn(this.email, this.password) == false){
           this.message = "Invalid email or password";
@@ -59,6 +57,7 @@ export class LoginComponent {
         }
       }
 
+      //**ARCHIVED**
       // else if(this.role == "Volunteer"){
       //   if(await this.loginService.signInVolunteer(this.email, this.password) == false){
       //     this.message = "Invalid email or password";
