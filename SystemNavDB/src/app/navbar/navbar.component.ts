@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from '../authentication.service';
+import {AuthenticationService} from '../services/authentication.service';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 
@@ -17,7 +17,6 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit(): Promise<void>{
     await this.AuthService.setRole();
-    // await this.delay(500);
     if(this.AuthService.role == "Volunteer"){
       console.log("volunteer was here");
       this.adminBool = false;
@@ -29,15 +28,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // checkAdmin(): boolean{
-  //   if(this.AuthService.role == "Volunteer"){
-  //     console.log("volunteer was here");
-  //     return true;
-  //   }else{
-  //     console.log("admin was here");
-  //     return false;
-  //   }
-  // }
 
   async logout(): Promise<boolean> {
     return await this.AuthService.logout();
