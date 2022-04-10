@@ -10,6 +10,7 @@ body {
 <body>
 <app-navbar></app-navbar>
 
+<!--Displays a box where the user can submit a feeback for a given ressource-->
 <div class="container pt-5" >
     <div class="row justify-content-sm-center pt-5">
         <div class="col-sm-6 shadow round pb-3" style="background-color:#232942">
@@ -17,6 +18,7 @@ body {
             <br>
                 <form>
                     <div class="block">
+                        <!--The inline-block allows to display the label and text field on the same line-->
                         <label class="col-form-label" style="color: white;" for="ressourceID" display="inline-block" >Ressource ID:  </label>
                             <input class="input-group-text w-100 mx-auto" type="text" name="tag"><br />
                     </div>
@@ -30,7 +32,9 @@ body {
                     <br>
 
                     <div class="text-center">
+                        <!--Submit button-->
                         <button class="btn btn-primary" (click)="showFeedbackMessage()" style="background-color:#EA7754 ;">Submit</button>
+                        <!--Once the user presses on the submit button, a messasge will pop-up confirming their submission-->
                         <p *ngIf="showMyMessage" style="color: white;">Feedback Submitted!</p>
                     </div><br />
 
