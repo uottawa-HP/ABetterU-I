@@ -40,9 +40,9 @@ body {
 
 
 
-<div *ngIf="resources.length > 0">
+<div *ngIf="!loading">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of resources">
+        <ngb-panel *ngFor = "let resource of resources[0]">
            <ng-template ngbPanelTitle>
               <span>{{resource[5]}} </span>
            </ng-template>

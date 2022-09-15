@@ -16,16 +16,32 @@ export class NavbarComponent implements OnInit {
   constructor(private AuthService: AuthenticationService) { }
 
   async ngOnInit(): Promise<void>{
-    await this.AuthService.setRole();
-    if(this.AuthService.role == "Volunteer"){
-      console.log("volunteer was here");
-      this.adminBool = false;
-    }else if (this.AuthService.role == "Admin"){
-      console.log("admin was here");
-      this.adminBool = true;
-    }else{
-      console.log("Empty");
+    if(this.AuthService.role != null){
+      await this.AuthService.setRole();
+      if(this.AuthService.role == "Volunteer"){
+        console.log("volunteer was here");
+        this.adminBool = false;
+      }else if (this.AuthService.role == "Admin"){
+        console.log("admin was here");
+        this.adminBool = true;
+      }else{
+        console.log("Empty");
+      }
     }
+    // else if(this.AuthService.role == null){
+    //   await this.AuthService.setRole2();
+    //   await this.delay(1);
+    //   if(this.AuthService.role == "Volunteer"){
+    //     console.log("volunteer was here");
+    //     this.adminBool = false;
+    //   }else if (this.AuthService.role == "Admin"){
+    //     console.log("admin was here");
+    //     this.adminBool = true;
+    //   }else{
+    //     console.log("Role is Null");
+    //   }
+    // }
+
   }
 
 

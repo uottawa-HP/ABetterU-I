@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit{
 
 
   jsonResources = [];
-  resources = [];
+  resources = [[]];
   title = 'home';
   loading = false;
   flag=false;
@@ -36,16 +36,15 @@ export class HomeComponent implements OnInit{
     this.c.getData().subscribe(data => {
       this.jsonResources = data["rows"];
       console.warn(this.jsonResources);
+      this.storeData()
     });
+
+  
   }
 
-
-
   save(): void {
-
     this.loading=true;
     this.storeData()
-
   }
 
 
@@ -55,30 +54,24 @@ export class HomeComponent implements OnInit{
     }
   }
 
-
   storeData(): void{
-    console.log(this.flag);
-
-
+    let page_size = 20;
     for (let i = 0; i < this.jsonResources.length; i++){
       let temp = [];
       let modDate = this.jsonResources[i].modifiedAt;;
-
-      // console.log("hello");
       for (let j = 0; j < this.jsonResources[0]["cells"].length; j++){
-
         temp[j] = this.jsonResources[i]["cells"][j].value;
-
-
       }
       temp[this.jsonResources[0]["cells"].length + 1] = modDate
-      // console.log(temp[-1]);
-      this.resources[i] = temp;
 
+      if(!this.resources[Math.floor(i/page_size)]) {
+        this.resources.push([temp])
+      } else {
+        this.resources[ Math.floor(i/page_size)].push(temp)
+      }
     }
     this.loading=false;
-
-
+    console.log(this.resources);
   }
 
   //**ARCHIVED**
