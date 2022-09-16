@@ -1,3 +1,5 @@
+
+
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
@@ -21,6 +23,9 @@ export class HomeComponent implements OnInit{
   title = 'home';
   loading = false;
   flag=false;
+  pageSize = 25;
+  page = 1;
+  noOfPages = 0;
   // modifiedDate = [];
 
 
@@ -66,8 +71,10 @@ export class HomeComponent implements OnInit{
 
       // console.log("hello");
       for (let j = 0; j < this.jsonResources[0]["cells"].length; j++){
+        if(this.jsonResources[i]["cells"][j].value != null){
+          temp[j] = this.jsonResources[i]["cells"][j].value;
+        }
 
-        temp[j] = this.jsonResources[i]["cells"][j].value;
 
 
       }
@@ -76,10 +83,36 @@ export class HomeComponent implements OnInit{
       this.resources[i] = temp;
 
     }
+
+    this.noOfPages = Math.floor(this.resources.length/25);
+    console.log(this.noOfPages);
+    var length = this.resources.length;
+    var indexStore=[];
+
+
+    for (let k = 0; k<length; k++){
+      this.resources[k].push(k+1);
+      if (this.resources[k][0] == null && this.resources[k][1] == null){
+        console.log(this.resources[k]);
+        indexStore.push(k)
+      }
+    }
+
+
+    for (var l = indexStore.length -1; l >= 0; l--){
+      this.resources.splice(indexStore[l],1);
+    }
+
+
+
+    console.log(this.resources[300])
+    console.log(this.resources[492])
+    console.log(this.resources);
     this.loading=false;
 
 
   }
+
 
   //**ARCHIVED**
   // storeModData(): void{

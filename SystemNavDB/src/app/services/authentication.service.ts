@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
-import {noop, BehaviorSubject} from 'rxjs';
+import {noop, BehaviorSubject, Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
+import { auth } from 'firebase/app';
 
 
 
@@ -12,14 +13,24 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
   redirectUrl: string;
-  currentUser: null;
+  // currentUser: null;
   user: boolean = false;
   tempUser: any;
   email: any;
 
   role: string;
+  currentUser;
 
-  constructor(private router: Router, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {}
+
+
+
+
+  constructor(private router: Router, private firestore: AngularFirestore, private fireAuth: AngularFireAuth) {
+    this.fireAuth.onAuthStateChanged((user)=>(this.currentUser = user));
+  }
+
+
+
 
 
   async signIn(email: string, password: string) {
@@ -32,7 +43,7 @@ export class AuthenticationService {
         this.email = this.tempUser.email;
         console.log("the email signing in is: "+ this.email);
         // localStorage.setItem('user', JSON.stringify(user));
-
+        await this.delay(100);
         this.router.navigate(['/home']);
         this.user=true;
         return true;
@@ -41,7 +52,6 @@ export class AuthenticationService {
         return false;
     }
   }
-
 
 
 //creates user with in firebase auth
@@ -84,6 +94,9 @@ export class AuthenticationService {
   //is not signed in through firebase auth.
   getUser(): boolean {
     if(localStorage.getItem('user')){
+      this.tempUser = JSON.parse(localStorage.getItem("user"));
+      this.email = this.tempUser.email;
+      console.log(this.email);
       return true;
     }
     var storageUser = localStorage.getItem('user');
@@ -99,27 +112,51 @@ export class AuthenticationService {
 
   //fetch role from firebase
   async getRole() {
-    console.log(this.email);
-    let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
-    let query = userRef.valueChanges();
-    query.pipe(map(arr => arr[0])).subscribe(value => {
-      try {
-        this.role = value['role'];
+
+    if(this.getUser() == true || this.email != null){
+      let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+      let query = userRef.valueChanges();
+      query.pipe(map(arr => arr[0])).subscribe(value => {
+        try {
+          this.role = value['role'];
 
 
 
-      } catch (e) {
-      }
-    });
-    console.log("The role being set is: " + this.role);
+        } catch (e) {
+        }
+      });
+      console.log("The role being set is: " + this.role);
+    }
+    // let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+    // let query = userRef.valueChanges();
+    // query.pipe(map(arr => arr[0])).subscribe(value => {
+    //   try {
+    //     this.role = value['role'];
+    //
+    //
+    //
+    //   } catch (e) {
+    //   }
+    // });
+    // console.log("The role being set is: " + this.role);
   }
 
   //method called by components to invoke role guard
   async setRole(): Promise<void>{
+
+
     this.getRole();
     await this.delay(10);
     console.log(this.role);
   }
+
+  // async setRole2(): Promise<void>{
+  //
+  //
+  //   this.getRole();
+  //   await this.delay(10);
+  //   console.log(this.role);
+  // }
 
 
 
@@ -133,6 +170,7 @@ export class AuthenticationService {
       return false;
     }
   }
+
 
   private delay(ms: number)
   {

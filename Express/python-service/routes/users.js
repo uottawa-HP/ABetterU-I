@@ -4,12 +4,14 @@ const { syncBuiltinESMExports } = require('module');
 const { send } = require('process');
 
 var someObject = require('./resources.json')
-var express = require('express');
+const express = require('express');
 var router = express.Router();
 
 
 // GET users page.
 router.get('/', function(req, res, next) {
+
+
   res.send(someObject);
 });
 

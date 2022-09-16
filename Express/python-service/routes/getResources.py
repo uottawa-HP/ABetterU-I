@@ -11,7 +11,6 @@ def call_curl(curl):
 
 #running curl command to populate resources.json
 if __name__ == '__main__':
-    
     output = call_curl(curl)
     print(output)
     with open('resources.json', 'w') as f:

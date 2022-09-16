@@ -11,8 +11,9 @@ export class RoleGuard implements CanActivate {
   constructor(private authGuard: LoggedInGuard, private authService: AuthenticationService, private router: Router) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
-    await this.authService.setRole();
+    // await this.authService.setRole();
     console.log(this.authService.role + " hello");
+
     //call loggedin guard to determine if user is logged in
     return this.authGuard.canActivate(route, state).then((auth: boolean) => {
       if(!auth) {
@@ -21,8 +22,8 @@ export class RoleGuard implements CanActivate {
       }
       //if user has been logged in check role
       else if(auth){
-        if(this.authService.role == "Admin"){
-          console.log("got into auth");
+        if(this.authService.role != null && this.authService.role == "Admin"){
+          console.log("Admin is able to access this tab");
           return true
         }else{
           this.router.navigate(['/404']);
