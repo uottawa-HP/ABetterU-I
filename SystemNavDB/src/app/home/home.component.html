@@ -40,11 +40,11 @@ body {
 
 
 
-<div *ngIf="!loading">
+<div *ngIf="resources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of resources[0]">
+        <ngb-panel *ngFor = "let resource of resources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
            <ng-template ngbPanelTitle>
-              <span>{{resource[5]}} </span>
+              <span>ID:{{resource[13]}} {{resource[5]}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
               <b>Health Theme:</b> {{resource[0]}}<br />
@@ -55,12 +55,38 @@ body {
                 <b>Description of Resource</b> <br />
                 {{resource[6]}}<br />
               </div><br />
-              <b>Web Link: </b> <a href = {{resource[7]}}>{{resource[7]}}</a><br />
+              <b>Web Link: </b> <a href = {{resource[7]}} target=”_blank” >{{resource[7]}}</a><br />
               <b>Additional Information:</b> {{resource[8]}}<br />
 
            </ng-template>
         </ngb-panel>
 
   </ngb-accordion>
+  <!-- <table class="table">
+    <tr>
+      <th>Title</th>
+      <th>Health Theme</th>
+      <th>Subtopic</th>
+      <th>Category</th>
+      <th>Language</th>
+      <th>Description of Resource</th>
+      <th>Web Link</th>
+      <th>Additional Information</th>
+    </tr>
+    <tr *ngFor="let resource of resources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+
+      <td>{{resource[5]}}</td>
+      <td>{{resource[1]}}</td>
+      <td>{{resource[2]}}</td>
+      <td>{{resource[3]}}</td>
+      <td>{{resource[4]}}</td>
+      <td>{{resource[6]}}</td>
+      <td><a href = {{resource[7]}}>{{resource[7]}}</a></td>
+      <td>{{resource[8]}}</td>
+
+    </tr>
+  </table> -->
+  <!-- <ngb-pagination [boundaryLinks]="true" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" aria-label="Default pagination"></ngb-pagination> -->
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
 </body>
