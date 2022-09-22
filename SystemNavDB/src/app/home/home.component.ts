@@ -26,7 +26,12 @@ export class HomeComponent implements OnInit{
   pageSize = 25;
   page = 1;
   noOfPages = 0;
-  // modifiedDate = [];
+  healthTheme= [];
+  subtopic= [];
+  category= [];
+  language= [];
+
+
 
 
 
@@ -42,23 +47,12 @@ export class HomeComponent implements OnInit{
       this.jsonResources = data["rows"];
       console.warn(this.jsonResources);
     });
-  }
 
-
-
-  save(): void {
-
-    this.loading=true;
     this.storeData()
-
   }
 
 
-  setFlag():void{
-    if (this.flag==true){
-      this.storeData();
-    }
-  }
+
 
 
   storeData(): void{
@@ -71,7 +65,7 @@ export class HomeComponent implements OnInit{
 
       // console.log("hello");
       for (let j = 0; j < this.jsonResources[0]["cells"].length; j++){
-        if(this.jsonResources[i]["cells"][j].value != null){
+        if(this.jsonResources[i]["cells"][4].value != null){
           temp[j] = this.jsonResources[i]["cells"][j].value;
         }
 
@@ -86,6 +80,19 @@ export class HomeComponent implements OnInit{
 
     this.noOfPages = Math.floor(this.resources.length/25);
     console.log(this.noOfPages);
+
+    this.removeBlanks(this.resources);
+
+
+    console.log(this.healthTheme);
+    console.log(this.resources);
+    this.loading=false;
+
+
+  }
+
+
+  removeBlanks(someArr){
     var length = this.resources.length;
     var indexStore=[];
 
@@ -102,16 +109,16 @@ export class HomeComponent implements OnInit{
     for (var l = indexStore.length -1; l >= 0; l--){
       this.resources.splice(indexStore[l],1);
     }
+  }
 
 
 
-    console.log(this.resources[300])
-    console.log(this.resources[492])
-    console.log(this.resources);
-    this.loading=false;
-
+  async logout(): Promise<boolean> {
+    return await this.AuthService.logout();
 
   }
+
+
 
 
   //**ARCHIVED**
@@ -128,12 +135,19 @@ export class HomeComponent implements OnInit{
   //
   // }
 
-
-
-  async logout(): Promise<boolean> {
-    return await this.AuthService.logout();
-
-  }
+  // save(): void {
+  //
+  //   this.loading=true;
+  //   this.storeData()
+  //
+  // }
+  //
+  //
+  // setFlag():void{
+  //   if (this.flag==true){
+  //     this.storeData();
+  //   }
+  // }
 
 
 
