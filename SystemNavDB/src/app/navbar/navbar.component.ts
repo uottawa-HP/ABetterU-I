@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
   async ngOnInit(): Promise<void>{
     if(this.AuthService.role != null){
       await this.AuthService.setRole();
+      await this.delay(1);
       if(this.AuthService.role == "Volunteer"){
         console.log("volunteer was here");
         this.adminBool = false;
