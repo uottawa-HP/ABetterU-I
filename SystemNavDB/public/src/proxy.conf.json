@@ -1,0 +1,10 @@
+{
+  "/home": {
+    "target": "https://systemnavdb.herokuapp.com/users",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+        "^/home": ""
+      }
+  }
+}

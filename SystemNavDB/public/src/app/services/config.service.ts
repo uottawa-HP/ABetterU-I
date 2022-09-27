@@ -12,7 +12,7 @@ export class ConfigService {
 
   //retrieve resources.json from express
   getData(){
-    let url = "http://localhost:3000/users";
+    let url = "https://systemnavdb.herokuapp.com/users";
     return this.http.get(url);
   }
 }
