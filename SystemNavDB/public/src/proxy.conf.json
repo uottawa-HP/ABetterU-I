@@ -1,6 +1,6 @@
 {
   "/home": {
-    "target": "https://systemnavdb.herokuapp.com/users",
+    "target": "https://systemnavdb.herokuapp.com/resources",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {
