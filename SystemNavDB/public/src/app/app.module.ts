@@ -21,6 +21,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { RoleGuard } from './services/role.guard';
 import { LoggedInGuard } from './services/logged-in.guard';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 //**ARCHIVED**
 // import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
@@ -43,7 +44,8 @@ import { LoggedInGuard } from './services/logged-in.guard';
     NavbarComponent,
     MetricsComponent,
     FeedbackComponent,
-    StaffMemberComponent
+    StaffMemberComponent,
+    SearchFilterPipe
     //**ARCHIVED**
     // ResourceSearchComponent,
     // RegisterStaffComponent,

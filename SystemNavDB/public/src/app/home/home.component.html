@@ -36,9 +36,11 @@ body {
 <form>
   <div class="form-group">
     <div class='text-center'>
-        <input class="input-group-text w-25 mx-auto"  type="text" name="tag" placeholder="Search"><br />
+        <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
     </div>
   </div>
+
+ 
 
   <!-- <div class='text-center'>
     <p>Health Theme</p>
@@ -230,7 +232,7 @@ body {
 
 <div *ngIf="resources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of resources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <ngb-panel *ngFor = "let resource of resources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | searchFilter:query">
            <ng-template ngbPanelTitle>
               <span>ID:{{resource[13]}} {{resource[5]}} </span>
            </ng-template>
@@ -277,5 +279,6 @@ body {
   <!-- <ngb-pagination [boundaryLinks]="true" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" aria-label="Default pagination"></ngb-pagination> -->
   <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
+
 
 </body>
