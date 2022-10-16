@@ -3,8 +3,8 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import { Observable} from 'rxjs';
 
 import {AuthenticationService} from './authentication.service';
-import {AngularFirestore} from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
 @Injectable({

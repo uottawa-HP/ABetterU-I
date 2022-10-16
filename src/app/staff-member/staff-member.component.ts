@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { staffMember } from '../models/staffMember';
 import { NgForm } from '@angular/forms';
-import { database, User } from 'firebase';
+// import { database, User } from 'firebase';
 import { HttpClient  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';

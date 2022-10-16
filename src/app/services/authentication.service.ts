@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import {noop, BehaviorSubject, Observable} from 'rxjs';
-import {AngularFirestore} from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { map } from 'rxjs/operators';
-import { auth } from 'firebase/app';
+// import { auth } from 'firebase/app';
 
 
 

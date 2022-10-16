@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {AuthenticationService} from './authentication.service';
-import {AngularFirestore} from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { LoggedInGuard } from './logged-in.guard';
 
 @Injectable()
