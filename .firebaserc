@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "system-navigation-database": {
+      "hosting": {
+        "SystemNavDB": [
+          "system-navigation-database"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "system-navigation-database"
+  }
+}
