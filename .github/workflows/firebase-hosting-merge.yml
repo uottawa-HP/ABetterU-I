@@ -15,7 +15,6 @@ jobs:
       - run: npm i @angular-devkit/build-angular --force
       - run: npm install --force
       - run: cd SystemNavDB
-      - run: cd public
       - run: ng serve
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
