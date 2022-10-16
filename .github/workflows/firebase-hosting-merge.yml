@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm install -g @angular/cli
       - run: npm i @angular-devkit/build-angular --force
       - run: npm install --force
       - run: ng serve
