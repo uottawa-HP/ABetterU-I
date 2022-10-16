@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm i @angular-devkit/build-angular --force
-      - run: npm install
+      - run: npm install --force
       - run: ng serve
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
