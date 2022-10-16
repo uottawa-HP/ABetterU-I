@@ -31,11 +31,10 @@ export class HomeComponent implements OnInit{
   category= [];
   language= [];
 
+  public searchFilter: any = '';
+  query: String ="";
 
-
-
-
-
+ 
 
   constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
 
