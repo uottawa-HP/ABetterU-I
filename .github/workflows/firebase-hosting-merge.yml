@@ -14,8 +14,7 @@ jobs:
       - run: npm install -g @angular/cli
       - run: npm i @angular-devkit/build-angular --force
       - run: npm install --force
-      - run: cd SystemNavDB/public
-      - run: ng serve
+      - run: ng serve --open
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
