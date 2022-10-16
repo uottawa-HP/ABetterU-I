@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: npm install
+      - run: npm i @angular-devkit/build-angular
       - run: ng serve
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
