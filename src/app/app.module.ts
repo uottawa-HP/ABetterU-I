@@ -65,7 +65,7 @@ import { SearchFilterPipe } from './search-filter.pipe';
     HttpClientModule
 
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, { provide: RoleGuard, useClass: RoleGuard}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
