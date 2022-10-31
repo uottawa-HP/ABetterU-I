@@ -10,6 +10,12 @@ body {
 <body>
 <app-navbar></app-navbar>
 
+<div class="alert alert-danger" role="alert" *ngIf="message">
+  <div class="text-center">
+    {{ message }}
+  </div>
+</div>
+
 <div class="container">
     <div class="row">
        <!-- <img src="../../../../Images/profile.png"> -->
@@ -39,6 +45,20 @@ body {
                     <div class="form-group">
                         <label class="col-form-label" for="email" style="color: white;">Role: </label>
                     </div>
+
+                </form>
+
+                <form>
+                  <div class='text-center'>
+                    <input class="input-group-text w-30 mx-auto" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+                  </div><br>
+                  <div class='text-center'>
+                    <input class="input-group-text w-30 mx-auto" type="password" name="cpassword" placeholder="Confirm Password" [(ngModel)]="cpassword">
+                  </div><br>
+
+                  <div class = 'text-center'>
+                    <button type="submit" (click)="changePassword()" class="btn btn-primary" style="background-color:#EA7754 ;">Change Password</button>
+                  </div>
 
                 </form>
 </div>
