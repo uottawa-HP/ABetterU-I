@@ -6,7 +6,8 @@ describe('RoleGuard', () => {
   let guard: RoleGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+    });
     guard = TestBed.inject(RoleGuard);
   });
 

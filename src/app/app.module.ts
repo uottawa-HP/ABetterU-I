@@ -67,7 +67,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     HttpClientModule
 
   ],
-  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, {provide: RoleGuard, useClass: RoleGuard}],
+  providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, { provide: RoleGuard, useClass: RoleGuard}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
