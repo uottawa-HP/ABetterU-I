@@ -172,6 +172,15 @@ export class AuthenticationService {
   }
 
 
+  forgotPassword(email : string) {
+    this.fireAuth.sendPasswordResetEmail(email).then(() => {
+      this.router.navigate(['/']);
+    }, err => {
+      alert('Something went wrong');
+    })
+}
+
+
   private delay(ms: number)
   {
     return new Promise(resolve => setTimeout(resolve, ms));

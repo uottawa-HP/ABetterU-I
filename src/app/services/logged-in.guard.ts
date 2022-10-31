@@ -28,6 +28,10 @@ export class LoggedInGuard implements CanActivate {
             console.log("User is logged in");
             return true;
          }
+
+         else if (this.router.url === '/forgotpassword') {
+            return true;
+         }
          //if 404 error has occured return to login page
          else if(this.router.url ==='/404'){
            console.log("test4040");
