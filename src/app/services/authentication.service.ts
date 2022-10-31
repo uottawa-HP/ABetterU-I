@@ -181,7 +181,7 @@ export class AuthenticationService {
 }
 
 
-chpwd
+
   async changePassword(password : string){
     await this.fireAuth.currentUser.then(u => u.updatePassword(password))
     this.reAuth(password);
@@ -212,7 +212,7 @@ chpwd
   }
 
 
-master
+
   private delay(ms: number)
   {
     return new Promise(resolve => setTimeout(resolve, ms));
