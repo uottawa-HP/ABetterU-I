@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
+  }
+
+  password = '';
+  cpassword = '';
+  message: string;
+
+  changePassword() {
+    if(this.password != this.cpassword){
+      this.message = "Passwords do not match!"
+    }else{
+      this.authService.changePassword(this.password);
+    }
+
+
   }
 
   //**IMPLEMENTATION FALL**
