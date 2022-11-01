@@ -17,6 +17,8 @@ export class AuthenticationService {
   user: boolean = false;
   tempUser: any;
   email: any;
+  firstname: any;
+  lastname: any;
 
   role: string;
   currentUser;
@@ -119,6 +121,8 @@ export class AuthenticationService {
       query.pipe(map(arr => arr[0])).subscribe(value => {
         try {
           this.role = value['role'];
+          this.firstname = value['firstname'];
+          this.lastname = value['lastname'];
 
 
 
