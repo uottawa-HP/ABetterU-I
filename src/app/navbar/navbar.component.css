@@ -1,32 +1,48 @@
 
-  .space {
-      flex: 1 1 auto;
-  }
+ *{
+   padding: 0;
+   margin:0;
+   box-sizing: border-box;
+ }
+
+ body{
+   width:100%;
+   margin: 0 auto;
+ }
+
+ .nav-container{
+  background-color: #232942;
+  border: 1px solid #232942;
+  overflow:hidden;
+
+  display: flex;
+  justify-content: space-between;
+ }
+
+ .right-side, .left-side{
+   list-style-type:none;
+ }
+
+ .right-side li, .left-side li{
+   display: inline-block
+ }
+ .right-side li a, .left-side li a{
+   text-decoration: none;
+   display: block;
+   width: 100%;
+   height: 100%;
+   font-size: 17px;
+   font-family: 'Barlow Condensed';
+   color: #f2f2f2;
+   padding: 14px 16px;
+ }
+
+ .right-side li a:hover, .left-side li a:hover{
+  background-color: #ddd;
+  color: black;
+  border: white
+ }
 
 
-.components {
-    background-color: #232942;
-    overflow: hidden;
-  }
 
- /* Navigation bar details */
-  .components a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-
-  /* Defining hover color  */
-  .components a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
- /* Changing the color of the selected tab */
-  .components a.active {
-    background-color: #04AA6D;
-    color: white;
-  }
+ 

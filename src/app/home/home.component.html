@@ -12,6 +12,19 @@ body {
 <body ng-load="storeData()">
 <app-navbar></app-navbar>
 
+<div class="container">
+  <div class="row">
+      <div class="col-sm-12 my-auto"><br>
+          <div class='text-center'>
+            <h1 style="color:#4AC1C0;"><b>Resource Navigation</b></h1>
+          </div><br />
+          <!-- <div class='text-center'>
+              <input class="input-group-text w-25 mx-auto"  type="text" name="tag" placeholder="Search"><br />
+          </div> -->
+
+      </div>
+  </div>
+</div>
 
 
 <div class="container">
@@ -19,19 +32,8 @@ body {
         <img src="assets/img/favicon.ico">
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 my-auto"><br>
-            <div class='text-center'>
-                <h2>Resource Navigation</h2>
-            </div><br />
-            <!-- <div class='text-center'>
-                <input class="input-group-text w-25 mx-auto"  type="text" name="tag" placeholder="Search"><br />
-            </div> -->
 
-        </div>
-    </div>
-</div>
+<br>
 
 
 
@@ -41,21 +43,26 @@ body {
     <div class='text-center'>
         <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
     </div>
+    <div class="text-center">
+      <p>Bilingual</p>
+      <label class="switch">
+        <input type="checkbox" id="filterSearch" value="BIL" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'BIL':'')">
+        <span class="slider round"></span>
+      </label><br><br>
+      <!-- <label class="switch">
+        <input type="checkbox" id="english" value="EN" [(ngModel)]="isEnglish" (change)="checkValue(isEnglish?'EN':'')">
+        <span class="slider round"></span>
+      </label> -->
+    </div> 
   </div>
 
-  <div class="text-center">
-    <p>Bilingual</p>
-    <label class="switch">
-      <input type="checkbox" id="filterSearch" value="BIL" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'BIL':'')">
-      <span class="slider round"></span>
-    </label><br><br>
-    <!-- <label class="switch">
-      <input type="checkbox" id="english" value="EN" [(ngModel)]="isEnglish" (change)="checkValue(isEnglish?'EN':'')">
-      <span class="slider round"></span>
-    </label> -->
-  </div> 
+
+
+
+
 
   
+
 
  
 
