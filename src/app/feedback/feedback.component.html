@@ -10,33 +10,51 @@ body {
 <body>
 <app-navbar></app-navbar>
 
-<div class="container pt-5" >
-    <div class="row justify-content-sm-center pt-5">
-        <div class="col-sm-6 shadow round pb-3" style="background-color:#232942">
-            <h1 class="text-center pt-3 text-secondary" style="color: white;">Feedback</h1>
+<div id="box">
+    <div class="row">
+      <div class="col-lg-12 my-auto">
+        <div class='text-center'>
+          <br>
+          <br>
+          <h1 style="color:#4AC1C0;"><b>Feedback</b></h1>
+        </div><br>
+      </div>
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div id="box1">
+        <form>
+            <div class="text-center">
+            <div class="block">
+               
+
+                <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Ressource ID:  </label>
+                    <input class="input-group-text w-100 mx-auto" type="text" name="tag"><br />
+            </div>
+
+            <div class="form-group">
+                <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>
+                <!-- <input class="form-control input-lg" type="text" name="tag"> -->
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" style="background-color:#F7F5F2 ;"></textarea><br />
+            </div>
+        </div>
+
             <br>
-                <form>
-                    <div class="block">
-                        <label class="col-form-label" style="color: white;" for="ressourceID" display="inline-block" >Ressource ID:  </label>
-                            <input class="input-group-text w-100 mx-auto" type="text" name="tag"><br />
-                    </div>
 
-                    <div class="form-group">
-                        <label class="col-form-label" style="color: white;" for="comment">Comment: </label><br>
-                        <!-- <input class="form-control input-lg" type="text" name="tag"> -->
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea><br />
-                    </div>
+            <div class="text-center">
+                <button class="btn btn-primary" (click)="showFeedbackMessage()" style="background-color:#EA7754 ;">Submit</button>
+                <p *ngIf="showMyMessage" style="color: black;">Feedback Submitted!</p>
+            </div><br />
 
-                    <br>
+        </form>
+    </div>
+      </div>
+      <div class="col-lg-4">
+        <div class='text-center'>
+           <img src="assets/img/feedbackPicture.png">
+        </div>
+      </div>
+    
+    </div>
 
-                    <div class="text-center">
-                        <button class="btn btn-primary" (click)="showFeedbackMessage()" style="background-color:#EA7754 ;">Submit</button>
-                        <p *ngIf="showMyMessage" style="color: white;">Feedback Submitted!</p>
-                    </div><br />
-
-                </form>
-</div>
-</div>
-</div>
-
-</body>

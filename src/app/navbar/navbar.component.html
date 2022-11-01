@@ -8,17 +8,25 @@ body {
 </style>
 </head>
 <body>
-<div class = "components">
-<a mat-button [routerLink]="['/home']">Home </a>
-<a mat-button [routerLink]="['/profile']">Profile </a>
-<a mat-button [routerLink]="['/feedback']">Feedback </a>
-<!-- <a mat-button [routerLink]="['/resourcesearch']">Resource Search </a> -->
-<!-- <a mat-button [routerLink]="['/resourcedatabase']">Resource Database </a> -->
-<a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a>
-<a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a>
+<div class = "nav-container">
 
-<a mat-button (click)="logout()"> Logout</a>
+<ul class="left-side">
+    <li><a mat-button [routerLink]="['/home']">Home </a></li>
+    <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li> 
+    <!-- <a mat-button [routerLink]="['/resourcesearch']">Resource Search </a> -->
+    <!-- <a mat-button [routerLink]="['/resourcedatabase']">Resource Database </a> -->
+    <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
+    <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
+</ul>
 
-<span class="space"></span>
+
+<ul class="right-side">
+    <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
+    <li><a mat-button (click)="logout()"> Logout</a></li>
+</ul>
+
 </div>
+
+
+
 </body>

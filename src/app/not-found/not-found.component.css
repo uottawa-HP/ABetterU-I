@@ -1,0 +1,13 @@
+#box1{
+    background-color:#232942;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding: 5px;
+  
+  
+  }
+
+  body{
+    background-color: #F7F5F2;
+  }

@@ -1,1 +1,15 @@
 .comment {width: 600px; height:300px; padding-left: 10px;}
+
+body{
+    background-color: #F7F5F2;
+  }
+
+  #box1{
+    border-color: #232942;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+
+  
+  
+  }
