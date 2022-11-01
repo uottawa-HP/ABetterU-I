@@ -16,24 +16,30 @@ body {
 </div>
 
 <div id="box">
-<div class="row">
-  <div class="col-sm-12 my-auto">
-    <div class='text-center'>
-      <h1 style="color:white;">System Navigation Database</h1>
-    </div><br>
-    <form>
+  <div class="row">
+    <div class="col-sm-12 my-auto">
       <div class='text-center'>
-        <input class="input-group-text w-30 mx-auto" type="email" name="email" placeholder="Email" [(ngModel)]="email">
+        <h1 style="color:white;">System Navigation Database</h1>
       </div><br>
-      <div class='text-center'>
-        <input class="input-group-text w-30 mx-auto" type="password" name="password" placeholder="Password" [(ngModel)]="password">
-      </div><br>
-      <div class = 'text-center'>
-        <button type="submit" (click)="checkLogin()" class="btn btn-primary" style="background-color:#EA7754 ;">Login</button>
-      </div>
-    </form>
+      <form>
+        <div class='text-center'>
+          <input class="input-group-text w-30 mx-auto" type="email" name="email" placeholder="Email" [(ngModel)]="email">
+        </div><br>
+        <div class='text-center'>
+          <input class="input-group-text w-30 mx-auto" type="password" name="password" placeholder="Password" [(ngModel)]="password">
+        </div><br>
+        <div class = 'text-center'>
+          <button type="submit" (click)="checkLogin()" class="btn btn-primary" style="background-color:#EA7754 ;">Login</button>
+        </div>
 
+        <div class = 'text-center'>
+          <a [routerLink]="['/forgotpassword']">Forgot Password? </a>
+        </div>
+      </form>
+
+    </div>
   </div>
-</div>
+
+
 </div>
 </body>

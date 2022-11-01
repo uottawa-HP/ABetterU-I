@@ -10,6 +10,7 @@ import { RoleGuard } from './services/role.guard';
 import { MetricsComponent } from './metrics/metrics.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { StaffMemberComponent } from './staff-member/staff-member.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 //**ARCHIVED**
 // import { VolunteerMenuComponent } from './volunteer-menu/volunteer-menu.component';
 // import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
@@ -19,6 +20,7 @@ import { StaffMemberComponent } from './staff-member/staff-member.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
+  { path: 'forgotpassword', component: ForgotPasswordComponent},
   { path: 'staffmember', component: StaffMemberComponent,canActivate:[RoleGuard]},
   { path: 'metrics', component: MetricsComponent,canActivate:[RoleGuard]},
   { path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
