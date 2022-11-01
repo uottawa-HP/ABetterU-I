@@ -172,6 +172,47 @@ export class AuthenticationService {
   }
 
 
+  forgotPassword(email : string) {
+    this.fireAuth.sendPasswordResetEmail(email).then(() => {
+      this.router.navigate(['/']);
+    }, err => {
+      alert('Something went wrong');
+    })
+}
+
+
+
+  async changePassword(password : string){
+    await this.fireAuth.currentUser.then(u => u.updatePassword(password))
+    this.reAuth(password);
+
+
+  }
+
+  async reAuth(password:string){
+    try {
+
+        await this.fireAuth.signInWithEmailAndPassword(this.email, password).then(res=>{
+          localStorage.setItem('user', JSON.stringify(res.user));
+        })
+        this.tempUser = JSON.parse(localStorage.getItem("user"));
+        this.email = this.tempUser.email;
+        console.log("the email signing in is: "+ this.email);
+        // localStorage.setItem('user', JSON.stringify(user));
+        await this.delay(100);
+        this.user=true;
+        return true;
+    } catch (error) {
+        console.log('Sign in failed', error);
+        return false;
+    }
+
+
+
+  }
+
+
+
   private delay(ms: number)
   {
     return new Promise(resolve => setTimeout(resolve, ms));
