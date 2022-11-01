@@ -3,6 +3,8 @@ import {AuthenticationService} from '../services/authentication.service';
 import {Router} from '@angular/router';
 import { map } from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { HomeComponent } from '../home/home.component';
+
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,8 @@ import {AngularFirestore} from '@angular/fire/compat/firestore';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
+
   email = '';
   password = '';
   role = '';
@@ -84,3 +88,7 @@ export class LoginComponent {
 
 
 }
+function ViewChild(arg0: string) {
+  throw new Error('Function not implemented.');
+}
+

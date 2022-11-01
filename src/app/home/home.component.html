@@ -1,14 +1,15 @@
 <html>
 <head>
 <link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
-<style>
+<style src=
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js">
 body {
     font-family: 'Barlow Condensed';font-size: 22px;
 }
 </style>
 </head>
 
-<body>
+<body ng-load="storeData()">
 <app-navbar></app-navbar>
 
 
@@ -33,12 +34,28 @@ body {
 </div>
 
 
+
+
 <form>
   <div class="form-group">
     <div class='text-center'>
         <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
     </div>
   </div>
+
+  <div class="text-center">
+    <p>Bilingual</p>
+    <label class="switch">
+      <input type="checkbox" id="filterSearch" value="BIL" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'BIL':'')">
+      <span class="slider round"></span>
+    </label><br><br>
+    <!-- <label class="switch">
+      <input type="checkbox" id="english" value="EN" [(ngModel)]="isEnglish" (change)="checkValue(isEnglish?'EN':'')">
+      <span class="slider round"></span>
+    </label> -->
+  </div> 
+
+  
 
  
 
@@ -216,10 +233,15 @@ body {
     </div>
   </div><br>-->
 
+  
   <div class="text-center">
-    <button (click)="storeData()" class="btn btn-primary" style="background-color:#EA7754 ;">Show Data </button>
+    <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Show Data &#x21bb;</button>
   </div>
 </form>
+
+
+
+
 
 
 
@@ -230,28 +252,30 @@ body {
 
 
 
-<div *ngIf="resources.length > 0" class = "container-fluid">
+<div *ngIf="temp2.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of resources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | searchFilter:query">
+        <ngb-panel *ngFor = "let resource of temp2 | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | searchFilter:query | searchFilter:isChecked | searchFilter:isEnglish " >
            <ng-template ngbPanelTitle>
-              <span>ID:{{resource[13]}} {{resource[5]}} </span>
+              <span>ID:{{resource['Name of Resource']}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
-              <b>Health Theme:</b> {{resource[0]}}<br />
-              <b>Subtopic:</b> {{resource[1]}}<br />
-              <b>Category:</b> {{resource[3]}}<br />
-              <b>Language:</b> {{resource[4]}}<br /> <br />
+              <b>Health Theme:</b> {{resource['Health Topic']}}<br />
+              <b>Subtopic:</b> {{resource['Subtopic']}}<br />
+              <!-- <b>Category:</b> {{resource['']}}<br /> -->
+              <b>Language:</b> {{resource['Language']}}<br /> <br />
               <div class = "text-center">
                 <b>Description of Resource</b> <br />
-                {{resource[6]}}<br />
+                {{resource['Description of resource']}}<br />
               </div><br />
-              <b>Web Link: </b> <a href = {{resource[7]}} target=”_blank” >{{resource[7]}}</a><br />
-              <b>Additional Information:</b> {{resource[8]}}<br />
+              <b>Web Link: </b> <a  target=”_blank” >{{resource['Web link (if applicable)']}}</a><br />
+              <b>Additional Information:</b> {{resource['Additional information']}}<br />
 
            </ng-template>
         </ngb-panel>
 
   </ngb-accordion>
+
+  
   <!-- <table class="table">
     <tr>
       <th>Title</th>
@@ -282,3 +306,13 @@ body {
 
 
 </body>
+
+<script src="script.js">
+  
+  let btn = document.querySelector("btn");
+
+  btn.addEventListener("click", ()=>{
+
+    btn.innerHTML="Reload";
+});
+</script>

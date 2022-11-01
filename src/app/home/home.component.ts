@@ -7,6 +7,7 @@ import { filter } from 'rxjs/operators';
 import { ConfigService } from '../services/config.service';
 import { map } from 'rxjs/operators';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
+import { FormControl, FormGroup } from '@angular/forms'
 // import { rdbresource } from '../models/rdbresource';
 
 
@@ -19,7 +20,11 @@ export class HomeComponent implements OnInit{
 
 
   jsonResources = [];
+  columnResources = [];
   resources = [];
+  test={};
+  temp2 = [];
+  columns = {};
   title = 'home';
   loading = false;
   flag=false;
@@ -32,7 +37,15 @@ export class HomeComponent implements OnInit{
   language= [];
 
   public searchFilter: any = '';
+  public listSearch : any = '';
+  public english : any = '';
   query: String ="";
+  isChecked: String = "";
+  isEnglish: String = "";
+
+  
+
+  
 
  
 
@@ -44,8 +57,10 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.c.getData().subscribe(data => {
       this.jsonResources = data["rows"];
+      this.columnResources = data ["columns"];
       console.warn(this.jsonResources);
     });
+
 
     this.storeData()
   }
@@ -70,12 +85,97 @@ export class HomeComponent implements OnInit{
 
 
 
+
       }
+
+     
+        
       temp[this.jsonResources[0]["cells"].length + 1] = modDate
       // console.log(temp[-1]);
       this.resources[i] = temp;
 
     }
+
+    for (let i=0; i< this.columnResources.length; i++){
+      if(this.columnResources[i]['title']=="Health Topic"){
+        this.columns['Health Topic']= this.columnResources[i]['id'];
+      }
+      else if(this.columnResources[i]['title']=="Subtopic"){
+        this.columns["Subtopic"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Tags"){
+        this.columns["Tags"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Language"){
+        this.columns["Language"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Name of Resource"){
+        this.columns["Name of Resource"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Description of resource"){
+        this.columns["Description of resource"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Web link (if applicable)"){
+        this.columns["Web link (if applicable)"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Additional information"){
+        this.columns["Additional information"]= this.columnResources[i]['id'];
+
+      }
+      
+
+    }
+
+    for (let i = 0; i < this.jsonResources.length; i++){
+     
+
+      // console.log("hello");
+      for (let j = 0; j < this.jsonResources[i]["cells"].length; j++){
+        for (var key in this.columns){
+          
+          if (this.jsonResources[i]["cells"][j]['columnId']==this.columns[key]){
+
+            if (this.jsonResources[i]["cells"][j].value != undefined){
+            this.test[key]=this.jsonResources[i]["cells"][j].value;}
+            
+            
+          }
+          
+
+        }
+     
+
+       
+        
+
+          
+
+       
+
+
+
+
+      }
+      this.temp2.push(this.test);
+      console.log(this.temp2)
+      this.test={};
+        
+    }
+
+    console.log("TEST", this.test)
+
+    
+ 
+     
+    
+
+
 
     this.noOfPages = Math.floor(this.resources.length/25);
     console.log(this.noOfPages);
@@ -85,7 +185,9 @@ export class HomeComponent implements OnInit{
 
     console.log(this.healthTheme);
     console.log(this.resources);
+    console.log(this.columns)
     this.loading=false;
+    console.log("done")
 
 
   }
@@ -115,7 +217,12 @@ export class HomeComponent implements OnInit{
   async logout(): Promise<boolean> {
     return await this.AuthService.logout();
 
+  
   }
+
+  checkValue(event: any){
+    console.log(event);
+ }
 
 
 
