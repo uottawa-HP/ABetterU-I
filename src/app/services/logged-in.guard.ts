@@ -20,7 +20,7 @@ export class LoggedInGuard implements CanActivate {
          if (this.router.url ==='/logout' || this.router.url === '/' && this.authService.role == null){
 
            // console.log('logged out');
-           this.router.navigate(['/']);
+           this.router.navigate(['/404']);
            return false;
          }
          // determine if the user is logged in from this method.
