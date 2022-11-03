@@ -27,13 +27,15 @@ body {
         <form>
             <div class="text-center">
             <div class="block">
-              <!-- <div class="form-group">
-                  <label for="feedBackSelect">Example select</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option value= "Suggestion">Suggest New Resource</option>
-                    <option value = "Feedback">Write Feedback on Existing Resource</option>
+              <div class="form-group">
+                  <label for="feedBackSelect">Please select a feedback type</label>
+                  <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
+                    <option selected>Choose...</option>
+                    <option value = "Feedback">Existing Resource Feedback</option>
+                    <option value= "Suggestion">New Resource Suggestion</option>
+
                   </select>
-                </div> -->
+                </div>
 
 
                 <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Ressource ID:  </label>
@@ -43,15 +45,15 @@ body {
             <div class="form-group">
                 <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>
                 <!-- <input class="form-control input-lg" type="text" name="tag"> -->
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" style="background-color:#F7F5F2 ;" [(ngModel)]="feedback"></textarea><br />
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" style="background-color:#F7F5F2 ;" [(ngModel)]="feedback" placeholder="Please write your feedback here..."></textarea><br />
             </div>
         </div>
 
             <br>
 
             <div class="text-center">
-                <button class="btn btn-primary" (click)="onSubmit()" style="background-color:#EA7754 ;">Submit</button>
-                <!-- <p *ngIf="showMyMessage" style="color: black;">Feedback Submitted!</p> -->
+                <button class="btn btn-primary" (click)="onSubmit()" style="background-color:#EA7754 ;">Submit</button><br><br>
+                <p *ngIf="showMyMessage" style="color: black;">Feedback Submitted!</p>
             </div><br />
 
         </form>
