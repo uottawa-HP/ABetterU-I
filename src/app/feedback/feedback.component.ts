@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedbackService } from '../services/feedback.service';
+import { fbForm } from '../models/fbForm';
+
+
+
 
 
 
@@ -10,20 +15,75 @@ import { Component, OnInit } from '@angular/core';
 
 export class FeedbackComponent implements OnInit {
 
-  constructor() { }
+  resourceID = "";
+  feedback = "";
+  errorMsg = '';
+  fbFormModel = new fbForm(this.resourceID, this.feedback);
+  fbForm: any;
 
+
+
+  constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit(): void {
   }
 
-  public showMyMessage=false
+  onSubmit() {
+      this.fbFormModel = {id:this.resourceID, description:this.feedback};
+      var row = [
+                  {
+                    "toBottom": true,
+                    "cells": [
+                      {
+                        "columnId": 82722297276292,
+                        "value": this.resourceID
+                      },
+                      {
+                        "columnId": 4586321924646788,
+                        "value": this.feedback,
+                        "strict": false
+                      }
+                    ]
+                  }
+                ];
 
-  showFeedbackMessage() {
-    setTimeout(() =>  {
-      this.showMyMessage = true}, 1000)
-    setTimeout(() =>  {
-      this.showMyMessage = false}, 7000)
+      this.fbForm =
+      {
+        sheetId: 3439555094308740,
+        body: row
+      }
+
+
+
+
+
+
+
+
+      this.feedbackService.enroll(this.fbFormModel)
+        .subscribe(
+          response => console.log('Success!', response),
+          error => this.errorMsg = error.statusText
+        )
+      // this.feedbackService.enrollGet()
+      //   .subscribe(
+      //     response => console.log('Success!', response),
+      //     error => this.errorMsg = error.statusText
+      //   );
     }
+
+
+
+
+
+
+
+
+  // _url = 'http://localhost:3000/enroll';
+  // showFeedbackMessage() {
+  //   console.log(JSON.stringify({id:this.resourceID, description: this.feedback}));
+  //   return this.http.post<any>(this._url, JSON.stringify({id:this.resourceID, description: this.feedback}));
+  // }
 
 
   //**IMPLEMENTATION FALL**
