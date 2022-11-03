@@ -11,7 +11,7 @@ export class FeedbackService {
   _url = 'http://localhost:3000/feedback';
   constructor(private _http: HttpClient) { }
 
-  enroll (form: any) {
+  enroll (form: fbForm) {
     return this._http.post<any>(this._url, form)
       .pipe(catchError(this.errorHandler))
   }

@@ -18,8 +18,9 @@ export class FeedbackComponent implements OnInit {
   resourceID = "";
   feedback = "";
   errorMsg = '';
-  fbFormModel = new fbForm(this.resourceID, this.feedback);
   fbForm: any;
+  fbFormModel = new fbForm(3439555094308740, {});
+
 
 
 
@@ -29,29 +30,26 @@ export class FeedbackComponent implements OnInit {
   }
 
   onSubmit() {
-      this.fbFormModel = {id:this.resourceID, description:this.feedback};
-      var row = [
-                  {
-                    "toBottom": true,
-                    "cells": [
-                      {
-                        "columnId": 82722297276292,
-                        "value": this.resourceID
-                      },
-                      {
-                        "columnId": 4586321924646788,
-                        "value": this.feedback,
-                        "strict": false
-                      }
-                    ]
-                  }
-                ];
+    this.fbForm = [
+                {
+                  "toBottom": true,
+                  "cells": [
+                    {
+                      "columnId": 82722297276292,
+                      "value": this.resourceID
+                    },
+                    {
+                      "columnId": 4586321924646788,
+                      "value": this.feedback,
+                      "strict": false
+                    }
+                  ]
+                }
+              ];
 
-      this.fbForm =
-      {
-        sheetId: 3439555094308740,
-        body: row
-      }
+      this.fbFormModel = {sheetId:3439555094308740, body:this.fbForm};
+      console.log(this.fbFormModel);
+
 
 
 
