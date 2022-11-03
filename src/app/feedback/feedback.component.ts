@@ -35,9 +35,6 @@ export class FeedbackComponent implements OnInit {
     this.feedbackType = event.target.value;
   }
 
-
-
-
   onSubmit() {
     this.fbForm = [
                 {
@@ -77,15 +74,6 @@ export class FeedbackComponent implements OnInit {
         )
 
     }
-
-
-
-
-
-
-
-
-
 
   //**IMPLEMENTATION FALL**
 

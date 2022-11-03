@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
-  _url = 'http://localhost:3000/feedback';
+  _url = 'https://systemnavdb.herokuapp.com/feedback';
   constructor(private _http: HttpClient) { }
 
   enroll (form: fbForm) {
