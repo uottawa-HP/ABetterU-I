@@ -44,208 +44,38 @@ body {
         <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
     </div>
     <div class="text-center">
-      <p>Bilingual</p>
-      <label class="switch">
-        <input type="checkbox" id="filterSearch" value="BIL" [(ngModel)]="isChecked" (change)="checkValue(isChecked?'BIL':'')">
-        <span class="slider round"></span>
-      </label><br><br>
-      <!-- <label class="switch">
-        <input type="checkbox" id="english" value="EN" [(ngModel)]="isEnglish" (change)="checkValue(isEnglish?'EN':'')">
-        <span class="slider round"></span>
-      </label> -->
+      <p>Language:</p>
+      <input type="checkbox" id='multi' [(ngModel)]="isMulti" >
+        <label for="multi"> Multi</label><br>
+      
+        <input type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
+        <label for="bilingual"> Bilingual</label><br><br>
+       
+    
     </div> 
-  </div>
-
-
-
-
-
-
-  
-
-
+    <!--  
+    <div class="text-center">
+      <p>Health Topic:</p>
+      <input type="checkbox" id='sexualHealth' [(ngModel)]="isSexualHealth" >
+        <label for="sexualHealth"> Sexual & Reproductive Health</label><br>
+    </div> 
+   -->
  
 
-  <!-- <div class='text-center'>
-    <p>Health Theme</p>
-    <div class="form-check form-check-inline [(ngModel)]="healthTheme"">
-      <input class="form-check-input" type="checkbox" id="harm_reduction" value="Harm Reduction" name="harm_reduction">
-      <label class="form-check-label" for="harm_reduction">Harm Reduction</label>
-      <input class="form-check-input" type="checkbox" id="mental_health" value="Mental Health" name="mental_health">
-      <label class="form-check-label" for="mental_health">Mental Health</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="mental_health" value="Mental Health" name="mental_health">
-      <label class="form-check-label" for="mental_health">Mental Health</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="physical_health" value="Physical Health" name="physical_health">
-      <label class="form-check-label" for="physical_health">Physical Health</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="population_health" value="Population Health" name="population_health">
-      <label class="form-check-label" for="population_health">Population Health</label>
-    </div>
 
 
-  <div class='text-center'>
-    <p>Language</p>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="en" value="EN" name="en" [(ngModel)]="language">
-      <label class="form-check-label" for="en">EN</label>
-    </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="fr" value="FR" name="fr" [(ngModel)]="language">
-      <label class="form-check-label" for="fr">FR</label>
-    </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="bil" value="BIL" name="bil" [(ngModel)]="language">
-      <label class="form-check-label" for="bil">BIL</label>
-    </div>
-  </div><br>
-
-  <div class='text-center'>
-    <p>Subtopic</p>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="disease_prevention" value="Disease Prevention" name="disease_prevention" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="disease_prevention">Disease Prevention</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="financial_health" value="Financial Health" name="population_health"financial_health [(ngModel)]="subtopic">
-      <label class="form-check-label" for="financial_health">Financial Health</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="mental_health_and_addiction" value="Mental Health & Additction" name="population_health"mental_health_and_addiction [(ngModel)]="subtopic">
-      <label class="form-check-label" for="mental_health_and_addiction">Mental Health & Additction</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="sexual_health" value="Sexual Health" name="sexual_health" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="sexual_health">Sexual Health</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="smoking_cessation" value="Smoking Cessation" name="smoking_cessation" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="smoking_cessation">Smoking Cessation</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="substance_use" value="Substance Use" name="substance_use" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="substance_use">Substance Use</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="crisis/support" value="Crisis/Support" name="crisis/support" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="crisis/support">Crisis/Support</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="general_wellness" value="General Wellness" name="general_wellness" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="general_wellness">General Wellness</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="nutrition" value="Nutrition" name="nutrition" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="nutrition">Nutrition</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="sleep" value="Sleep" name="sleep" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="sleep">Sleep</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="physical_activity" value="Physical Activity" name="physical_activity" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="physical_activity">Physical Activity</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="social_connection" value="Social Connection" name="social_connection" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="social_connection">Social Connection</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="spiritual" value="Spiritual" name="spiritual" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="spiritual">Spiritual</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="sustainability" value="Sustainability" name="sustainability" [(ngModel)]="subtopic">
-      <label class="form-check-label" for="sustainability">Sustainability</label>
-    </div>
-  </div><br>
-
-  <div class='text-center'>
-    <p>Category</p>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="app" value="App" name="app" [(ngModel)]="category">
-      <label class="form-check-label" for="app">App</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="document" value="Document" name="document" [(ngModel)]="category">
-      <label class="form-check-label" for="document">Document</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="event" value="Event" name="event" [(ngModel)]="category">
-      <label class="form-check-label" for="event">Event</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="handout" value="Handout" name="handout" [(ngModel)]="category">
-      <label class="form-check-label" for="handout">Handout</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="health_day" value="Health Day" name="health_day" [(ngModel)]="category">
-      <label class="form-check-label" for="health_day">Health Day</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="material" value="Material" name="material" [(ngModel)]="category">
-      <label class="form-check-label" for="material">Material</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="program" value="Program" name="program" [(ngModel)]="category">
-      <label class="form-check-label" for="program">Program</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="quiz" value="Quiz" name="quiz" [(ngModel)]="category">
-      <label class="form-check-label" for="quiz">Quiz</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="resource" value="Resource" name="resource" [(ngModel)]="category">
-      <label class="form-check-label" for="resource">Resource</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="service" value="Service" name="service" [(ngModel)]="category">
-      <label class="form-check-label" for="service">Service</label>
-    </div>
-
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="web_resource" value="Web Resource" name="web_resource" [(ngModel)]="category">
-      <label class="form-check-label" for="web_resource">Web Resource</label>
-    </div>
-  </div><br>-->
 
   
   <div class="text-center">
     <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Load Resources &#x21bb;</button>
+
   </div>
-</form>
-<br>
+  </div>
+</form><br><br>
+
+
 
 
 
@@ -259,13 +89,14 @@ body {
 
 
 
-<div *ngIf="temp2.length > 0" class = "container-fluid">
+<div *ngIf="filteredResources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of temp2 | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | searchFilter:query | searchFilter:isChecked | searchFilter:isEnglish " >
-           <ng-template ngbPanelTitle>
-              <span>ID:{{resource['Name of Resource']}} </span>
+        <ngb-panel *ngFor = "let resource of filteredResources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize  | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual   " >
+           <ng-template ngbPanelTitle >
+              <span>{{resource['Name of Resource']}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
+              <b>ID: </b> {{resource['id']}}<br />
               <b>Health Theme:</b> {{resource['Health Topic']}}<br />
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
@@ -308,7 +139,7 @@ body {
     </tr>
   </table> -->
   <!-- <ngb-pagination [boundaryLinks]="true" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" aria-label="Default pagination"></ngb-pagination> -->
-  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="filteredResources.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
 </div>
 
 
