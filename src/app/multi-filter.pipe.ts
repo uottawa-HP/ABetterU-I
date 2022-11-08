@@ -7,7 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MultiFilterPipe implements PipeTransform {
 
     transform(check: any, checked?: any): any {
-    	console.log('checked', check.Language);
+        console.log("CHECK", check);
+        console.log("CHECKED", checked);
         return checked ? check.filter(check => check.Language == 'MULTI') : check;
     }
 

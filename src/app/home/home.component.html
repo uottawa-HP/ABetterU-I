@@ -44,22 +44,24 @@ body {
         <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
     </div>
     <div class="text-center">
-      <p>Language:</p>
+      <p><b>Language:</b></p>
       <input type="checkbox" id='multi' [(ngModel)]="isMulti" >
         <label for="multi"> Multi</label><br>
       
         <input type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
-        <label for="bilingual"> Bilingual</label><br><br>
+        <label for="bilingual"> EN</label><br><br>
        
     
     </div> 
-    <!--  
+     
     <div class="text-center">
-      <p>Health Topic:</p>
+      <p><b>Health Topic:</b></p>
       <input type="checkbox" id='sexualHealth' [(ngModel)]="isSexualHealth" >
         <label for="sexualHealth"> Sexual & Reproductive Health</label><br>
+        <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
+        <label for="mentalHealth"> Mental Health</label><br><br>
     </div> 
-   -->
+  
  
 
 
@@ -70,11 +72,9 @@ body {
   
   <div class="text-center">
     <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Load Resources &#x21bb;</button>
-
   </div>
   </div>
 </form><br><br>
-
 
 
 
@@ -91,22 +91,22 @@ body {
 
 <div *ngIf="filteredResources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of filteredResources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize  | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual   " >
+        <ngb-panel *ngFor = "let resource of filteredResources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize  | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | sexualHealthFilter: isSexualHealth | mentalHealthFilter: isMentalHealth   " >
            <ng-template ngbPanelTitle >
-              <span>{{resource['Name of Resource']}} </span>
+              <span>{{resource['NameofResource']}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
               <b>ID: </b> {{resource['id']}}<br />
-              <b>Health Theme:</b> {{resource['Health Topic']}}<br />
+              <b>Health Theme:</b> {{resource['HealthTopic']}}<br />
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
               <b>Language:</b> {{resource['Language']}}<br /> <br />
               <div class = "text-center">
                 <b>Description of Resource</b> <br />
-                {{resource['Description of resource']}}<br />
+                {{resource['Descriptionofresource']}}<br />
               </div><br />
-              <b>Web Link: </b> <a  target=”_blank” >{{resource['Web link (if applicable)']}}</a><br />
-              <b>Additional Information:</b> {{resource['Additional information']}}<br />
+              <b>Web Link: </b> <a  href="{resource['Weblink(ifapplicable)']}}" target=”_blank” >{{resource['Weblink(ifapplicable)']}}</a><br />
+              <b>Additional Information:</b> {{resource['Additionalinformation']}}<br />
 
            </ng-template>
         </ngb-panel>

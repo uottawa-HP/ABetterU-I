@@ -26,6 +26,7 @@ import { CheckboxFilterPipe } from './checkbox-filter.pipe';
 import { MultiFilterPipe } from './multi-filter.pipe';
 import { SexualHealthFilterPipe} from './sexualHealth-filter.pipe';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MentalHealthFilterPipe } from './mental-health-filter.pipe';
 
 //**ARCHIVED**
 // import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
@@ -53,7 +54,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     CheckboxFilterPipe,
     MultiFilterPipe,
     SexualHealthFilterPipe,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    MentalHealthFilterPipe
     //**ARCHIVED**
     // ResourceSearchComponent,
     // RegisterStaffComponent,
