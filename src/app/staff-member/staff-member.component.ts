@@ -32,7 +32,8 @@ export class StaffMemberComponent implements OnInit {
     firstname: '',
     lastname:'',
     email: '',
-    role:''
+    role:'',
+    favorite:[]
   }
 
 

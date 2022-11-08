@@ -4,4 +4,6 @@ export interface staffMember{
     lastname?: string;
     email?: string;
     role?:string;
+    favorite: string[];
+    
 }

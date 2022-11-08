@@ -4,11 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-
-
-
-
-
+//
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +15,10 @@ export class UsersService {
   userDoc: AngularFirestoreDocument<staffMember>;
   updateUrl: string;
 
-
   constructor(public firestore: AngularFirestore, private http: HttpClient) {
 
-    this.usersCollection = this.firestore.collection('users' );
+    this.usersCollection = this.firestore.collection('users');
+  
 
     this.users = this.usersCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(a => {
@@ -31,6 +27,9 @@ export class UsersService {
       return data;
       })
     }));
+
+   
+
    }
 
     getUsers(){
@@ -46,13 +45,14 @@ export class UsersService {
     this.userDoc.delete();
    }
 
-
-
    updateUser(user:staffMember){
     this.userDoc = this.firestore.doc(`users/${user.id}`);
     this.userDoc.update(user);
    }
+   
+  
 
+  
 
 
 

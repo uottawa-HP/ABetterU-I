@@ -1,5 +1,3 @@
-
-
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
@@ -8,8 +6,7 @@ import { ConfigService } from '../services/config.service';
 import { map } from 'rxjs/operators';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms'
-// import { rdbresource } from '../models/rdbresource';
-
+import { staffMember } from '../models/staffMember';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +14,6 @@ import { FormControl, FormGroup } from '@angular/forms'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-
-
   jsonResources = [];
   columnResources = [];
   resources = [];
@@ -43,13 +38,11 @@ export class HomeComponent implements OnInit{
   isChecked: String = "";
   isEnglish: String = "";
 
-  
+  // Favorite
+  favorite = false;
 
-  
-
- 
-
-  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService, 
+    ) {
 
 
   }
@@ -63,11 +56,10 @@ export class HomeComponent implements OnInit{
 
 
     this.storeData()
+
+    
+
   }
-
-
-
-
 
   storeData(): void{
     console.log(this.flag);
@@ -150,17 +142,6 @@ export class HomeComponent implements OnInit{
 
         }
      
-
-       
-        
-
-          
-
-       
-
-
-
-
       }
       this.temp2.push(this.test);
       console.log(this.temp2)
@@ -171,11 +152,6 @@ export class HomeComponent implements OnInit{
     console.log("TEST", this.test)
 
     
- 
-     
-    
-
-
 
     this.noOfPages = Math.floor(this.resources.length/25);
     console.log(this.noOfPages);
@@ -187,7 +163,8 @@ export class HomeComponent implements OnInit{
     console.log(this.resources);
     console.log(this.columns)
     this.loading=false;
-    console.log("done")
+    console.log("done");
+    console.log("test des ressources",this.resources["Health Topic"]);
 
 
   }
@@ -211,7 +188,6 @@ export class HomeComponent implements OnInit{
       this.resources.splice(indexStore[l],1);
     }
   }
-
 
 
   async logout(): Promise<boolean> {
@@ -255,6 +231,9 @@ export class HomeComponent implements OnInit{
   //   }
   // }
 
-
+  /*isFavoriteFunction(user: staffMember){
+    this.favorite = true;
+    user.favorite.push('ressource');//access de data form the spredsheet
+  }*/
 
 }
