@@ -38,15 +38,20 @@ export class HomeComponent implements OnInit{
   language= [];
   ob = {};
 
+  
+
   public searchFilter: any = '';
   public checkboxFilter: any = '';
   public listSearch : any = '';
   public english : any = '';
+  public sexualHealthFilter: any ='';
+  public mentalHealthFilter: any='';
   query: String ="";
   isMulti: String = "";
   isBilingual: String = "";
   checked: String = ""
   isSexualHealth: String= "";
+  isMentalHealth: String = "";
 
   
 
@@ -55,6 +60,7 @@ export class HomeComponent implements OnInit{
  
 
   constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+ 
 
 
   }
@@ -76,6 +82,8 @@ export class HomeComponent implements OnInit{
 
   storeData(): void{
     console.log(this.flag);
+    this.filteredResources = [];
+
 
 
     for (let i = 0; i < this.jsonResources.length; i++){
@@ -103,7 +111,7 @@ export class HomeComponent implements OnInit{
 
     for (let i=0; i< this.columnResources.length; i++){
       if(this.columnResources[i]['title']=="Health Topic"){
-        this.columns['Health Topic']= this.columnResources[i]['id'];
+        this.columns['HealthTopic']= this.columnResources[i]['id'];
       }
       else if(this.columnResources[i]['title']=="Subtopic"){
         this.columns["Subtopic"]= this.columnResources[i]['id'];
@@ -118,24 +126,24 @@ export class HomeComponent implements OnInit{
 
       }
       else if(this.columnResources[i]['title']=="Name of Resource"){
-        this.columns["Name of Resource"]= this.columnResources[i]['id'];
+        this.columns["NameofResource"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Description of resource"){
-        this.columns["Description of resource"]= this.columnResources[i]['id'];
+        this.columns["Descriptionofresource"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Web link (if applicable)"){
-        this.columns["Web link (if applicable)"]= this.columnResources[i]['id'];
+        this.columns["Weblink(ifapplicable)"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Additional information"){
-        this.columns["Additional information"]= this.columnResources[i]['id'];
+        this.columns["Additionalinformation"]= this.columnResources[i]['id'];
 
       }
       
       
-
+      console.log(this.columns);
       
 
     }
@@ -173,6 +181,8 @@ export class HomeComponent implements OnInit{
       }
         
     }
+
+   
    
 
     
@@ -187,7 +197,7 @@ export class HomeComponent implements OnInit{
     this.noOfPages = Math.floor(this.filteredResources.length/25);
     console.log(this.noOfPages);
 
-    this.removeBlanks(this.filteredResources);
+   
 
 
     console.log(this.healthTheme);
@@ -201,6 +211,7 @@ export class HomeComponent implements OnInit{
   
 
 
+ 
 
   removeBlanks(someArr){
     var length = this.filteredResources.length;
