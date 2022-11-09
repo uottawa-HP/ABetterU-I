@@ -6,7 +6,9 @@ import { ConfigService } from '../services/config.service';
 import { map } from 'rxjs/operators';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms'
-import { staffMember } from '../models/staffMember';
+// import { rdbresource } from '../models/rdbresource';
+
+
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,7 @@ export class HomeComponent implements OnInit{
   columnResources = [];
   resources = [];
   test={};
-  temp2 = [];
+  filteredResources = [];
   columns = {};
   title = 'home';
   loading = false;
@@ -30,19 +32,31 @@ export class HomeComponent implements OnInit{
   subtopic= [];
   category= [];
   language= [];
+  ob = {};
+
+  
 
   public searchFilter: any = '';
+  public checkboxFilter: any = '';
   public listSearch : any = '';
   public english : any = '';
+  public sexualHealthFilter: any ='';
+  public mentalHealthFilter: any='';
   query: String ="";
-  isChecked: String = "";
-  isEnglish: String = "";
+  isMulti: String = "";
+  isBilingual: String = "";
+  checked: String = ""
+  isSexualHealth: String= "";
+  isMentalHealth: String = "";
 
-  // Favorite
-  favorite = false;
+  
 
-  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService, 
-    ) {
+  
+
+ 
+
+  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
+ 
 
 
   }
@@ -63,6 +77,8 @@ export class HomeComponent implements OnInit{
 
   storeData(): void{
     console.log(this.flag);
+    this.filteredResources = [];
+
 
 
     for (let i = 0; i < this.jsonResources.length; i++){
@@ -90,7 +106,7 @@ export class HomeComponent implements OnInit{
 
     for (let i=0; i< this.columnResources.length; i++){
       if(this.columnResources[i]['title']=="Health Topic"){
-        this.columns['Health Topic']= this.columnResources[i]['id'];
+        this.columns['HealthTopic']= this.columnResources[i]['id'];
       }
       else if(this.columnResources[i]['title']=="Subtopic"){
         this.columns["Subtopic"]= this.columnResources[i]['id'];
@@ -105,21 +121,24 @@ export class HomeComponent implements OnInit{
 
       }
       else if(this.columnResources[i]['title']=="Name of Resource"){
-        this.columns["Name of Resource"]= this.columnResources[i]['id'];
+        this.columns["NameofResource"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Description of resource"){
-        this.columns["Description of resource"]= this.columnResources[i]['id'];
+        this.columns["Descriptionofresource"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Web link (if applicable)"){
-        this.columns["Web link (if applicable)"]= this.columnResources[i]['id'];
+        this.columns["Weblink(ifapplicable)"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Additional information"){
-        this.columns["Additional information"]= this.columnResources[i]['id'];
+        this.columns["Additionalinformation"]= this.columnResources[i]['id'];
 
       }
+      
+      
+      console.log(this.columns);
       
 
     }
@@ -133,30 +152,47 @@ export class HomeComponent implements OnInit{
           
           if (this.jsonResources[i]["cells"][j]['columnId']==this.columns[key]){
 
-            if (this.jsonResources[i]["cells"][j].value != undefined){
-            this.test[key]=this.jsonResources[i]["cells"][j].value;}
+            if (this.jsonResources[i]["cells"][j].value != undefined && key != undefined ){
+              this.test[key]=this.jsonResources[i]["cells"][j].value;
+             }
+              
+
             
             
           }
+          this.test['id']=i+1;
           
 
         }
      
+
+
       }
-      this.temp2.push(this.test);
-      console.log(this.temp2)
-      this.test={};
+     
+      if (Object.keys(this.test).length !=1){
+        this.filteredResources.push(this.test);
+        console.log(this.filteredResources)
+        this.test={};
+      }
         
     }
 
-    console.log("TEST", this.test)
+   
+   
 
     
 
-    this.noOfPages = Math.floor(this.resources.length/25);
+    
+ 
+     
+    
+
+
+
+    this.noOfPages = Math.floor(this.filteredResources.length/25);
     console.log(this.noOfPages);
 
-    this.removeBlanks(this.resources);
+   
 
 
     console.log(this.healthTheme);
@@ -168,24 +204,27 @@ export class HomeComponent implements OnInit{
 
 
   }
+  
 
+
+ 
 
   removeBlanks(someArr){
-    var length = this.resources.length;
+    var length = this.filteredResources.length;
     var indexStore=[];
 
 
     for (let k = 0; k<length; k++){
-      this.resources[k].push(k+1);
-      if (this.resources[k][0] == null && this.resources[k][1] == null){
-        console.log(this.resources[k]);
+      this.filteredResources[k].push(k+1);
+      if (this.filteredResources[k][0] == null && this.filteredResources[k][1] == null){
+        console.log(this.filteredResources[k]);
         indexStore.push(k)
       }
     }
 
 
     for (var l = indexStore.length -1; l >= 0; l--){
-      this.resources.splice(indexStore[l],1);
+      this.filteredResources.splice(indexStore[l],1);
     }
   }
 

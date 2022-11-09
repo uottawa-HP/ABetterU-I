@@ -22,7 +22,11 @@ import { StaffMemberComponent } from './staff-member/staff-member.component';
 import { RoleGuard } from './services/role.guard';
 import { LoggedInGuard } from './services/logged-in.guard';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { CheckboxFilterPipe } from './checkbox-filter.pipe';
+import { MultiFilterPipe } from './multi-filter.pipe';
+import { SexualHealthFilterPipe} from './sexualHealth-filter.pipe';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MentalHealthFilterPipe } from './mental-health-filter.pipe';
 
 //**ARCHIVED**
 // import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
@@ -47,7 +51,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     FeedbackComponent,
     StaffMemberComponent,
     SearchFilterPipe,
-    ForgotPasswordComponent
+    CheckboxFilterPipe,
+    MultiFilterPipe,
+    SexualHealthFilterPipe,
+    ForgotPasswordComponent,
+    MentalHealthFilterPipe
     //**ARCHIVED**
     // ResourceSearchComponent,
     // RegisterStaffComponent,
