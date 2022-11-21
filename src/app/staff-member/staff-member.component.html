@@ -1,6 +1,8 @@
 <html>
 <head>
-<link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
+  <title>Toggle Password Visibility</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'/>
 <style>
 body {
     font-family: 'Barlow Condensed';font-size: 22px;
@@ -25,11 +27,15 @@ body {
                 <h1 style="color:#4AC1C0;"><b>Register Staff</b></h1>
             </div><br />
 
+
+            
+
+ 
     <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto"  type="text" name="firstname" placeholder="First Name" [(ngModel)]="user.firstname" style="background-color:#F7F5F2;" ><br>
+      <input class="input-group-text w-25 mx-auto"  type="text" name="firstname" placeholder="First Name" [(ngModel)]="user.firstname" style="background-color:#F7F5F2; text-align: left;" ><br>
     </div>
     <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto" type="text" name="lastname" placeholder="Last Name" [(ngModel)]="user.lastname" style="background-color:#F7F5F2;"  ><br>
+      <input class="input-group-text w-25 mx-auto" type="text" name="lastname" placeholder="Last Name" [(ngModel)]="user.lastname" style="background-color:#F7F5F2; text-align: left;"  ><br>
     </div>
 
     <!-- 
@@ -41,21 +47,41 @@ body {
   
 
 
-    <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto"  type="text" name="email" placeholder="Email" [(ngModel)]="user.email" style="background-color:#F7F5F2;" ><br>
+    <div >
+      <input class="input-group-text w-25 mx-auto"  type="text" name="email" placeholder="Email" [(ngModel)]="user.email" style="background-color:#F7F5F2; text-align: left;" ><br>
     </div>
-    <div class='text-center'>
-      <input class="input-group-text w-25 mx-auto"  type="password" name="password" placeholder="Password" [(ngModel)]="password" style="background-color:#F7F5F2;" >
+
+
+    <div class='row'>
+      <input class="input-group-text w-25 mx-auto"  type="password" name="password" placeholder="Password" [(ngModel)]="password" style="background-color:#F7F5F2; text-align: left;" >
     </div><br>
 
+    <!--
+    <div class="text-center">
+      <form>
+    <p>
+      <input class="input" type="password" name="password" id="password" placeholder="Password" [(ngModel)]="password" style="width: 325px; height:35px; background-color:#F7F5F2;" />
+      <i class="bi bi-eye-slash" id="togglePassword"></i>
+  </p>
+      </form>
+    </div><br>
+-->
+    <form>
     <div class="text-center" style=" font-size: large">
+        <select class="form-select" aria-label="Default select example" style="width: 325px; height:35px;; background-color: #F7F5F2;" [(ngModel)]="user.role">
+          <option value = "" style="text-align: center;"  disabled selected hidden>Select Role...</option>
+          <option value = "Admin">Admin</option>
+          <option value= "Volunteer">Volunteer</option>
+        </select>
+    </div> 
+    </form>
+    <br>
 
-      <input list="Role" placeholder="Role" class=" w-25 mx-auto , text-center" style="background-color:#F7F5F2" [(ngModel)]="user.role">
-      <datalist id="Role"> <br>
-        <option value = "Admin">
-        <option value = "Volunteer">
-      </datalist>
-    </div> <br>
+  
+  
+ 
+
+    
 
     <div class = 'text-center'>
       <button ng-click="orderProps='0'" (click)="onAddUser(user)" class="btn btn-primary" style="background-color:#EA7754," >Register</button>
@@ -69,6 +95,7 @@ body {
   </div>
 </div>
 <br>
+
 
 
 <div *ngIf="users?.length > 0; else noUsers" class="container text-center">
@@ -86,29 +113,73 @@ body {
         </thead>
         <tbody>
             <tr *ngFor="let user of users; index as i" >
-                <td>  <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" [disabled]='!editState' name="firstname"></td>
-                <td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" [disabled]='!editState' name="lastname"></td>
-                <td><input class="input-group-text w-30 mx-auto"  type="text" placeholder = "Add email" [(ngModel)] = "user.email"  [disabled]='!editState' name="email"></td>
+                <td>  <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" [disabled]='!editState' name="firstname" style="background-color: #F0F0F0;"></td>
+                <td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" [disabled]='!editState' name="lastname" style="background-color: #F0F0F0;"></td>
+                <td><input class="input-group-text w-30 mx-auto"  type="text" placeholder = "Add email" [(ngModel)] = "user.email"  [disabled]='!editState' name="email" style="background-color: #F0F0F0;"></td>
+                
+                <td><select class="form-select" aria-label="Default select example" style="width: 200px; height:35px;; background-color: #F0F0F0;" [(ngModel)]="user.role" [disabled]='!editState' name="role">
+                  <option value = "" style="text-align: center;"  disabled selected hidden>Select Role...</option>
+                  <option value = "Admin">Admin</option>
+                  <option value= "Volunteer">Volunteer</option>
+                </select> </td>
+               <!-- <select class="form-select" id="Role" aria-label="Default select example" background-color: #F7F5F2; [(ngModel)]="user.role" [disabled]='!editState' name="role">
+                  <option value = "" >Select Role...</option>
+                  <option value = "Admin">Admin</option>
+                  <option value= "Volunteer">Volunteer</option>
+                </select> -->
 
-
-                <td><input list="Role" placeholder="Role" class=" font-size=small, w-20 mx-auto , text-center" style="background-color:#E9ECEF" [(ngModel)]="user.role" [disabled]='!editState' name="role">
+              <!-- <td><input list="Role" placeholder="Role" class=" font-size=small, w-20 mx-auto , text-center" style="background-color:#E9ECEF" [(ngModel)]="user.role" [disabled]='!editState' name="role">
                 <datalist id="Role"> <br>
                   <option value = "Admin">
                   <option value = "Volunteer">
                 </datalist> </td>
+              -->
+
+          
+             
+                
+              
+
+  
+
+    
+
+
 
                <!--<td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add role" [(ngModel)] = "user.role"  [disabled]='!editState' name="role"></td> --> 
 
+               <!-- 
                     <button class="btn btn-sm btn-warning" (click)="editUser( $event ,user)" style="background-color:#EA7754">
                         <i class="fa fa-edit"></i>Edit
                     </button>
+                  -->
+
+                    <button class="mybutton"  (click)="editUser( $event ,user)">
+                    <svg id="i-edit" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                      <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+                  </svg>
+                    </button>
 
 
-                    <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger" style="background-color:#EEC44B">
+                    <!-- <button (click)="deleteUser($event,user)" class="btn btn-sm btn-danger" style="background-color:#EEC44B">
                         <i class="fa fa-remove"></i>Delete
                     </button>
-                    <button  type="submit" class=" btn btn-primary mr-2" (click)="updateUser(user)"style="background-color:#232942" >Update</button>
+                  -->
 
+                    <button class="mybutton" (click)="deleteUser($event,user)">
+                    <svg id="i-trash" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                      <path d="M28 6 L6 6 8 30 24 30 26 6 4 6 M16 12 L16 24 M21 12 L20 24 M11 12 L12 24 M12 6 L13 2 19 2 20 6" />
+                  </svg>
+                    </button>
+
+                    <!-- <button  type="submit" class=" btn btn-primary mr-2" (click)="updateUser(user)"style="background-color:#232942" >Update</button> -->
+                    
+                    <button class="mybutton" (click)="updateUser(user)" [disabled]='!editState' name='update'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                        <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                      </svg>
+                  </button>
+              
 
             </tr>
         </tbody>
@@ -117,7 +188,25 @@ body {
 
 
 
+
 <ng-template #noUsers>
     <hr>
     <h5>There are no users in the db</h5>
 </ng-template>
+
+<!--
+<script>
+  const togglePassword = document.querySelector("#togglePassword");
+  const password = document.querySelector("#password");
+
+  togglePassword.addEventListener("click", function () {
+      // toggle the type attribute
+      const type = password.getAttribute("type") === "password" ? "text" : "password";
+      password.setAttribute("type", type);
+      
+      // toggle the icon
+      this.classList.toggle("bi-eye");
+  });
+
+</script>
+-->
