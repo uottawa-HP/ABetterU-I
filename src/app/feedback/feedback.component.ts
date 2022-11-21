@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FeedbackService } from '../services/feedback.service';
 import { fbForm } from '../models/fbForm';
+import { HomeComponent } from '../home/home.component';
+import { NgForm } from '@angular/forms';
+
 
 
 
@@ -13,6 +16,8 @@ import { fbForm } from '../models/fbForm';
   styleUrls: ['./feedback.component.css']
 })
 
+
+
 export class FeedbackComponent implements OnInit {
 
   resourceID = "";
@@ -22,17 +27,33 @@ export class FeedbackComponent implements OnInit {
   fbForm: any;
   fbFormModel = new fbForm(3439555094308740, {});
   public showMyMessage=false;
+  idNum: any;
+  preselected: any;
 
+  @Input() home: HomeComponent;
+  @ViewChild('myForm', {static: false}) myForm: NgForm;
+  
+  
 
+  constructor(public feedbackService: FeedbackService) { 
+    this.idNum= feedbackService.idNumber;
+    this.preselected = feedbackService.preselected;
+    
+  }
 
-
-  constructor(private feedbackService: FeedbackService) { }
+  
 
   ngOnInit(): void {
+  
+    
+    
   }
+
+
 
   selectChangeHandler(event:any){
     this.feedbackType = event.target.value;
+    console.log("feedbackType",this.feedbackType);
   }
 
   onSubmit() {
@@ -42,11 +63,11 @@ export class FeedbackComponent implements OnInit {
                   "cells": [
                     {
                       "columnId": 82722297276292,
-                      "value": this.feedbackType
+                      "value": this.preselected
                     },
                     {
                       "columnId": 4586321924646788,
-                      "value": this.resourceID,
+                      "value": this.idNum,
                       "strict": false
                     },
                     {
@@ -72,7 +93,10 @@ export class FeedbackComponent implements OnInit {
           response => console.log('Success!', response),
           error => this.errorMsg = error.statusText
         )
+      this.preselected="";
+      this.myForm.resetForm();
 
+  
     }
 
   //**IMPLEMENTATION FALL**

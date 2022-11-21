@@ -7,7 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CheckboxFilterPipe implements PipeTransform {
 
     transform(check: any, checked?: any): any {
-        return checked ? check.filter(check => check.Language == 'BIL'|| check.Language == 'EN' ) : check;
+        return checked ? check.filter(check => check.Language == 'BIL'|| check.Language == 'FR' ) : check;
     }
 
 }
