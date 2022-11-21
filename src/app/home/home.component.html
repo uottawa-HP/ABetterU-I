@@ -1,16 +1,20 @@
 <html>
 <head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">  
 <link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
 <style src=
 "https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js">
 body {
     font-family: 'Barlow Condensed';font-size: 22px;
 }
+ 
 </style>
 </head>
 
-<body ng-load="storeData()">
+<body>
+  <div>
 <app-navbar></app-navbar>
+</div>
 
 <div class="container">
   <div class="row">
@@ -27,6 +31,9 @@ body {
 </div>
 
 
+
+
+
 <div class="container">
     <div class="row">
         <img src="assets/img/favicon.ico">
@@ -39,40 +46,68 @@ body {
 
 
 <form>
-  <div class="form-group">
-    <div class='text-center'>
-        <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"><br />
+  <div class="form-group" >
+    <div class='text-center' >
+        <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query">
+        <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Reload&#x21bb;</button>
+         
+       
     </div>
     <div class="text-center">
-      <p><b>Language:</b></p>
+    <button
+		type="button"
+		class="btn btn-primary"
+    style="background-color: #232942;"
+		(click)="collapse.toggle()"
+		[attr.aria-expanded]="!isCollapsed"
+		aria-controls="collapseExample"
+	><span class="bi bi-filter"></span>
+	  Filters
+	</button>
+  </div>
+    
+    <div class= "content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+<div class="float-container">
+
+      <div class="float-child">
+      <p style="font-size:20px;"><b>Language:</b></p>
       <input type="checkbox" id='multi' [(ngModel)]="isMulti" >
-        <label for="multi"> Multi</label><br>
+        <label  style="font-size:20px;" for="multi"> Multi </label><br>
+
+        <input type="checkbox" id='english' [(ngModel)]="isEnglish" >
+        <label style="font-size:20px;" for="english"> EN </label><br>
       
         <input type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
-        <label for="bilingual"> EN</label><br><br>
+        <label for="bilingual"> FR </label>
+      </div>
+      <div class="float-child">
+        <p><b>Health Topic:</b></p>
+        <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
+          <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
+          <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
+          <label style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
+          <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
+          <label style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
+          <input type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
+          <label style="font-size:20px;" for="CommunityEngagement"> Community Engagement </label><br>
+          <input type="checkbox" id='International'  [(ngModel)]="isInternational" >
+          <label style="font-size:20px;" for="International"> International and Newcomer Service </label><br>
+          <input type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
+          <label style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
+          <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
+          <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
+          <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
+          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
+          <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
+          <label style="font-size:20px;" for="Academics"> Academics </label><br>
+          <input type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
+          <label style="font-size:20px;" for="Disability"> Disability Services </label><br>
+      </div> 
        
-    
-    </div> 
-     
-    <div class="text-center">
-      <p><b>Health Topic:</b></p>
-      <input type="checkbox" id='sexualHealth' [(ngModel)]="isSexualHealth" >
-        <label for="sexualHealth"> Sexual & Reproductive Health</label><br>
-        <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
-        <label for="mentalHealth"> Mental Health</label><br><br>
-    </div> 
-  
  
-
-
-
-
-
-
-  
-  <div class="text-center">
-    <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Load Resources &#x21bb;</button>
+ </div>
   </div>
+  
   </div>
 </form><br><br>
 
@@ -91,12 +126,15 @@ body {
 
 <div *ngIf="filteredResources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of filteredResources | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize  | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | sexualHealthFilter: isSexualHealth | mentalHealthFilter: isMentalHealth   " >
+        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics  |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
            <ng-template ngbPanelTitle >
               <span>{{resource['NameofResource']}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
-              <b>ID: </b> {{resource['id']}}<br />
+            <a [routerLink]="['/feedback']">
+              <button class="btn btn-primary float-right" style="float: right;background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
+          </a>
+              <div id="idNum"><b>ID: </b> {{resource['id']}}</div>
               <b>Health Theme:</b> {{resource['HealthTopic']}}<br />
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
@@ -105,15 +143,16 @@ body {
                 <b>Description of Resource</b> <br />
                 {{resource['Descriptionofresource']}}<br />
               </div><br />
-              <b>Web Link: </b> <a  href="{resource['Weblink(ifapplicable)']}}" target=”_blank” >{{resource['Weblink(ifapplicable)']}}</a><br />
+              <b>Web Link: </b> <a  href="{{resource['Weblink(ifapplicable)']}}" target=”_blank” >{{resource['Weblink(ifapplicable)']}}</a><br />
               <b>Additional Information:</b> {{resource['Additionalinformation']}}<br />
-
            </ng-template>
+          
+          
         </ngb-panel>
+        
 
   </ngb-accordion>
-
-  
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
   <!-- <table class="table">
     <tr>
       <th>Title</th>
@@ -139,18 +178,14 @@ body {
     </tr>
   </table> -->
   <!-- <ngb-pagination [boundaryLinks]="true" [pageSize]="pageSize" [collectionSize]="resources.length" [(page)]="page" aria-label="Default pagination"></ngb-pagination> -->
-  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="filteredResources.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
+
 </div>
+
+
 
 
 </body>
 
-<script src="script.js">
-  
-  let btn = document.querySelector("btn");
 
-  btn.addEventListener("click", ()=>{
 
-    btn.innerHTML="Reload";
-});
-</script>
+

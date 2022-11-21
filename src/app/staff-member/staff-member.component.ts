@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient  } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../services/authentication.service';
+import { FeedbackService } from '../services/feedback.service';
 
 
 
@@ -36,13 +37,15 @@ export class StaffMemberComponent implements OnInit {
   }
 
 
-  constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService) {
+  constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService, public feebackServices: FeedbackService) {
 
   }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
       this.users = users
     });
+    this.feebackServices.preselected=undefined;
+    this.feebackServices.idNumber=undefined;
   }
 
   deleteUser(event, user: staffMember){

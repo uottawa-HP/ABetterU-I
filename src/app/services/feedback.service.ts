@@ -20,5 +20,9 @@ export class FeedbackService {
     return throwError(error)
   }
 
+  public idNumber : Number;
+  public preselected : String; 
+
+
 
 }

@@ -27,6 +27,18 @@ import { MultiFilterPipe } from './multi-filter.pipe';
 import { SexualHealthFilterPipe} from './sexualHealth-filter.pipe';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MentalHealthFilterPipe } from './mental-health-filter.pipe';
+import { PhysicalHealthFilterPipe } from './physical-health-filter.pipe';
+import { SubstanceUseHealthFilterPipe } from './substance-use-health-filter.pipe';
+import { CommunityEngagementFilterPipe } from './community-engagement-filter.pipe';
+import { InternationalFilterPipe } from './international-filter.pipe';
+import { PopulationHealthFilterPipe } from './population-health-filter.pipe';
+import { NutritionFilterPipe } from './nutrition-filter.pipe';
+import { AcademicsFilterPipe } from './academics-filter.pipe';
+import { DisabilityFilterPipe } from './disability-filter.pipe';
+import { EnglishFilterPipe } from './english-filter.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+
+
 
 //**ARCHIVED**
 // import { ResourceDatabaseComponent } from './resource-database/resource-database.component';
@@ -55,7 +67,17 @@ import { MentalHealthFilterPipe } from './mental-health-filter.pipe';
     MultiFilterPipe,
     SexualHealthFilterPipe,
     ForgotPasswordComponent,
-    MentalHealthFilterPipe
+    MentalHealthFilterPipe,
+    PhysicalHealthFilterPipe,
+    SubstanceUseHealthFilterPipe,
+    CommunityEngagementFilterPipe,
+    InternationalFilterPipe,
+    PopulationHealthFilterPipe,
+    NutritionFilterPipe,
+    AcademicsFilterPipe,
+    DisabilityFilterPipe,
+    EnglishFilterPipe,
+    
     //**ARCHIVED**
     // ResourceSearchComponent,
     // RegisterStaffComponent,
@@ -72,7 +94,8 @@ import { MentalHealthFilterPipe } from './mental-health-filter.pipe';
     FormsModule,
     NgbModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
 
   ],
   providers: [{ provide: LoggedInGuard, useClass: LoggedInGuard}, { provide: RoleGuard, useClass: RoleGuard}],

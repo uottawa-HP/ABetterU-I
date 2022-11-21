@@ -24,23 +24,26 @@ body {
     <div class="row">
       <div class="col-lg-8">
         <div id="box1">
-        <form>
+        <form  name="myForm" #myForm="ngForm">
             <div class="text-center">
             <div class="block">
               <div class="form-group">
                   <label for="feedBackSelect">Please select a feedback type</label>
-                  <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
+                  <select  class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
                     <option selected>Choose...</option>
-                    <option value = "Feedback">Existing Resource Feedback</option>
-                    <option value= "Suggestion">New Resource Suggestion</option>
+                    <option id="Feedback" [selected]="preselected=='Feedback'" value ="Feedback">Existing Resource Feedback</option>
+                    <option  value= "Suggestion">New Resource Suggestion</option>
 
                   </select>
                 </div>
 
-
-                <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Resource ID:  </label>
-                    <input class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="resourceID"><br />
+                
+                <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Resource ID  </label>
+                    <input class="input-group-text w-100 mx-auto" type="text" name="ressourceID" [(ngModel)]="idNum"><br />
+                  
+                
             </div>
+            
 
             <div class="form-group">
                 <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>

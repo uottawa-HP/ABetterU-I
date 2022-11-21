@@ -1,13 +1,18 @@
 
 
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { ConfigService } from '../services/config.service';
 import { map } from 'rxjs/operators';
 import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup } from '@angular/forms'
+import { FormControl, FormGroup } from '@angular/forms';
+import { FeedbackComponent } from '../feedback/feedback.component';
+import { FeedbackService } from '../services/feedback.service';
+
+
+
 // import { rdbresource } from '../models/rdbresource';
 
 
@@ -15,7 +20,8 @@ import { FormControl, FormGroup } from '@angular/forms'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+
 })
 export class HomeComponent implements OnInit{
 
@@ -37,6 +43,8 @@ export class HomeComponent implements OnInit{
   category= [];
   language= [];
   ob = {};
+  arr: any;
+  
 
   
 
@@ -46,21 +54,49 @@ export class HomeComponent implements OnInit{
   public english : any = '';
   public sexualHealthFilter: any ='';
   public mentalHealthFilter: any='';
+  public physicalHealthFilter: any='';
+  public communityEngagementFilter: any='';
+  public disabilityFilter: any='';
+  public  internationalFilter: any='';
+  public nutritionFilter: any="";
+  public populationHealthFilter: any ="";
+  public substanceUseHealthFilter: any="";
+  public academicsFilter: any='';
+  public englishFilter: any='';
+  public id : any ='';
   query: String ="";
   isMulti: String = "";
   isBilingual: String = "";
   checked: String = ""
   isSexualHealth: String= "";
   isMentalHealth: String = "";
+  isPhysicalHealth: String = "";
+  isCommunityEngagement: String ="";
+  isDisability: String="";
+  isInternational: String="";
+  isNutrition: String="";
+  isPopulation: String ="";
+  isSubstance : String="";
+  isAcademics: String="";
+  isEnglish: String="";
+  public a: number =0;
 
+  element = 0;
+  
+  public isCollapsed = true;
   
 
+  active = 0;
+
+  pages
   
-
+@Input() feedback: FeedbackComponent;
  
 
-  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService) {
- 
+  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService, public feebackServices: FeedbackService) {
+
+    this.pages = Array(5).fill(0).map((x, i) => i);
+    this.pages.pop()
 
 
   }
@@ -70,10 +106,12 @@ export class HomeComponent implements OnInit{
       this.jsonResources = data["rows"];
       this.columnResources = data ["columns"];
       console.warn(this.jsonResources);
+      this.storeData()
+  
     });
 
 
-    this.storeData()
+    
   }
 
 
@@ -160,17 +198,13 @@ export class HomeComponent implements OnInit{
             if (this.jsonResources[i]["cells"][j].value != undefined && key != undefined ){
               this.test[key]=this.jsonResources[i]["cells"][j].value;
              }
-              
 
-            
             
           }
           this.test['id']=i+1;
           
 
         }
-     
-
 
       }
      
@@ -179,21 +213,20 @@ export class HomeComponent implements OnInit{
         console.log(this.filteredResources)
         this.test={};
       }
+
+    
         
     }
 
-   
-   
 
-    
+    this.arr = {
+      id: 'basicPaginate',
+      itemsPerPage: 25,
+      currentPage: 1,
+      totalItems: this.filteredResources.length
+    };
 
-    
- 
-     
-    
-
-
-
+  
     this.noOfPages = Math.floor(this.filteredResources.length/25);
     console.log(this.noOfPages);
 
@@ -208,9 +241,16 @@ export class HomeComponent implements OnInit{
 
 
   }
+
+  getPageNumbers(someArr){
+  this.noOfPages = Math.floor(this.filteredResources.length/25);
+  console.log(this.noOfPages);
+  }
   
 
-
+  get currentPage (){
+    return this.active;
+  }
  
 
   removeBlanks(someArr){
@@ -232,6 +272,12 @@ export class HomeComponent implements OnInit{
     }
   }
 
+   
+
+  pageChanged(event) {
+    this.arr.currentPage = event;
+  }
+
 
 
   async logout(): Promise<boolean> {
@@ -243,6 +289,14 @@ export class HomeComponent implements OnInit{
   checkValue(event: any){
     console.log(event);
  }
+
+ show(element){
+  this.feebackServices.idNumber= element;
+  this.feebackServices.preselected="Feedback";
+  
+}
+
+
 
 
 
