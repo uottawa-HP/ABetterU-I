@@ -29,7 +29,7 @@ body {
             <div class="block">
               <div class="form-group">
                   <label for="feedBackSelect">Please select a feedback type</label>
-                  <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)">
+                  <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)" style="background-color: #F0F0F0;">
                     <option selected>Choose...</option>
                     <option value = "Feedback">Existing Resource Feedback</option>
                     <option value= "Suggestion">New Resource Suggestion</option>
@@ -39,13 +39,13 @@ body {
 
 
                 <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Resource ID:  </label>
-                    <input class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="resourceID"><br />
+                    <input class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="resourceID" style="background-color: #F0F0F0;"><br />
             </div>
 
             <div class="form-group">
                 <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>
                 <!-- <input class="form-control input-lg" type="text" name="tag"> -->
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" style="background-color:#F7F5F2 ;" [(ngModel)]="feedback" placeholder="Please write your feedback here..."></textarea><br />
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7" style="background-color: #F0F0F0; ;" [(ngModel)]="feedback" placeholder="Please write your feedback here..."></textarea><br />
             </div>
         </div>
 
@@ -61,7 +61,7 @@ body {
       </div>
       <div class="col-lg-4">
         <div class='text-center'>
-           <img src="assets/img/feedbackPicture.png">
+           <img src="assets/img/FB2.png">
         </div>
       </div>
 

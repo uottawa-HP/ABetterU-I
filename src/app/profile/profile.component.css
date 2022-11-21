@@ -6,6 +6,18 @@
 
   #box1{
    
-    text-align: left;
+    text-align: center;
   
   }
+
+  img{
+    text-align: center;
+ 
+   
+  }
+
+ .box{
+  background-image: "assets/img/PF3.png";
+  align-items: left;
+  background-size: contain;
+ }
