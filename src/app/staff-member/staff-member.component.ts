@@ -35,6 +35,7 @@ export class StaffMemberComponent implements OnInit {
     role:''
   }
 
+  
 
   constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService) {
 
@@ -76,6 +77,8 @@ export class StaffMemberComponent implements OnInit {
     this.userToEdit = null;
   }
 
+  
+
   updateUser(user: staffMember){
     this.userService.updateUser(user);
     this.clearState();
@@ -107,4 +110,6 @@ export class StaffMemberComponent implements OnInit {
 
   }
 
+
 }
+
