@@ -10,6 +10,7 @@ import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { FeedbackService } from '../services/feedback.service';
+import { empty } from 'rxjs';
 
 
 
@@ -43,7 +44,8 @@ export class HomeComponent implements OnInit{
   category= [];
   language= [];
   ob = {};
-  arr: any;
+  favourites= [];
+  
   
 
   
@@ -63,6 +65,8 @@ export class HomeComponent implements OnInit{
   public substanceUseHealthFilter: any="";
   public academicsFilter: any='';
   public englishFilter: any='';
+  public  affiliationExternal: any='';
+  public affiliation: any='';
   public id : any ='';
   query: String ="";
   isMulti: String = "";
@@ -79,11 +83,19 @@ export class HomeComponent implements OnInit{
   isSubstance : String="";
   isAcademics: String="";
   isEnglish: String="";
+  isInternal: String="";
+  isExternal: String ="";
   public a: number =0;
 
   element = 0;
   
   public isCollapsed = true;
+  public isChecked=false;
+  
+
+  public checkbox= document.getElementById(
+    'star',
+  ) as HTMLInputElement | null;
   
 
   active = 0;
@@ -107,6 +119,8 @@ export class HomeComponent implements OnInit{
       this.columnResources = data ["columns"];
       console.warn(this.jsonResources);
       this.storeData()
+
+     
   
     });
 
@@ -114,6 +128,30 @@ export class HomeComponent implements OnInit{
     
   }
 
+
+
+  onChanged(resource) {
+    this.isChecked=true;
+
+    for (let i = 0; i < this.favourites.length; i++){
+      if(this.favourites[i]==resource){
+        delete this.favourites[i];
+        this.isChecked = false;
+      }
+    }
+
+    if(this.isChecked==true){
+      this.favourites.push(resource);
+    }
+ 
+    this.favourites = this.favourites.filter((element): element is number => {
+      return element !== null;
+    });
+    console.log(this.favourites);
+    
+
+  }
+ 
 
 
 
@@ -171,12 +209,20 @@ export class HomeComponent implements OnInit{
         this.columns["Descriptionofresource"]= this.columnResources[i]['id'];
 
       }
-      else if(this.columnResources[i]['title']=="Web link (if applicable)"){
+      else if(this.columnResources[i]['title']=="Tags"){
+        this.columns["Tags"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Web link"){
         this.columns["Weblink(ifapplicable)"]= this.columnResources[i]['id'];
 
       }
       else if(this.columnResources[i]['title']=="Additional information"){
         this.columns["Additionalinformation"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Affiliation"){
+        this.columns["Affiliation"]= this.columnResources[i]['id'];
 
       }
       
@@ -219,12 +265,7 @@ export class HomeComponent implements OnInit{
     }
 
 
-    this.arr = {
-      id: 'basicPaginate',
-      itemsPerPage: 25,
-      currentPage: 1,
-      totalItems: this.filteredResources.length
-    };
+  
 
   
     this.noOfPages = Math.floor(this.filteredResources.length/25);
@@ -274,9 +315,7 @@ export class HomeComponent implements OnInit{
 
    
 
-  pageChanged(event) {
-    this.arr.currentPage = event;
-  }
+ 
 
 
 
