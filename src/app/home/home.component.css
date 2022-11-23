@@ -96,13 +96,32 @@ ul {
 }
 
 .float-child {
-  width: 50%;
+  width: 25%;
   float: left;
   padding: 20px;
-  text-align: center;
   background-color: white;
   
 }  
+
+.star {
+  visibility:hidden;
+  color: #EFC44B;;
+  float: right;
+  font-size:30px;
+  cursor:pointer;
+  
+}
+.star:before {
+ content: "\2605";
+ position: absolute;
+ visibility:visible;
+ 
+}
+.star:checked:before {
+ content: "\2606";
+ position: absolute;
+ 
+}
 
 
 

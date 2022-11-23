@@ -54,7 +54,7 @@ body {
 
       <div class='text-center'>
         <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query" style="width: 350px; color: black;">
-        <button (click)="storeData()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Reload&#x21bb;</button>
+        <button (click)="storeData()" id="btn" class="btn btn-primary" style="font-size: 20px; background-color:#EA7754 ;">&#x21bb;</button>
     </div>
 
     <div class='text-center'>
@@ -73,7 +73,6 @@ body {
     style="background-color: #232942;"
 		(click)="collapse.toggle()"
 		[attr.aria-expanded]="!isCollapsed"
-		aria-controls="collapseExample"
 	><span class="bi bi-filter"></span>
 	  Filters
 	</button>
@@ -95,21 +94,25 @@ body {
       </div>
       <div class="float-child">
         <p><b>Health Topic:</b></p>
-        <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
-          <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
-          <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
-          <label style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
-          <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
-          <label style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
+        <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
+          <label style="font-size:20px;" for="Academics"> Academics </label><br>
           <input type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
           <label style="font-size:20px;" for="CommunityEngagement"> Community Engagement </label><br>
+          <input type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
+          <label style="font-size:20px;" for="Disability"> Disability Services </label><br>
           <input type="checkbox" id='International'  [(ngModel)]="isInternational" >
           <label style="font-size:20px;" for="International"> International and Newcomer Service </label><br>
+          <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
+          <label style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
+     </div>
+     <div class="float-child">
+
           <input type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
           <label style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
           <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
           <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
           <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
+<<<<<<< HEAD
           <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
           <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
           <label style="font-size:20px;" for="Academics"> Academics </label><br>
@@ -118,6 +121,25 @@ body {
       </div>
 
 
+=======
+          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>           
+          <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
+          <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
+          <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
+          <label style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
+       
+      </div> 
+
+      <div class="float-child">
+        <p><b>Affiliation:</b></p>
+        <input type="checkbox" id='internal' value="Affiliation" [(ngModel)]="isInternal" >
+          <label style="font-size:20px;" for="internal">Internal </label><br>
+          <input type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
+          <label style="font-size:20px;" for="external">External </label><br>
+      </div>
+       
+ 
+>>>>>>> paginationFilterUpdates
  </div>
   </div>
 
@@ -139,11 +161,12 @@ body {
 
 <div *ngIf="filteredResources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics  |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
+        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal  |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
            <ng-template ngbPanelTitle >
               <span>{{resource['NameofResource']}} </span>
            </ng-template>
            <ng-template ngbPanelContent>
+            <input class="star" type="checkbox"  id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" checked><br/><br/>
             <a [routerLink]="['/feedback']">
               <button class="btn btn-primary float-right" style="float: right;background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
           </a>
@@ -152,6 +175,8 @@ body {
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
               <b>Language:</b> {{resource['Language']}}<br /> <br />
+              <b>Affiliation:</b> {{resource['Affiliation']}}<br />
+              <b>Tags:</b> {{resource['Tags']}}<br />
               <div class = "text-center">
                 <b>Description of Resource</b> <br />
                 {{resource['Descriptionofresource']}}<br />
@@ -165,7 +190,7 @@ body {
 
 
   </ngb-accordion>
-  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics|affiliationExternal:isExternal| affiliation:isInternal)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
   <!-- <table class="table">
     <tr>
       <th>Title</th>
