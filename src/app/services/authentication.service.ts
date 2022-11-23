@@ -19,10 +19,9 @@ export class AuthenticationService {
   email: any;
   firstname: any;
   lastname: any;
-
+  favourites: any;
   role: string;
   currentUser;
-
 
 
 
@@ -123,14 +122,16 @@ export class AuthenticationService {
           this.role = value['role'];
           this.firstname = value['firstname'];
           this.lastname = value['lastname'];
-
+          this.favourites = value['favourites'];
 
 
         } catch (e) {
         }
       });
       console.log("The role being set is: " + this.role);
+      console.log("Favourites: " + this.favourites);
     }
+
     // let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
     // let query = userRef.valueChanges();
     // query.pipe(map(arr => arr[0])).subscribe(value => {
@@ -144,6 +145,25 @@ export class AuthenticationService {
     // });
     // console.log("The role being set is: " + this.role);
   }
+
+  async getFavourites() {
+
+    if(this.getUser() == true || this.email != null){
+      let userRef = this.firestore.collection('users', ref => ref.where('email', '==', this.email));
+      let query = userRef.valueChanges();
+      query.pipe(map(arr => arr[0])).subscribe(value => {
+        try {
+          this.favourites = value['favourites'];
+        } catch (e) {
+        }
+      });
+      console.log("The role being set is: " + this.role);
+    }
+
+  }
+
+
+
 
   //method called by components to invoke role guard
   async setRole(): Promise<void>{
