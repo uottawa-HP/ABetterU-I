@@ -10,11 +10,8 @@ import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { FeedbackService } from '../services/feedback.service';
-<<<<<<< HEAD
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-=======
 import { empty } from 'rxjs';
->>>>>>> paginationFilterUpdates
 
 
 
@@ -48,13 +45,8 @@ export class HomeComponent implements OnInit{
   category= [];
   language= [];
   ob = {};
-<<<<<<< HEAD
   arr: any;
-=======
-  favourites= [];
 
-
->>>>>>> paginationFilterUpdates
 
 
 
@@ -131,12 +123,15 @@ export class HomeComponent implements OnInit{
 
   }
 
-
+  // checkFavourites(favourites): boolean{
+  //   if(this.AuthService.favourites.some(favourites)){
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
 
  updateFavourites(){
-
-  this.AuthService.favourites = [5,10, 19];
 
   this.firestore.collection('users').doc((this.AuthService.email)).set({
     favourites: this.AuthService.favourites,
@@ -153,30 +148,31 @@ export class HomeComponent implements OnInit{
 
 
 
-
-
-
   onChanged(resource) {
     this.isChecked=true;
 
-    for (let i = 0; i < this.favourites.length; i++){
-      if(this.favourites[i]==resource){
-        delete this.favourites[i];
+    for (let i = 0; i < this.AuthService.favourites.length; i++){
+      if(this.AuthService.favourites[i]==resource){
+        delete this.AuthService.favourites[i];
         this.isChecked = false;
+        this.AuthService.favourites = this.AuthService.favourites.filter((element): element is number => {
+
+          return element !== null;
+        });
+        this.updateFavourites();
       }
     }
-
     if(this.isChecked==true){
-      this.favourites.push(resource);
+      this.AuthService.favourites.push(resource);
+      this.updateFavourites();
     }
 
-    this.favourites = this.favourites.filter((element): element is number => {
-      return element !== null;
-    });
-    console.log(this.favourites);
+    console.log(this.AuthService.favourites);
 
 
   }
+
+
 
 
 
@@ -248,17 +244,13 @@ export class HomeComponent implements OnInit{
         this.columns["Additionalinformation"]= this.columnResources[i]['id'];
 
       }
-<<<<<<< HEAD
 
-
-=======
       else if(this.columnResources[i]['title']=="Affiliation"){
         this.columns["Affiliation"]= this.columnResources[i]['id'];
 
       }
 
 
->>>>>>> paginationFilterUpdates
       console.log(this.columns);
 
 

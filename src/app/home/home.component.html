@@ -112,7 +112,7 @@ body {
           <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
           <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
           <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
-<<<<<<< HEAD
+
           <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
           <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
           <label style="font-size:20px;" for="Academics"> Academics </label><br>
@@ -121,14 +121,14 @@ body {
       </div>
 
 
-=======
-          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>           
+
+          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
           <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
           <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
           <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
           <label style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
-       
-      </div> 
+
+      </div>
 
       <div class="float-child">
         <p><b>Affiliation:</b></p>
@@ -137,13 +137,12 @@ body {
           <input type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
           <label style="font-size:20px;" for="external">External </label><br>
       </div>
-       
- 
->>>>>>> paginationFilterUpdates
+
+
  </div>
   </div>
 
-  </div>
+  <!-- </div> -->
 </form><br><br>
 
 
@@ -164,9 +163,9 @@ body {
         <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal  |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
            <ng-template ngbPanelTitle >
               <span>{{resource['NameofResource']}} </span>
-           </ng-template>
-           <ng-template ngbPanelContent>
-            <input class="star" type="checkbox"  id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" checked><br/><br/>
+            </ng-template>
+          <ng-template ngbPanelContent>
+          <input class="star" type="checkbox"  id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" [checked] = "!this.AuthService.favourites.includes(resource.id)"><br/><br/>
             <a [routerLink]="['/feedback']">
               <button class="btn btn-primary float-right" style="float: right;background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
           </a>

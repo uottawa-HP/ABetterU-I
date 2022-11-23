@@ -39,7 +39,6 @@ export class StaffMemberComponent implements OnInit {
   }
 
 
-
   constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService, public feebackServices: FeedbackService) {
 
   }
@@ -61,7 +60,6 @@ export class StaffMemberComponent implements OnInit {
   onEditUser(user: staffMember, index){
     this.editMode = true;
     console.log(this.user.id);
-
 
 
     this.userForm.setValue({
