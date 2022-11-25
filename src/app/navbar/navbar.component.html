@@ -2,19 +2,15 @@
 <head>
 <link href='https://fonts.googleapis.com/css?family=Barlow Condensed' rel='stylesheet'>
 <style>
-body {
-    font-family: 'Barlow Condensed';font-size: 22px;
-}
+
 </style>
 </head>
 <body>
-<nav class = "navbar navbar-dark bg-dark">
+<!-- <nav class = "navbar navbar-dark bg-dark">
 
 <ul class="left-side">
     <li><a mat-button [routerLink]="['/home']">Home </a></li>
     <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
-    <!-- <a mat-button [routerLink]="['/resourcesearch']">Resource Search </a> -->
-    <!-- <a mat-button [routerLink]="['/resourcedatabase']">Resource Database </a> -->
     <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
     <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
 </ul>
@@ -25,7 +21,28 @@ body {
     <li><a mat-button (click)="logout()"> Logout</a></li>
 </ul>
 
-</nav>
+</nav> -->
+
+<header>
+    <div class="container">
+      <nav class>
+        <ul>
+        <!-- <ul class="left-side"> -->
+            <li><a mat-button [routerLink]="['/home']">Home </a></li>
+            <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
+            <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
+            <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
+        <!-- </ul> -->
+        <!-- <ul class="right-side"> -->
+            <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
+            <li><a mat-button (click)="logout()"> Logout</a></li>
+        <!-- </ul> -->
+      </ul>
+
+      </nav>
+    </div>
+
+</header>
 
 
 

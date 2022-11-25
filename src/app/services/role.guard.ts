@@ -16,12 +16,12 @@ export class RoleGuard implements CanActivate {
 
     //call loggedin guard to determine if user is logged in
     return this.authGuard.canActivate(route, state).then((auth: boolean) => {
-      if(!auth) {
+      if(this.authService.role == null) {
         console.log("User did not make it past authentication");
         return false;
       }
       //if user has been logged in check role
-      else if(auth){
+      else if(this.authService.role != null){
         if(this.authService.role != null && this.authService.role == "Admin"){
           console.log("Admin is able to access this tab");
           return true
