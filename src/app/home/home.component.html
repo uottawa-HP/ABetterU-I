@@ -59,7 +59,8 @@ body {
 
     <div class='text-center'>
 
-      <button (click)="updateFavourites()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Update Favourites</button>
+  <input class="form-check-input" type="checkbox" id='favourite' [(ngModel)]="isFavourite" >
+  <label class="form-check-label"  style="font-size:20px;" for="favourite"> Show Favourites &#9733; </label><br>
   </div>
 
 
@@ -112,17 +113,13 @@ body {
           <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
           <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
           <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
-
           <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
-          <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
-          <label style="font-size:20px;" for="Academics"> Academics </label><br>
-          <input type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
-          <label style="font-size:20px;" for="Disability"> Disability Services </label><br>
+
       </div>
 
 
 
-          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
+          
           <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
           <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
           <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
@@ -160,7 +157,7 @@ body {
 
 <div *ngIf="filteredResources.length > 0" class = "container-fluid">
   <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal  |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
+        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth:this.AuthService.favourites| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
            <ng-template ngbPanelTitle >
               <span>{{resource['NameofResource']}} </span>
             </ng-template>
@@ -189,7 +186,7 @@ body {
 
 
   </ngb-accordion>
-  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics|affiliationExternal:isExternal| affiliation:isInternal)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics|affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
   <!-- <table class="table">
     <tr>
       <th>Title</th>

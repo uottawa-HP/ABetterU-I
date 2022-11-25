@@ -39,6 +39,7 @@ import { EnglishFilterPipe } from './english-filter.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { AffiliationPipe } from './affiliation.pipe';
 import { AffiliationExternalPipe } from './affiliation-external.pipe';
+import { FavouritesPipe } from './favourites.pipe';
 
 
 
@@ -81,6 +82,7 @@ import { AffiliationExternalPipe } from './affiliation-external.pipe';
     EnglishFilterPipe,
     AffiliationPipe,
     AffiliationExternalPipe,
+    FavouritesPipe,
     
     //**ARCHIVED**
     // ResourceSearchComponent,

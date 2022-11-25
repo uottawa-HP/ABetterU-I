@@ -11,7 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { FeedbackService } from '../services/feedback.service';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
-import { empty } from 'rxjs';
+
 
 
 
@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit{
   public  affiliationExternal: any='';
   public affiliation: any='';
   public id : any ='';
+  public favourites: any='';
   query: String ="";
   isMulti: String = "";
   isBilingual: String = "";
@@ -86,6 +87,7 @@ export class HomeComponent implements OnInit{
   isEnglish: String="";
   isInternal: String="";
   isExternal: String ="";
+  isFavourite: String = "";
   public a: number =0;
 
   element = 0;
