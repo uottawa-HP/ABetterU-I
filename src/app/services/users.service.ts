@@ -38,7 +38,15 @@ export class UsersService {
     }
 
     addUser(user:staffMember){
-      this.usersCollection.add(user);
+      // this.usersCollection.add(user);
+
+      this.firestore.collection("users").doc(user.email).set({
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role,
+        favourites:[]
+      })
     }
 
    deleteUser(user:staffMember){

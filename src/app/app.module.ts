@@ -37,6 +37,9 @@ import { AcademicsFilterPipe } from './academics-filter.pipe';
 import { DisabilityFilterPipe } from './disability-filter.pipe';
 import { EnglishFilterPipe } from './english-filter.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { AffiliationPipe } from './affiliation.pipe';
+import { AffiliationExternalPipe } from './affiliation-external.pipe';
+import { FavouritesPipe } from './favourites.pipe';
 
 
 
@@ -77,6 +80,9 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AcademicsFilterPipe,
     DisabilityFilterPipe,
     EnglishFilterPipe,
+    AffiliationPipe,
+    AffiliationExternalPipe,
+    FavouritesPipe,
     
     //**ARCHIVED**
     // ResourceSearchComponent,

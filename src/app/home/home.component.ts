@@ -10,6 +10,8 @@ import {NgbProgressbarConfig} from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { FeedbackService } from '../services/feedback.service';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+
 
 
 
@@ -44,9 +46,10 @@ export class HomeComponent implements OnInit{
   language= [];
   ob = {};
   arr: any;
-  
 
-  
+
+
+
 
   public searchFilter: any = '';
   public checkboxFilter: any = '';
@@ -63,7 +66,10 @@ export class HomeComponent implements OnInit{
   public substanceUseHealthFilter: any="";
   public academicsFilter: any='';
   public englishFilter: any='';
+  public  affiliationExternal: any='';
+  public affiliation: any='';
   public id : any ='';
+  public favourites: any='';
   query: String ="";
   isMulti: String = "";
   isBilingual: String = "";
@@ -79,25 +85,32 @@ export class HomeComponent implements OnInit{
   isSubstance : String="";
   isAcademics: String="";
   isEnglish: String="";
+  isInternal: String="";
+  isExternal: String ="";
+  isFavourite: String = "";
   public a: number =0;
 
   element = 0;
-  
+
   public isCollapsed = true;
-  
+
+  public isChecked=false;
+
+
+
+
 
   active = 0;
 
   pages
-  
-@Input() feedback: FeedbackComponent;
- 
 
-  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService, public feebackServices: FeedbackService) {
+@Input() feedback: FeedbackComponent;
+
+
+  constructor(private router: Router, private AuthService: AuthenticationService, private c: ConfigService, public feebackServices: FeedbackService, private firestore: AngularFirestore) {
 
     this.pages = Array(5).fill(0).map((x, i) => i);
     this.pages.pop()
-
 
   }
 
@@ -107,12 +120,62 @@ export class HomeComponent implements OnInit{
       this.columnResources = data ["columns"];
       console.warn(this.jsonResources);
       this.storeData()
-  
+
     });
 
-
-    
   }
+
+  // checkFavourites(favourites): boolean{
+  //   if(this.AuthService.favourites.some(favourites)){
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+
+ updateFavourites(){
+
+  this.firestore.collection('users').doc((this.AuthService.email)).set({
+    favourites: this.AuthService.favourites,
+    firstname: this.AuthService.firstname,
+    lastname: this.AuthService.lastname,
+    email: this.AuthService.email,
+    role: this.AuthService.role
+  });
+
+  console.log("Updated favourites: "+ this.AuthService.favourites);
+ }
+
+
+
+
+
+  onChanged(resource) {
+    this.isChecked=true;
+
+    for (let i = 0; i < this.AuthService.favourites.length; i++){
+      if(this.AuthService.favourites[i]==resource){
+        delete this.AuthService.favourites[i];
+        this.isChecked = false;
+        this.AuthService.favourites = this.AuthService.favourites.filter((element): element is number => {
+
+          return element !== null;
+        });
+        this.updateFavourites();
+      }
+    }
+    if(this.isChecked==true){
+      this.AuthService.favourites.push(resource);
+      this.updateFavourites();
+    }
+
+    console.log(this.AuthService.favourites);
+
+
+  }
+
+
+
 
 
 
@@ -139,8 +202,8 @@ export class HomeComponent implements OnInit{
 
       }
 
-     
-        
+
+
       temp[this.jsonResources[0]["cells"].length + 1] = modDate
       // console.log(temp[-1]);
       this.resources[i] = temp;
@@ -171,7 +234,11 @@ export class HomeComponent implements OnInit{
         this.columns["Descriptionofresource"]= this.columnResources[i]['id'];
 
       }
-      else if(this.columnResources[i]['title']=="Web link (if applicable)"){
+      else if(this.columnResources[i]['title']=="Tags"){
+        this.columns["Tags"]= this.columnResources[i]['id'];
+
+      }
+      else if(this.columnResources[i]['title']=="Web link"){
         this.columns["Weblink(ifapplicable)"]= this.columnResources[i]['id'];
 
       }
@@ -179,58 +246,58 @@ export class HomeComponent implements OnInit{
         this.columns["Additionalinformation"]= this.columnResources[i]['id'];
 
       }
-      
-      
+
+      else if(this.columnResources[i]['title']=="Affiliation"){
+        this.columns["Affiliation"]= this.columnResources[i]['id'];
+
+      }
+
+
       console.log(this.columns);
-      
+
 
     }
 
     for (let i = 0; i < this.jsonResources.length; i++){
-     
+
 
       // console.log("hello");
       for (let j = 0; j < this.jsonResources[i]["cells"].length; j++){
         for (var key in this.columns){
-          
+
           if (this.jsonResources[i]["cells"][j]['columnId']==this.columns[key]){
 
             if (this.jsonResources[i]["cells"][j].value != undefined && key != undefined ){
               this.test[key]=this.jsonResources[i]["cells"][j].value;
              }
 
-            
+
           }
           this.test['id']=i+1;
-          
+
 
         }
 
       }
-     
+
       if (Object.keys(this.test).length !=1){
         this.filteredResources.push(this.test);
         console.log(this.filteredResources)
         this.test={};
       }
 
-    
-        
+
+
     }
 
 
-    this.arr = {
-      id: 'basicPaginate',
-      itemsPerPage: 25,
-      currentPage: 1,
-      totalItems: this.filteredResources.length
-    };
 
-  
+
+
     this.noOfPages = Math.floor(this.filteredResources.length/25);
     console.log(this.noOfPages);
 
-   
+
 
 
     console.log(this.healthTheme);
@@ -246,12 +313,12 @@ export class HomeComponent implements OnInit{
   this.noOfPages = Math.floor(this.filteredResources.length/25);
   console.log(this.noOfPages);
   }
-  
+
 
   get currentPage (){
     return this.active;
   }
- 
+
 
   removeBlanks(someArr){
     var length = this.filteredResources.length;
@@ -272,18 +339,16 @@ export class HomeComponent implements OnInit{
     }
   }
 
-   
 
-  pageChanged(event) {
-    this.arr.currentPage = event;
-  }
+
+
 
 
 
   async logout(): Promise<boolean> {
     return await this.AuthService.logout();
 
-  
+
   }
 
   checkValue(event: any){
@@ -293,7 +358,7 @@ export class HomeComponent implements OnInit{
  show(element){
   this.feebackServices.idNumber= element;
   this.feebackServices.preselected="Feedback";
-  
+
 }
 
 

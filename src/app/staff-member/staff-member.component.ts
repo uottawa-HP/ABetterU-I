@@ -26,6 +26,7 @@ export class StaffMemberComponent implements OnInit {
   message: string;
   success: boolean;
 
+
   @ViewChild('userForm') userForm:NgForm; //CRUD
   url = 'https://console.firebase.google.com/project/system-navigation-database/firestore/data/users.json'
   user: staffMember = {
@@ -33,10 +34,10 @@ export class StaffMemberComponent implements OnInit {
     firstname: '',
     lastname:'',
     email: '',
-    role:''
+    role:'',
+    favourites:[]
   }
 
-  
 
   constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService, public feebackServices: FeedbackService) {
 
@@ -59,7 +60,6 @@ export class StaffMemberComponent implements OnInit {
   onEditUser(user: staffMember, index){
     this.editMode = true;
     console.log(this.user.id);
-    this.editUserId = user.id;
 
 
     this.userForm.setValue({
@@ -80,7 +80,7 @@ export class StaffMemberComponent implements OnInit {
     this.userToEdit = null;
   }
 
-  
+
 
   updateUser(user: staffMember){
     this.userService.updateUser(user);
@@ -115,4 +115,3 @@ export class StaffMemberComponent implements OnInit {
 
 
 }
-
