@@ -5,44 +5,89 @@
 
 </style>
 </head>
+<script language="javascript">
+   // define the function within the global scope
+   // $.fn.MessageBox = function(msg) {
+   //     alert(msg);
+   // };
+   //
+   // // or, if you want to encapsulate variables within the plugin
+   // (function($) {
+   //     $.fn.MessageBoxScoped = function(msg) {
+   //         alert(msg);
+   //     };
+   // })(jQuery); //<-- make sure you pass jQuery into the $ parameter
+   $(function(){
+    var link = $("nav a");
+   //click handler
+    link.on("click" , function(){
+      var $this = $(this);
+      var page = $this.data("page");
+
+      $("body").removeClass().addClass(page);
+      link.removeClass("active");
+      $this.addClass("active");
+    })
+  })(jQuery);
+</script>
+
 <body>
-<!-- <nav class = "navbar navbar-dark bg-dark">
+  <!-- <nav class = "navbar navbar-dark bg-dark">
 
-<ul class="left-side">
-    <li><a mat-button [routerLink]="['/home']">Home </a></li>
-    <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
-    <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
-    <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
-</ul>
+  <ul class="left-side">
+      <li><a mat-button [routerLink]="['/home']">Home </a></li>
+      <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
+      <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
+      <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
+  </ul>
 
 
-<ul class="right-side">
-    <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
-    <li><a mat-button (click)="logout()"> Logout</a></li>
-</ul>
+  <ul class="right-side">
+      <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
+      <li><a mat-button (click)="logout()"> Logout</a></li>
+  </ul>
 
+  </nav> -->
+<!-- <header> -->
+  <!-- <div class = "container"> -->
+
+  <!-- start!!! -->
+  <!-- <nav class = "navbar navbar-dark bg-dark">
+    <div class = "wrapper">
+      <ul class="left">
+        <li><a mat-button [routerLink]="['/home']">Home </a></li>
+        <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
+        <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
+        <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
+      </ul>
+      <ul class="right">
+        <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
+        <li><a mat-button (click)="logout()"> Logout</a></li>
+      </ul>
+  </div>
 </nav> -->
 
-<header>
-    <div class="container">
-      <nav class>
-        <ul>
-        <!-- <ul class="left-side"> -->
-            <li><a mat-button [routerLink]="['/home']">Home </a></li>
-            <li><a mat-button [routerLink]="['/feedback']">Feedback </a></li>
-            <li><a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a></li>
-            <li><a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a></li>
-        <!-- </ul> -->
-        <!-- <ul class="right-side"> -->
-            <li><a mat-button [routerLink]="['/profile']">Profile </a></li>
-            <li><a mat-button (click)="logout()"> Logout</a></li>
-        <!-- </ul> -->
-      </ul>
+<!-- !!!end -->
 
-      </nav>
-    </div>
+<!-- </div> -->
+<!-- </header> -->
 
-</header>
+
+
+<nav role='navigation'>
+  <a mat-button [routerLink]="['/home']">Home </a>
+  <a mat-button [routerLink]="['/feedback']">Feedback </a>
+  <a [hidden]="!adminBool" mat-button [routerLink]="['/metrics']">Metrics</a>
+  <a [hidden]="!adminBool" mat-button [routerLink]="['/staffmember']">Register Staff</a>
+  <a mat-button [routerLink]="['/profile']">Profile </a>
+  <a mat-button (click)="logout()"> Logout</a>
+</nav>
+
+
+
+
+
+
 
 
 

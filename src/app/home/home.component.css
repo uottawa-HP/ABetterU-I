@@ -23,7 +23,7 @@ ul {
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }
- 
+
 .spinner:before {
   content: '';
   box-sizing: border-box;
@@ -100,8 +100,8 @@ ul {
   float: left;
   padding: 20px;
   background-color: white;
-  
-}  
+
+}
 
 .star {
   visibility:hidden;
@@ -109,23 +109,16 @@ ul {
   float: right;
   font-size:30px;
   cursor:pointer;
-  
+
 }
 .star:before {
  content: "\2605";
  position: absolute;
  visibility:visible;
- 
+
 }
 .star:checked:before {
  content: "\2606";
  position: absolute;
- 
+
 }
-
-
-
-
-
-
-

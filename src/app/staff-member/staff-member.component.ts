@@ -25,6 +25,7 @@ export class StaffMemberComponent implements OnInit {
   password = '';
   message: string;
   success: boolean;
+  fieldTextType: boolean;
 
 
   @ViewChild('userForm') userForm:NgForm; //CRUD
@@ -80,7 +81,9 @@ export class StaffMemberComponent implements OnInit {
     this.userToEdit = null;
   }
 
-
+  toggleFieldTextType(){
+      this.fieldTextType = !this.fieldTextType;
+    }
 
   updateUser(user: staffMember){
     this.userService.updateUser(user);

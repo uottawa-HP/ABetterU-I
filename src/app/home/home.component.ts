@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit{
 
 
 
+
   public searchFilter: any = '';
   public checkboxFilter: any = '';
   public listSearch : any = '';

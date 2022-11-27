@@ -62,11 +62,49 @@ body {
       <button (click)="updateFavourites()" id="btn" class="btn btn-primary" style="background-color:#EA7754 ;">Update Favourites</button>
   </div>
 
+  <!-- <div class='text-center'>
+    <form>
+      <div class="row">
+      <div class="col-sm-4 my-auto">
+      </div>
+      <div class="input-group w-25 mx-auto">
+        <input class="text" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"  height="16" style="width: 600px; color: black;">
+      </div>
+      <div class="input-group-text">
+        <svg xmlns="http://www.w3.org/2000/svg" (click)="storeData()" id="btn" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+          <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+        </svg>
+      </div>
+      <div class="col-sm-4 my-auto">
+      </div>
+      </div>
+    </form>
+  </div> -->
+
+  <div class="input-group w-25 mx-auto">
+    <input class="form-control" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query">
+    <div class="input-group-text">
+      <!-- <svg xmlns="http://www.w3.org/2000/svg" (click)="storeData()" id="btn" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+      </svg> -->
+      <i class="bi bi-arrow-clockwise" (click)="storeData()"></i>
+    </div>
+  </div><br>
 
 
 
+  <!-- <div class="input-group w-25 mx-auto">
+    <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" aria-label="Text input with radio button" style="background-color:#F7F5F2;">
+    <div class="input-group-text">
+      <i class="bi bi-eye-slash" id="togglePassword" (click)="toggleFieldTextType()"></i>
+    </div>
+  </div><br> -->
 
-    <div class="text-center">
+
+
+    <!-- <div class="text-center">
     <button
 		type="button"
 		class="btn btn-primary"
@@ -76,9 +114,9 @@ body {
 	><span class="bi bi-filter"></span>
 	  Filters
 	</button>
-  </div>
+  </div> -->
 
-    <div class= "content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <!-- <div class= "content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
 <div class="float-container">
 
       <div class="float-child">
@@ -139,7 +177,7 @@ body {
       </div>
 
 
- </div>
+ </div> -->
   </div>
 
   <!-- </div> -->
@@ -148,7 +186,98 @@ body {
 
 
 
+<div class="text-center">
+  <p>
+  	<button
+  		type="button"
+  		class="btn btn-primary"
+      style="background-color: #232942;"
+  		(click)="isCollapsed = ! isCollapsed"
+  		[attr.aria-expanded]="!isCollapsed"
+  		aria-controls="collapseExample"
+  	><span class="bi bi-filter"></span>
+  		Filters
+  	</button>
+  </p>
+</div>
 
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+	<div class="card">
+		<div class="card-body">
+      <div class="container">
+        <div class="row">
+          <div class="col"><p class = "text-center">Language</p></div>
+          <div class="col-8" > <p class = "text-center"> Health Topic</p></div>
+          <div class="col"><p class = "text-center">Affiliation</p></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="d-flex justify-content-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id='multi' [(ngModel)]="isMulti" >
+                <label class="form-check-label" style="font-size:20px;" for="multi"> Multi </label><br>
+                <input class="form-check-input" type="checkbox" id='english' [(ngModel)]="isEnglish" >
+                <label class="form-check-label" style="font-size:20px;" for="english"> EN </label><br>
+                <input class="form-check-input" type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
+                <label class="form-check-label" for="bilingual"> FR </label>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-lg-4">
+            <div class="d-flex justify-content-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
+                <label class="form-check-label" style="font-size:20px;" for="Academics"> Academics </label><br>
+                <input class="form-check-input" type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
+                <label class="form-check-label" style="font-size:20px;" for="CommunityEngagement"> Community Engagement </label><br>
+                <input class="form-check-input" type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
+                <label class="form-check-label" style="font-size:20px;" for="Disability"> Disability Services </label><br>
+                <input class="form-check-input" type="checkbox" id='International'  [(ngModel)]="isInternational" >
+                <label class="form-check-label" style="font-size:20px;" for="International"> International and Newcomer Service </label><br>
+                <input class="form-check-input" type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
+                <label class="form-check-label" style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
+                <input class="form-check-input" type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
+                <label class="form-check-label" style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
+              </div>
+            </div>
+          </div>
+          <div class="col-8 col-lg-4">
+            <div class="d-flex justify-content-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
+                <label class="form-check-label" style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
+                <input class="form-check-input" type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
+                <label class="form-check-label" style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
+                <input class="form-check-input" type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
+                <label class="form-check-label" style="font-size:20px;" for="Academics"> Academics </label><br>
+                <input class="form-check-input" type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
+                <label class="form-check-label" style="font-size:20px;" for="Disability"> Disability Services </label><br>
+                <input class="form-check-input" type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
+                <label class="form-check-label" style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
+                <input class="form-check-input" type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
+                <label class="form-check-label" style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex justify-content-center">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" type="checkbox" id='internal' value="Affiliation" [(ngModel)]="isInternal" >
+                <label class="form-check-label" style="font-size:20px;" for="internal">Internal </label><br>
+                <input class="form-check-input" type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
+                <label class="form-check-label" style="font-size:20px;" for="external">External </label><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+	</div>
+</div>
+<br>
+<br>
 
 
 <!-- <<div class="text-center">
