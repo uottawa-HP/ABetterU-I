@@ -16,7 +16,10 @@ export class LoggedInGuard implements CanActivate {
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
         //returns user to login screen when logged out and user token removed
-         await this.authService.setRole();
+
+        if(this.authService.role == null){
+          await this.authService.setRole();
+        }
          if (this.router.url ==='/logout' || this.router.url === '/' && this.authService.role == null){
 
            // console.log('logged out');
@@ -24,7 +27,7 @@ export class LoggedInGuard implements CanActivate {
            return false;
          }
          // determine if the user is logged in from this method.
-         else if (this.authService.getUser() == true) {
+         else if (this.authService.user == true) {
             console.log("User is logged in");
             return true;
          }

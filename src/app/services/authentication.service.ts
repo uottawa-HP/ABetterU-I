@@ -46,6 +46,7 @@ export class AuthenticationService {
         // localStorage.setItem('user', JSON.stringify(user));
         await this.delay(100);
         this.router.navigate(['/home']);
+        await this.getRole();
         this.user=true;
         return true;
     } catch (error) {
