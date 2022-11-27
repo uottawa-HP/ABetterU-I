@@ -6,6 +6,19 @@ input{
   background-color: #F4F3EF;
 }
 
+form svg {
+  margin-left: 150px;
+  cursor: pointer;
+  display: inline-flex;
+  align-self: right;
+}
+.float-container{
+  background-color: #F4F3EF;
+}
+
+.float-child{
+  background-color: #F4F3EF;
+}
 
 img{
 

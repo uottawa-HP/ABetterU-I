@@ -52,10 +52,46 @@ body {
 
 
 
+      
       <div class='text-center'>
-        <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query" style="width: 350px; color: black;">
+        <form>
+          <div class="row">
+
+          <div class="col-sm-4 my-auto">
+          </div>
+          
+          <div class="col-sm-3 my-auto">
+
+            <input class="input-group-text" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query"  height="16" style="width: 600px; color: black;">
+        
+        
+
+          </div>
+
+          <div class="col-sm-1 my-auto">
+            <svg xmlns="http://www.w3.org/2000/svg" (click)="storeData()" id="btn" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+              <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+            </svg>
+          </div>
+
+          <div class="col-sm-4 my-auto">
+          </div>
+
+
+          </div>
+
+          
+       
+            
+        
+
+        <!--
         <button (click)="storeData()" id="btn" class="btn btn-primary" style="font-size: 20px; background-color:#EA7754 ;">&#x21bb;</button>
+        -->
+      </form>
     </div>
+  <br>
 
     <div class='text-center'>
 
@@ -63,7 +99,7 @@ body {
   <label class="form-check-label"  style="font-size:20px;" for="favourite"> Show Favourites &#9733; </label><br>
   </div>
 
-
+<br>
 
 
 
@@ -80,7 +116,7 @@ body {
   </div>
 
     <div class= "content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-<div class="float-container">
+<div class="float-container" >
 
       <div class="float-child">
       <p style="font-size:20px;"><b>Language:</b></p>
@@ -94,7 +130,7 @@ body {
         <label for="bilingual"> FR </label>
       </div>
       <div class="float-child">
-        <p><b>Health Topic:</b></p>
+        <p style="font-size:20px; margin-left: 250px; "><b>Health Topic:</b></p>
         <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
           <label style="font-size:20px;" for="Academics"> Academics </label><br>
           <input type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
@@ -107,19 +143,13 @@ body {
           <label style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
      </div>
      <div class="float-child">
-
+      <br>
           <input type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
           <label style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
           <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
           <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
           <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
           <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
-
-      </div>
-
-
-
-          
           <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
           <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
           <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
@@ -127,20 +157,26 @@ body {
 
       </div>
 
+
+
+
+
       <div class="float-child">
-        <p><b>Affiliation:</b></p>
+        <p style="font-size:20px;"><b>Affiliation:</b></p>
         <input type="checkbox" id='internal' value="Affiliation" [(ngModel)]="isInternal" >
           <label style="font-size:20px;" for="internal">Internal </label><br>
           <input type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
           <label style="font-size:20px;" for="external">External </label><br>
       </div>
-
+<br>
+    </div>
+   
 
  </div>
   </div>
 
   <!-- </div> -->
-</form><br><br>
+</form><br>
 
 
 
@@ -162,12 +198,40 @@ body {
               <span>{{resource['NameofResource']}} </span>
             </ng-template>
           <ng-template ngbPanelContent>
-          <input class="star" type="checkbox"  id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" [checked] = "!this.AuthService.favourites.includes(resource.id)"><br/><br/>
-            <a [routerLink]="['/feedback']">
-              <button class="btn btn-primary float-right" style="float: right;background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
-          </a>
-              <div id="idNum"><b>ID: </b> {{resource['id']}}</div>
+
+
+
+            <div class="row">
+
+              <div class="col-sm-10 my-auto">
+                <div id="idNum"><b>ID: </b> {{resource['id']}}</div>
               <b>Health Theme:</b> {{resource['HealthTopic']}}<br />
+              </div>
+              
+              
+    
+              <div class="col-sm-1 my-auto">
+                <input class="star" type="checkbox" style="float: right" id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" [checked] = "!this.AuthService.favourites.includes(resource.id)"><br/><br/>
+
+              </div>
+    
+              <div class="col-sm-1 my-auto">
+                <a [routerLink]="['/feedback']">
+                  <button class="btn btn-primary float-right" style="float: right; background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
+              </a>
+              </div>
+    
+    
+              </div>
+    
+
+
+            
+           
+        
+
+
+              
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
               <b>Language:</b> {{resource['Language']}}<br /> <br />
