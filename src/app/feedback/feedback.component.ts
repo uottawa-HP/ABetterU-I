@@ -42,13 +42,23 @@ export class FeedbackComponent implements OnInit {
   constructor(public feedbackService: FeedbackService,private router: Router) {
     this.idNum= feedbackService.idNumber;
     this.preselected = feedbackService.preselected;
+    this.feedbackType= this.preselected;
+
+
 
   }
 
 
 
   ngOnInit(): void {
-
+    if(this.feedbackService.preselected == "" || this.feedbackService.preselected == undefined || this.feedbackService.preselected == null ){
+      this.feedbackType = "Choose";
+    }
+    else{
+      this.idNum= this.feedbackService.idNumber;
+      this.preselected = this.feedbackService.preselected;
+      this.feedbackType= this.preselected;
+    }
 
 
   }
@@ -109,13 +119,12 @@ export class FeedbackComponent implements OnInit {
       this.fbFormModel = {sheetId:3439555094308740, body:this.fbForm};
       console.log(this.fbFormModel);
 
-      if((this.preselected == "" || this.preselected == undefined || this.preselected == null) || (this.feedback == "" || this.feedback == undefined || this.feedback == null)|| (this.preselected == "Feedback" && (this.idNum == "" || this.idNum == null || this.idNum == undefined)))
+      if(this.preselected == "Choose"||(this.preselected == "" || this.preselected == undefined || this.preselected == null) || (this.feedback == "" || this.feedback == undefined || this.feedback == null)|| (this.preselected == "Feedback" && (this.idNum == "" || this.idNum == null || this.idNum == undefined)))
       {
         this.message = "One or more of the form fields is invalid";
         this.success = false;
         this.preselected = "";
-        this.idNum ="";
-        this.feedbackType = "";
+
       }else{
         this.feedbackService.enroll(this.fbFormModel)
           .subscribe(
@@ -124,9 +133,11 @@ export class FeedbackComponent implements OnInit {
           )
         this.preselected = "";
         this.idNum ="";
-        this.feedbackType = "";
-        this.myForm.resetForm();
         this.success = true;
+        this.feedbackType = "Choose";
+        this.feedback = "";
+        // this.myForm.resetForm();
+
       }
 
       // setTimeout(() =>  {
