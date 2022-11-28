@@ -64,6 +64,7 @@ export class FeedbackComponent implements OnInit {
     }
     if(this.feedbackType == "Feedback"){
       this.disabled = false;
+      this.idNum = "";
     }
     // else{
     //   this.disabled = false;
@@ -80,7 +81,6 @@ export class FeedbackComponent implements OnInit {
 
     else if(this.feedbackType == "Feedback"){
       this.preselected = "Feedback";
-      this.idNum = "";
     }
 
 
