@@ -29,30 +29,42 @@ export class FeedbackComponent implements OnInit {
   public showMyMessage=false;
   idNum: any;
   preselected: any;
+  disabled: any;
 
   @Input() home: HomeComponent;
   @ViewChild('myForm', {static: false}) myForm: NgForm;
-  
-  
 
-  constructor(public feedbackService: FeedbackService) { 
+
+
+  constructor(public feedbackService: FeedbackService) {
     this.idNum= feedbackService.idNumber;
     this.preselected = feedbackService.preselected;
-    
+
   }
 
-  
+
 
   ngOnInit(): void {
-  
-    
-    
+
+
+
   }
 
 
 
   selectChangeHandler(event:any){
     this.feedbackType = event.target.value;
+    if(this.feedbackType == "Suggestion"){
+      this.disabled = true;
+      this.resourceID = "";
+    }
+    if(this.feedbackType == "Feedback"){
+      this.disabled = false;
+    }
+    // else{
+    //   this.disabled = false;
+    // }
+
     console.log("feedbackType",this.feedbackType);
   }
 
@@ -96,7 +108,7 @@ export class FeedbackComponent implements OnInit {
       this.preselected="";
       this.myForm.resetForm();
 
-  
+
     }
 
   //**IMPLEMENTATION FALL**

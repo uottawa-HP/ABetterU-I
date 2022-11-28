@@ -78,7 +78,7 @@ body {
 
 
       <div class="input-group w-25 mx-auto">
-        <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" placeholder="Password" aria-label="Text input with radio button" style="background-color:#F7F5F2;">
+        <input [type]="fieldTextType ? 'text' : 'password'" class="form-control" [(ngModel)]="password" placeholder="Password" aria-label="Text input with radio button" style="background-color:#F7F5F2;">
         <div class="input-group-text">
           <i class="bi bi-eye-slash" id="togglePassword" (click)="toggleFieldTextType()"></i>
         </div>
@@ -123,18 +123,19 @@ body {
     <table class="table">
         <thead>
             <tr>
+                <th name="email">Email</th>
                 <th name="firstname">First Name</th>
                 <th name="lastname">Last Name</th>
-                <th name="email">Email</th>
                 <th name="role">Role</th>
                 <th name="action">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let user of users; index as i" >
+                <td> <input class="input-group-text w-30 mx-auto"  type="text" placeholder = "Add email" [(ngModel)] = "user.email"  [disabled]='!editState' name="email" style="background-color: #F0F0F0;"></td>
                 <td>  <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add firstname" [(ngModel)] = "user.firstname" [disabled]='!editState' name="firstname" style="background-color: #F0F0F0;"></td>
                 <td> <input class="input-group-text w-30 mx-auto" type="text" placeholder = "Add lastname" [(ngModel)] = "user.lastname" [disabled]='!editState' name="lastname" style="background-color: #F0F0F0;"></td>
-                <td><input class="input-group-text w-30 mx-auto"  type="text" placeholder = "Add email" [(ngModel)] = "user.email"  [disabled]='!editState' name="email" style="background-color: #F0F0F0;"></td>
+
 
                 <td><select class="form-select" aria-label="Default select example" style="width: 200px; height:35px;; background-color: #F0F0F0;" [(ngModel)]="user.role" [disabled]='!editState' name="role">
                   <option value = "" style="text-align: center;"  disabled selected hidden>Select Role...</option>

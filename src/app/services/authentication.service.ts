@@ -22,6 +22,8 @@ export class AuthenticationService {
   favourites: any;
   role: string;
   currentUser;
+  signInError:string;
+  chgPassErr:string;
 
 
 
@@ -64,6 +66,7 @@ export class AuthenticationService {
         return true;
     } catch (error) {
         console.log('Sign in failed', error);
+        this.signInError = error;
         return false;
     }
   }
@@ -207,7 +210,20 @@ export class AuthenticationService {
 
 
   async changePassword(password : string){
-    await this.fireAuth.currentUser.then(u => u.updatePassword(password))
+
+    try {
+        if (!password) throw new Error('Invalid Entry!');
+        await this.fireAuth.currentUser.then(u => u.updatePassword(password))
+        return true;
+    } catch (error) {
+        console.log('Sign in failed', error);
+        this.chgPassErr = error;
+        return false;
+    }
+
+
+
+
     this.reAuth(password);
 
 

@@ -121,7 +121,7 @@ export class StaffMemberComponent implements OnInit {
     this.message = '';
     if(this.user.firstname != '' && this.user.lastname != '' && this.user.email != '' && this.user.role != '' && this.password != ''){
       if(await this.signUpService.signUp(this.user.email, this.password) == false){
-        this.message = "Email is invalid or is currently in use in the system!";
+        this.message = this.signUpService.signInError;
         this.success = false;
         return false;
       }else{

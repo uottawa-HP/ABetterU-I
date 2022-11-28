@@ -1,7 +1,7 @@
 .comment {width: 600px; height:300px; padding-left: 10px;}
 
 body{
-    background-color: #F7F5F2;
+    background-color: #F4F3EF;
   }
 
   #box1{
@@ -10,6 +10,6 @@ body{
     justify-content: center;
     display: flex;
 
-  
-  
+
+
   }

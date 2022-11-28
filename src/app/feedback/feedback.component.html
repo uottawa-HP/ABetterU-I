@@ -39,9 +39,9 @@ body {
 
 
                 <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Resource ID:  </label>
-                    <input class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="idNum" style="background-color: #F0F0F0;"><br />
+                <input  class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="idNum" placeholder="Enter Resource ID" style="background-color: #F0F0F0;"[disabled]="disabled" /><br />
             </div>
-            
+
 
             <div class="form-group">
                 <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>
@@ -67,4 +67,3 @@ body {
       </div>
 
     </div>
-    
