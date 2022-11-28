@@ -50,97 +50,128 @@ body {
 <form>
   <div class="form-group">
 
-
-
-      <div class='text-center'>
-        <input class="input-group-text w-25 mx-auto" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query" style="width: 350px; color: black;">
-        <button (click)="storeData()" id="btn" class="btn btn-primary" style="font-size: 20px; background-color:#EA7754 ;">&#x21bb;</button>
-    </div>
-
     <div class='text-center'>
+      <div class="input-group w-25 mx-auto">
+        <input class="form-control" id="listSearch" type="text" name="tag" placeholder="Search" [(ngModel)]="query">
+        <div class="input-group-text">
+          <i class="bi bi-arrow-clockwise" (click)="storeData()"></i>
+        </div>
+      </div>
+    </div><br>
 
-  <input class="form-check-input" type="checkbox" id='favourite' [(ngModel)]="isFavourite" >
-  <label class="form-check-label"  style="font-size:20px;" for="favourite"> Show Favourites &#9733; </label><br>
+    <div class="d-flex justify-content-center">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id='favourite' [(ngModel)]="isFavourite" >
+        <label class="form-check-label"  style="font-size:20px;" for="favourite"> Favourites &#9733; </label>
+      </div>
+    </div><br>
+
+
+
+
+
+<!--Steph's code starts here-->
+
+
+<div class="text-center">
+  <p>
+      <button
+          type="button"
+          class="btn btn-primary"
+      style="background-color: #232942;"
+          (click)="isCollapsed = ! isCollapsed"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample"
+      ><span class="bi bi-filter"></span>
+          Filters
+      </button>
+  </p>
+</div>
+
+
+
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+      <div class="card">
+          <div class="card-body">
+        <div class="container">
+          <div class="row">
+            <div class="col"><p class = "text-center">Language</p></div>
+            <div class="col-8" > <p class = "text-center"> Health Topic</p></div>
+            <div class="col"><p class = "text-center">Affiliation</p></div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="d-flex justify-content-center">
+                <div class="form-check">
+                  <input #checkboxes class="form-check-input" type="checkbox" id='multi' [(ngModel)]="isMulti" >
+                  <label class="form-check-label" style="font-size:20px;" for="multi"> Multi </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='english' [(ngModel)]="isEnglish" >
+                  <label class="form-check-label" style="font-size:20px;" for="english"> EN </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
+                  <label class="form-check-label" for="bilingual"> FR </label>
+                </div>
+              </div>
+            </div>
+            <div class="col-8 col-lg-4">
+              <div class="d-flex justify-content-center">
+                <div class="form-check">
+                  <input #checkboxes class="form-check-input" type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
+                  <label class="form-check-label" style="font-size:20px;" for="Academics"> Academics </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
+                  <label class="form-check-label" style="font-size:20px;" for="CommunityEngagement"> Community Engagement </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
+                  <label class="form-check-label" style="font-size:20px;" for="Disability"> Disability Services </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='International'  [(ngModel)]="isInternational" >
+                  <label class="form-check-label" style="font-size:20px;" for="International"> International and Newcomer Service </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
+                  <label class="form-check-label" style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-8 col-lg-4">
+              <div class="d-flex justify-content-center">
+                <div class="form-check">
+                  <input #checkboxes class="form-check-input" type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
+                  <label class="form-check-label" style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
+                  <label class="form-check-label" style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
+                  <label class="form-check-label" style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
+                  <label class="form-check-label" style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
+                  <label class="form-check-label" style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-center">
+                <div class="form-check">
+                  <input #checkboxes class="form-check-input" type="checkbox" type="checkbox" id='internal' value="Affiliation" [(ngModel)]="isInternal" >
+                  <label class="form-check-label" style="font-size:20px;" for="internal">Internal </label><br>
+                  <input #checkboxes class="form-check-input" type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
+                  <label class="form-check-label" style="font-size:20px;" for="external">External </label><br>
+
+                </div>
+              </div>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="d-flex justify-content-center">
+              <div>
+                <button class="btn btn-primary" style="background-color: #232942;" (click)="uncheckAll()">Clear Filters</button><br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
   </div>
+  <br>
 
-
-
-
-
-    <div class="text-center">
-    <button
-		type="button"
-		class="btn btn-primary"
-    style="background-color: #232942;"
-		(click)="collapse.toggle()"
-		[attr.aria-expanded]="!isCollapsed"
-	><span class="bi bi-filter"></span>
-	  Filters
-	</button>
   </div>
-
-    <div class= "content" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-<div class="float-container">
-
-      <div class="float-child">
-      <p style="font-size:20px;"><b>Language:</b></p>
-      <input type="checkbox" id='multi' [(ngModel)]="isMulti" >
-        <label  style="font-size:20px;" for="multi"> Multi </label><br>
-
-        <input type="checkbox" id='english' [(ngModel)]="isEnglish" >
-        <label style="font-size:20px;" for="english"> EN </label><br>
-
-        <input type="checkbox" id='bilingual' [(ngModel)]="isBilingual" >
-        <label for="bilingual"> FR </label>
-      </div>
-      <div class="float-child">
-        <p><b>Health Topic:</b></p>
-        <input type="checkbox" id='Academics'  [(ngModel)]="isAcademics" >
-          <label style="font-size:20px;" for="Academics"> Academics </label><br>
-          <input type="checkbox" id='CommunityEngagement'  [(ngModel)]="isCommunityEngagement" >
-          <label style="font-size:20px;" for="CommunityEngagement"> Community Engagement </label><br>
-          <input type="checkbox" id='Disability'  [(ngModel)]="isDisability" >
-          <label style="font-size:20px;" for="Disability"> Disability Services </label><br>
-          <input type="checkbox" id='International'  [(ngModel)]="isInternational" >
-          <label style="font-size:20px;" for="International"> International and Newcomer Service </label><br>
-          <input type="checkbox" id='mentalHealth' value="Mental Health" [(ngModel)]="isMentalHealth" >
-          <label style="font-size:20px;" for="mentalHealth"> Mental Health </label><br>
-     </div>
-     <div class="float-child">
-
-          <input type="checkbox" id='physicalHealth'  [(ngModel)]="isPhysicalHealth" >
-          <label style="font-size:20px;" for="physicalHealth"> Physical Health </label><br>
-          <input type="checkbox" id='PopulationHealth'  [(ngModel)]="isPopulation" >
-          <label style="font-size:20px;" for="PopulationHealth">Population Health </label><br>
-          <input type="checkbox" id='Nutrition'  [(ngModel)]="isNutrition" >
-          <label style="font-size:20px;" for="Nutrition"> Nutrition </label><br>
-
-      </div>
-
-
-
-          
-          <input type="checkbox" id='sexualHealth' value="Sexual & Reproductive Health" [(ngModel)]="isSexualHealth" >
-          <label style="font-size:20px;" for="sexualHealth"> Sexual & Reproductive Health </label><br>
-          <input type="checkbox" id='SubstanceUse'  [(ngModel)]="isSubstance" >
-          <label style="font-size:20px;" for="SubstanceUse"> Substance Use Health </label><br>
-
-      </div>
-
-      <div class="float-child">
-        <p><b>Affiliation:</b></p>
-        <input type="checkbox" id='internal' value="Affiliation" [(ngModel)]="isInternal" >
-          <label style="font-size:20px;" for="internal">Internal </label><br>
-          <input type="checkbox" id='external' value="External" [(ngModel)]="isExternal" >
-          <label style="font-size:20px;" for="external">External </label><br>
-      </div>
-
-
- </div>
-  </div>
-
-  <!-- </div> -->
-</form><br><br>
+</form>
 
 
 
@@ -155,19 +186,55 @@ body {
 
 
 
+
 <div *ngIf="filteredResources.length > 0" class = "container-fluid">
-  <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" activeIds="panel1" >
-        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth:this.AuthService.favourites| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize " >
+  <div class="d-flex justify-content-end">
+    <div>
+      <button type="button" class="btn btn-sm ml-2" (click)="acc.expandAll()">Expand all</button>
+      <button type="button" class="btn btn-sm ml-2" (click)="acc.collapseAll()">Collapse all</button>
+    </div>
+  </div>
+
+  <ngb-accordion [destroyOnHide]='false' [closeOthers]="false" #acc="ngbAccordion" activeIds="panel1">
+        <ngb-panel *ngFor = "let resource of filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth:this.AuthService.favourites| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics| affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite |slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;" >
            <ng-template ngbPanelTitle >
               <span>{{resource['NameofResource']}} </span>
+
             </ng-template>
           <ng-template ngbPanelContent>
-          <input class="star" type="checkbox"  id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" [checked] = "!this.AuthService.favourites.includes(resource.id)"><br/><br/>
-            <a [routerLink]="['/feedback']">
-              <button class="btn btn-primary float-right" style="float: right;background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
-          </a>
-              <div id="idNum"><b>ID: </b> {{resource['id']}}</div>
+
+
+            <div class="row">
+
+              <div class="col-sm-10 my-auto">
+                <div id="idNum"><b>ID: </b> {{resource['id']}}</div>
               <b>Health Theme:</b> {{resource['HealthTopic']}}<br />
+              </div>
+
+
+
+              <div class="col-sm-1 my-auto">
+                <input class="star" type="checkbox" style="float: right" id="resource.id" (change)="onChanged(resource.id)" title="bookmark page" [checked] = "!this.AuthService.favourites.includes(resource.id)"><br/><br/>
+
+              </div>
+
+              <div class="col-sm-1 my-auto">
+                <a [routerLink]="['/feedback']">
+                  <button class="btn btn-primary float-right" style="float: right; background-color: #232942;" (click)="show(resource.id)">Feedback</button><br>
+              </a>
+              </div>
+
+
+              </div>
+
+
+
+
+
+
+
+
+
               <b>Subtopic:</b> {{resource['Subtopic']}}<br />
               <!-- <b>Category:</b> {{resource['']}}<br /> -->
               <b>Language:</b> {{resource['Language']}}<br /> <br />

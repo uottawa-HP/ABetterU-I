@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
   email ='';
   role='';
   tempUser: any;
+  success: boolean;
+  fieldTextType: boolean;
 
   constructor(private authService: AuthenticationService, private firestore: AngularFirestore) { }
 
@@ -40,13 +42,27 @@ export class ProfileComponent implements OnInit {
 
 
 
-  changePassword() {
+  async changePassword() {
     if(this.password != this.cpassword){
       this.message = "Passwords do not match!"
     }else{
-      this.authService.changePassword(this.password);
+      if(await this.authService.changePassword(this.password) == false){
+        this.message = this.authService.chgPassErr;
+        this.success = false;
+        return false;
+      }else{
+        this.authService.changePassword(this.password);
+        this.success = true;
+        this.password ='';
+        this.cpassword ='';
+      }
+
     }
   }
+
+  toggleFieldTextType(){
+       this.fieldTextType = !this.fieldTextType;
+     }
 
   getProfile() {
 

@@ -10,6 +10,12 @@ body {
 <body>
 <app-navbar></app-navbar>
 
+<div class="alert alert-danger" role="alert" *ngIf="message">
+  <div class="text-center">
+    {{ message }}
+  </div>
+</div>
+
 <div id="box">
     <div class="row">
       <div class="col-lg-12 my-auto">
@@ -29,19 +35,21 @@ body {
             <div class="block">
               <div class="form-group">
                   <label for="feedBackSelect">Please select a feedback type</label>
-                  <select class="form-control" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)" style="background-color: #F0F0F0;">
+                  <select class="form-select" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)" style="background-color: #F0F0F0;">
                     <option selected>Choose...</option>
                     <option id="Feedback" [selected]="preselected=='Feedback'" value ="Feedback">Existing Resource Feedback</option>
                     <option  value= "Suggestion">New Resource Suggestion</option>
 
                   </select>
+
+
                 </div>
 
 
                 <label class="col-form-label" style="color: black; background-color: F7F5F2;" for="ressourceID" display="inline-block" >Resource ID:  </label>
-                    <input class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="idNum" style="background-color: #F0F0F0;"><br />
+                <input  class="input-group-text w-100 mx-auto" type="text" name="resourceID" [(ngModel)]="idNum" placeholder="Enter Resource ID" style="background-color: #F0F0F0;"[disabled]="disabled" /><br />
             </div>
-            
+
 
             <div class="form-group">
                 <label class="col-form-label" style=" width: 600px; color: black; background-color: #F7F5F2;" for="comment">Comment: </label><br>
@@ -54,7 +62,8 @@ body {
 
             <div class="text-center">
                 <button class="btn btn-primary" (click)="onSubmit()" style="background-color:#EA7754 ;">Submit</button><br><br>
-                <p *ngIf="showMyMessage" style="color: black;">Feedback Submitted!</p>
+                <!-- <p *ngIf="showMyMessage" style="color: black;">Feedback Submitted!</p> -->
+                <p *ngIf="success" style="color: black;">Feedback Submitted Successfully!</p>
             </div><br />
 
         </form>
@@ -67,4 +76,3 @@ body {
       </div>
 
     </div>
-    

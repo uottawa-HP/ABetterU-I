@@ -11,6 +11,8 @@ import { FeedbackService } from '../services/feedback.service';
 
 
 
+
+
 @Component({
   selector: 'app-staff-member',
   templateUrl: './staff-member.component.html',
@@ -21,10 +23,14 @@ export class StaffMemberComponent implements OnInit {
   editState: boolean = false;
   editMode: boolean = false;
   editUserId: string;
+  editEmail: string="";
   userToEdit: staffMember;
   password = '';
   message: string;
   success: boolean;
+  fieldTextType: boolean;
+
+
 
 
   @ViewChild('userForm') userForm:NgForm; //CRUD
@@ -39,9 +45,13 @@ export class StaffMemberComponent implements OnInit {
   }
 
 
+
+
   constructor(private userService: UsersService, private http: HttpClient, private signUpService: AuthenticationService, public feebackServices: FeedbackService) {
 
-  }
+
+
+ }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(users => {
       this.users = users
@@ -50,16 +60,22 @@ export class StaffMemberComponent implements OnInit {
     this.feebackServices.idNumber=undefined;
   }
 
-  deleteUser(event, user: staffMember){
+
+
+ deleteUser(event, user: staffMember){
     if(confirm('Do you want to delete this user')){
       //this.clearState();
       this.userService.deleteUser(user);
     }
   }
 
-  onEditUser(user: staffMember, index){
+
+
+ onEditUser(user: staffMember, index){
     this.editMode = true;
     console.log(this.user.id);
+
+
 
 
     this.userForm.setValue({
@@ -70,29 +86,47 @@ export class StaffMemberComponent implements OnInit {
     })
   }
 
-  editUser( event ,user: staffMember){
+
+
+ editUser( event ,user: staffMember){
     this.editState = true;
     this.userToEdit = user;
+    this.editEmail = user.email;
+    console.log("edit", this.editEmail);
   }
 
-  clearState(){
+
+
+ clearState(){
     this.editState = false;
     this.userToEdit = null;
   }
 
 
 
-  updateUser(user: staffMember){
+ toggleFieldTextType(){
+      this.fieldTextType = !this.fieldTextType;
+    }
+
+
+
+ updateUser(user: staffMember){
     this.userService.updateUser(user);
     this.clearState();
+    this.editState=false;
+    this.editEmail="";
 
-  }
 
-  async onAddUser(userData: staffMember): Promise<boolean>{
+
+ }
+
+
+
+ async onAddUser(userData: staffMember): Promise<boolean>{
     this.message = '';
     if(this.user.firstname != '' && this.user.lastname != '' && this.user.email != '' && this.user.role != '' && this.password != ''){
       if(await this.signUpService.signUp(this.user.email, this.password) == false){
-        this.message = "Email is invalid or is currently in use in the system!";
+        this.message = this.signUpService.signInError;
         this.success = false;
         return false;
       }else{
@@ -106,12 +140,18 @@ export class StaffMemberComponent implements OnInit {
         return(await this.signUpService.signUp(this.user.email, this.password));
       }
 
-    }else{
+
+
+   }else{
       this.success = false;
       this.message = 'Registration Invalid! One or more fields are missing!'
     }
 
-  }
+
+
+ }
+
+
 
 
 }

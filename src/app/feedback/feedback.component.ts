@@ -3,6 +3,7 @@ import { FeedbackService } from '../services/feedback.service';
 import { fbForm } from '../models/fbForm';
 import { HomeComponent } from '../home/home.component';
 import { NgForm } from '@angular/forms';
+import {Router} from '@angular/router';
 
 
 
@@ -29,34 +30,60 @@ export class FeedbackComponent implements OnInit {
   public showMyMessage=false;
   idNum: any;
   preselected: any;
+  disabled: any;
+  success: boolean;
+  message= "";
 
   @Input() home: HomeComponent;
   @ViewChild('myForm', {static: false}) myForm: NgForm;
-  
-  
 
-  constructor(public feedbackService: FeedbackService) { 
+
+
+  constructor(public feedbackService: FeedbackService,private router: Router) {
     this.idNum= feedbackService.idNumber;
     this.preselected = feedbackService.preselected;
-    
+
   }
 
-  
+
 
   ngOnInit(): void {
-  
-    
-    
+
+
+
   }
 
 
 
   selectChangeHandler(event:any){
     this.feedbackType = event.target.value;
+    if(this.feedbackType == "Suggestion"){
+      this.disabled = true;
+      this.resourceID = "";
+      this.idNum = "N/A";
+    }
+    if(this.feedbackType == "Feedback"){
+      this.disabled = false;
+    }
+    // else{
+    //   this.disabled = false;
+    // }
+
     console.log("feedbackType",this.feedbackType);
   }
 
   onSubmit() {
+    if(this.feedbackType == "Suggestion"){
+      this.preselected = "Suggestion";
+      this.idNum = "N/A";
+    }
+
+    else if(this.feedbackType == "Feedback"){
+      this.preselected = "Feedback";
+      this.idNum = "";
+    }
+
+
     this.fbForm = [
                 {
                   "toBottom": true,
@@ -82,21 +109,35 @@ export class FeedbackComponent implements OnInit {
       this.fbFormModel = {sheetId:3439555094308740, body:this.fbForm};
       console.log(this.fbFormModel);
 
-      setTimeout(() =>  {
-        this.showMyMessage = true}, 1000)
-      setTimeout(() =>  {
-        this.showMyMessage = false}, 7000)
+      if((this.preselected == "" || this.preselected == undefined || this.preselected == null) || (this.feedback == "" || this.feedback == undefined || this.feedback == null)|| (this.preselected == "Feedback" && (this.idNum == "" || this.idNum == null || this.idNum == undefined)))
+      {
+        this.message = "One or more of the form fields is invalid";
+        this.success = false;
+        this.preselected = "";
+        this.idNum ="";
+        this.feedbackType = "";
+      }else{
+        this.feedbackService.enroll(this.fbFormModel)
+          .subscribe(
+            response => console.log('Success!', response),
+            error => this.errorMsg = error.statusText
+          )
+        this.preselected = "";
+        this.idNum ="";
+        this.feedbackType = "";
+        this.myForm.resetForm();
+        this.success = true;
+      }
+
+      // setTimeout(() =>  {
+      //   this.showMyMessage = true}, 1000)
+      // setTimeout(() =>  {
+      //   this.showMyMessage = false}, 7000)
 
 
-      this.feedbackService.enroll(this.fbFormModel)
-        .subscribe(
-          response => console.log('Success!', response),
-          error => this.errorMsg = error.statusText
-        )
-      this.preselected="";
-      this.myForm.resetForm();
 
-  
+
+
     }
 
   //**IMPLEMENTATION FALL**

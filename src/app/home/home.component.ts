@@ -1,6 +1,6 @@
 
 
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChildren, QueryList, ElementRef} from '@angular/core';
 import {AuthenticationService} from '../services/authentication.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -11,6 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { FeedbackComponent } from '../feedback/feedback.component';
 import { FeedbackService } from '../services/feedback.service';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
+
 
 
 
@@ -71,38 +72,39 @@ export class HomeComponent implements OnInit{
   public id : any ='';
   public favourites: any='';
   query: String ="";
-  isMulti: String = "";
-  isBilingual: String = "";
-  checked: String = ""
-  isSexualHealth: String= "";
-  isMentalHealth: String = "";
-  isPhysicalHealth: String = "";
-  isCommunityEngagement: String ="";
-  isDisability: String="";
-  isInternational: String="";
-  isNutrition: String="";
-  isPopulation: String ="";
-  isSubstance : String="";
-  isAcademics: String="";
-  isEnglish: String="";
-  isInternal: String="";
-  isExternal: String ="";
+  isMulti: boolean = false;
+  isBilingual: boolean = false;
+  checked: boolean = false;
+  isSexualHealth: boolean = false;
+  isMentalHealth: boolean = false;
+  isPhysicalHealth: boolean = false;
+  isCommunityEngagement: boolean = false;
+  isDisability: boolean = false;
+  isInternational: boolean = false;
+  isNutrition: boolean = false;
+  isPopulation: boolean = false;
+  isSubstance : boolean = false;
+  isAcademics: boolean = false;
+  isEnglish: boolean = false;
+  isInternal: boolean = false;
+  isExternal: boolean = false;
   isFavourite: String = "";
   public a: number =0;
 
   element = 0;
-
   public isCollapsed = true;
-
   public isChecked=false;
-
-
-
-
-
   active = 0;
 
   pages
+
+
+
+
+
+
+
+
 
 @Input() feedback: FeedbackComponent;
 
@@ -178,6 +180,29 @@ export class HomeComponent implements OnInit{
 
 
 
+  @ViewChildren("checkboxes") checkboxes: QueryList<ElementRef>;
+    uncheckAll() {
+      this.checkboxes.forEach((element) => {
+        element.nativeElement.checked = false;
+
+      });
+      this.isMulti=false;
+      this.isBilingual = false;
+      this.checked= false;
+      this.isSexualHealth = false;
+      this.isMentalHealth = false;
+      this.isPhysicalHealth = false;
+      this.isCommunityEngagement = false;
+      this.isDisability= false;
+      this.isInternational = false;
+      this.isNutrition = false;
+      this.isPopulation = false;
+      this.isSubstance = false;
+      this.isAcademics= false;
+      this.isEnglish = false;
+      this.isInternal = false;
+      this.isExternal = false;
+    }
 
 
 
