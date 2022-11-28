@@ -35,7 +35,7 @@ body {
             <div class="block">
               <div class="form-group">
                   <label for="feedBackSelect">Please select a feedback type</label>
-                  <select name="selectDropdown" class="form-select" id="exampleFormControlSelect1" (change)="selectChangeHandler($event)" style="background-color: #F0F0F0;">
+                  <select name="selectDropdown" class="form-select" id="exampleFormControlSelect1" [(ngModel)]="feedbackType" (change)="selectChangeHandler($event)" style="background-color: #F0F0F0;">
                     <option selected value="0">Choose...</option>
                     <option id="Feedback" [selected]="preselected=='Feedback'" value ="Feedback">Existing Resource Feedback</option>
                     <option  value= "Suggestion">New Resource Suggestion</option>

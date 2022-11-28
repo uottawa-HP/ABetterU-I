@@ -42,6 +42,7 @@ export class FeedbackComponent implements OnInit {
   constructor(public feedbackService: FeedbackService,private router: Router) {
     this.idNum= feedbackService.idNumber;
     this.preselected = feedbackService.preselected;
+    this.feedbackType= this.preselected;
 
   }
 
@@ -114,8 +115,7 @@ export class FeedbackComponent implements OnInit {
         this.message = "One or more of the form fields is invalid";
         this.success = false;
         this.preselected = "";
-        this.idNum ="";
-        this.feedbackType = "";
+       
       }else{
         this.feedbackService.enroll(this.fbFormModel)
           .subscribe(
