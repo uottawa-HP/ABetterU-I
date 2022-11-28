@@ -165,10 +165,6 @@ body {
             </div>
           </div>
         </div>
-
-
-
-
       </div>
       </div>
   </div>
@@ -257,7 +253,7 @@ body {
 
 
   </ngb-accordion>
-  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics|affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true" ></ngb-pagination>
+  <ngb-pagination class="d-flex justify-content-center" [pageSize]="pageSize" [collectionSize]="(filteredResources | searchFilter :query | multiFilter: isMulti| checkboxFilter: isBilingual | englishFilter:isEnglish| sexualHealthFilter: isSexualHealth |mentalHealthFilter: isMentalHealth| physicalHealthFilter:isPhysicalHealth| communityEngagementFilter:isCommunityEngagement| disabilityFilter:isDisability| internationalFilter:isInternational| nutritionFilter:isNutrition| populationHealthFilter:isPopulation| substanceUseHealthFilter:isSubstance| academicsFilter:isAcademics|affiliationExternal:isExternal| affiliation:isInternal|favourites:this.AuthService.favourites:isFavourite)?.length" [(page)]="page" [maxSize]="5" [rotate]="false" [boundaryLinks]="true"></ngb-pagination>
   <!-- <table class="table">
     <tr>
       <th>Title</th>

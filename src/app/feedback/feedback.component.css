@@ -13,3 +13,6 @@ body{
 
 
   }
+  input[type="text"][disabled] {
+   color: #A9A9A9;
+ }
