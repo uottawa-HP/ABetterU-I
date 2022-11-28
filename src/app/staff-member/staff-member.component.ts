@@ -23,6 +23,7 @@ export class StaffMemberComponent implements OnInit {
   editState: boolean = false;
   editMode: boolean = false;
   editUserId: string;
+  editEmail: string="";
   userToEdit: staffMember;
   password = '';
   message: string;
@@ -90,6 +91,8 @@ export class StaffMemberComponent implements OnInit {
  editUser( event ,user: staffMember){
     this.editState = true;
     this.userToEdit = user;
+    this.editEmail = user.email;
+    console.log("edit", this.editEmail);
   }
 
 
@@ -110,6 +113,8 @@ export class StaffMemberComponent implements OnInit {
  updateUser(user: staffMember){
     this.userService.updateUser(user);
     this.clearState();
+    this.editState=false;
+    this.editEmail="";
 
 
 
