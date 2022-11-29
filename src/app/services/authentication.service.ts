@@ -47,6 +47,8 @@ export class AuthenticationService {
         console.log("the email signing in is: "+ this.email);
         // localStorage.setItem('user', JSON.stringify(user));
         await this.delay(100);
+        await this.getRole();
+        await this.delay(100);
         this.router.navigate(['/home']);
         this.user=true;
         return true;
