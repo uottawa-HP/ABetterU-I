@@ -56,6 +56,10 @@ export class AuthenticationService {
     }
   }
 
+  async deleteUser(){
+    // (await this.fireAuth.currentUser).delete();
+  }
+
 
 //creates user with in firebase auth
   async signUp(email: string, password: string) {

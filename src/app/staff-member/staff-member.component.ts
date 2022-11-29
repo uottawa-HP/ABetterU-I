@@ -66,6 +66,7 @@ export class StaffMemberComponent implements OnInit {
     if(confirm('Do you want to delete this user')){
       //this.clearState();
       this.userService.deleteUser(user);
+      // this.signUpService.deleteUser();
     }
   }
 
