@@ -52,7 +52,7 @@ export class LoginComponent {
 
     if (this.email != '' && this.password !=''){
       //only logs in user if there has been a role Admin or volutneer assigned
-      if (this.role == "Admin" || this.role == "Volunteer"){
+      if (this.role == "Admin" || this.role == "Volunteer" || this.role == "Employee"){
         if(await this.loginService.signIn(this.email, this.password) == false){
           this.message = "Invalid email or password";
           return false;
@@ -91,4 +91,3 @@ export class LoginComponent {
 function ViewChild(arg0: string) {
   throw new Error('Function not implemented.');
 }
-
