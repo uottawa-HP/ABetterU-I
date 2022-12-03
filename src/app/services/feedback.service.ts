@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
-  _url = 'https://systemnavdb.herokuapp.com/feedback';
+  _url = 'https://sndb-backend.onrender.com/feedback';
   constructor(private _http: HttpClient) { }
 
   enroll (form: fbForm) {
@@ -21,7 +21,7 @@ export class FeedbackService {
   }
 
   public idNumber : Number;
-  public preselected : String; 
+  public preselected : String;
 
 
 
