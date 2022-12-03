@@ -12,7 +12,7 @@ export class ConfigService {
 
   //retrieve resources.json from express
   getData(){
-    let url = "https://systemnavdb.herokuapp.com/resources";
+    let url = "https://sndb-backend.onrender.com/resources";
     return this.http.get(url);
   }
 }
