@@ -8,7 +8,7 @@ import { throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class FeedbackService {
-  _url = 'https://sndb-backend.onrender.com/feedback';
+  _url = 'https://heath-wellness-resources-database.azurewebsites.net/feedback';
   constructor(private _http: HttpClient) { }
 
   enroll (form: fbForm) {
