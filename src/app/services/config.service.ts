@@ -12,7 +12,7 @@ export class ConfigService {
 
   //retrieve resources.json from express
   getData(){
-    let url = "https://sndb-backend.onrender.com/resources";
+    let url = "https://heath-wellness-resources-database.azurewebsites.net/resources";
     return this.http.get(url);
   }
 }
